@@ -1,0 +1,52 @@
+{
+    "Barchart": [
+        {
+            "order_month": "1",
+            "monthly_revenue": 0
+        },
+        {
+            "order_month": "2",
+            "monthly_revenue": 0
+        },
+        {
+            "order_month": "3",
+            "monthly_revenue": 0
+        },
+        {
+            "order_month": "4",
+            "monthly_revenue": 0
+        },
+        {
+            "order_month": "5",
+            "monthly_revenue": 0
+        },
+        {
+            "order_month": "6",
+            "monthly_revenue": 0
+        },
+        {
+            "order_month": "7",
+            "monthly_revenue": 0
+        },
+        {
+            "order_month": "8",
+            "monthly_revenue": 0
+        },
+        {
+            "order_month": "9",
+            "monthly_revenue": 0
+        },
+        {
+            "order_month": "10",
+            "monthly_revenue": 0
+        },
+        {
+            "order_month": "11",
+            "monthly_revenue": 76
+        },
+        {
+            "order_month": "12",
+            "monthly_revenue": 282
+        }
+    ]
+}
