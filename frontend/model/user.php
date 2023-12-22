@@ -1,5 +1,5 @@
 <?php
-
+require_once('../adminstrator/dist/database/config.php');
 function checkuser($username, $password){
     $conn = connectdb();
    
@@ -26,7 +26,11 @@ function checkuser($username, $password){
     mysqli_close($conn);
 }
 function connectdb() {
-    $conn = new mysqli('localhost', 'root', '', 'web_dvdrental');
+    // Khi nào dùng thì đổi lại config này cho thg Quân
+    //$conn = new mysqli('localhost', 'root', '', 'web_dvdrental');
+    
+    // Config này cho Triết
+    $conn = new mysqli(HOST, USERNAME, PASSWORD, DATABASE);
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }

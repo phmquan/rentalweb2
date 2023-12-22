@@ -10,7 +10,7 @@
     if ($role == 1) {
         // Nếu là admin, chuyển hướng đến trang admin
         $_SESSION['role'] = $role;
-        header('location: ../adminstrator/dist/index.php');
+        header('location: /adminstrator/dist/index.php');
     } else if ($role == 2) {
         // Nếu là role 2, chuyển hướng đến trang index
         $_SESSION['role'] = $role;

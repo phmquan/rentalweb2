@@ -1,6 +1,4 @@
 <?php
-//CHECK GITHUB
-// Check pornhub
 require('includes/header.php');
 require('includes/navbar.php');
 require('includes/sidebar.php');
@@ -112,7 +110,7 @@ file_put_contents($jsonFileName, json_encode(['Barchart'=>$jsonData], JSON_PRETT
         <div class="row">
             <div class="col-xl-6">
                 <div class="card mb-4">
-                <?php
+                    <?php
                 // Lấy tháng hiện tại
                 $currentMonth = date('m');
                 ?>
@@ -126,7 +124,7 @@ file_put_contents($jsonFileName, json_encode(['Barchart'=>$jsonData], JSON_PRETT
 
             <div class="col-xl-6">
                 <div class="card mb-4">
-                <?php
+                    <?php
                 // Lấy tháng hiện tại
                 $currentYear = date('Y');
                 ?>
