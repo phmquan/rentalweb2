@@ -1,5 +1,6 @@
 <?php
 //CHECK GITHUB
+// Check pornhub
 require('includes/header.php');
 require('includes/navbar.php');
 require('includes/sidebar.php');
