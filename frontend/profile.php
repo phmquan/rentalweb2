@@ -7,7 +7,7 @@ if (isset($_POST['logout'])) {
     session_destroy();
 
     // Chuyển hướng người dùng đến trang đăng nhập hoặc trang chính
-    header('Location: index.php');
+    header('Location: webpage.php');
     exit();
 }
 ?>
@@ -96,14 +96,14 @@ if (isset($_POST['logout'])) {
             <div class="shopping-item">
               <div class="navbar-header">
                 <h1>
-                  <a href="index.php">DVDTrendy</a>
+                  <a href="webpage.php">DVDTrendy</a>
                 </h1>
               </div>
               <div class="navbar-header">
                 <a class="navbar-brand" href="#"></a>
               </div>
               <ul class="nav navbar-nav">
-                <li class="active"><a href="index.php">Home</a></li>
+                <li class="active"><a href="webpage.php">Home</a></li>
                 <li><a href="shop.php">All Product</a></li>
               </ul>
             </div>
@@ -198,7 +198,7 @@ if (isset($_POST['logout'])) {
                   }
                 }
             ?>
-            <a href="index.php"
+            <a href="webpage.php"
               ><button
                 class="button"
                 value="1"
@@ -219,7 +219,7 @@ if (isset($_POST['logout'])) {
           <div class="col-md-3 col-sm-6">
             <div class="footer-about-us">
               <h2>
-                <a href="index.php">DVDTrendy</a>
+                <a href="webpage.php">DVDTrendy</a>
               </h2>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit.
@@ -253,7 +253,7 @@ if (isset($_POST['logout'])) {
             <div class="footer-menu">
               <h2 class="footer-wid-title">Categories</h2>
               <ul>
-                <li><a href="index.php">Home</a></li>
+                <li><a href="webpage.php">Home</a></li>
                 <li><a href="shop.php">New Realese</a></li>
                 <li><a href="shop.php">Top Rated Film</a></li>
                 <li><a href="shop.php">Search</a></li>
