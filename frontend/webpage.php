@@ -438,8 +438,8 @@ $conn->close();
                     </div>
 					<br><br>
 					<ul class="pager">
-  <li><a href="#">Previous</a></li>
-  <li><a href="#">Next</a></li>
+  <!-- <li><a href="#">Previous</a></li>
+  <li><a href="#">Next</a></li> -->
 </ul>
                 </div>
             </div>
