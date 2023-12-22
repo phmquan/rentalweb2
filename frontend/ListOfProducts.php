@@ -39,8 +39,19 @@
                     <div class="header-right">
                         <ul class="list-unstyled list-inline">
 							<li><a href="cart.php"><i class="glyphicon glyphicon-shopping-cart"></i> Cart - <span class="cart-amunt">$100</span>  </a></li>
-							<li><a href="profile.php"><i class="glyphicon glyphicon-user"></i> My Account</a></li>
-							<li><a href="login.php"><i class="glyphicon glyphicon-log-in"></i> Logout</a></li>
+                            <?php
+                            session_start();
+                            ob_start();
+    // Kiểm tra xem có session role và role có giá trị 2 không
+    if (isset($_SESSION['role']) && $_SESSION['role'] == 2) {
+        // Nếu role là 2, ẩn My Account và Login
+        echo'<li><a href="profile.php"><i class="glyphicon glyphicon-user"></i> My Account</a></li>';
+    } else {
+        // Nếu role không phải là 2, hiển thị My Account và Login
+        // echo '<li><a href="register.php"><i class="glyphicon glyphicon-user"></i> My Account</a></li>';
+        echo '<li><a href="login.php"><i class="glyphicon glyphicon-log-in"></i> Login</a></li>';
+    }
+    ?>
 
                         </ul>
                     </div>
@@ -55,7 +66,7 @@
 				<div class="col-md-7">	
 				<div class="shopping-item">
 				<div class="navbar-header">
-				<h1><a href="index.php"><img src="img/brand3.png"></a></h1>
+				<h1><a href="webpage.php"><img src="img/brand3.png"></a></h1>
 				</div>
 				<div class="navbar-header">
 				<a class="navbar-brand" href="#"></a>				
@@ -79,7 +90,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="product-bit-title text-center">
-                        <h2>Danh sách sản phẩm</h2>
+                        <h2>List Of Product</h2>
                     </div>
                 </div>
             </div>
@@ -224,7 +235,7 @@ $conn->close();
                     <div class="footer-menu">
                         <h2 class="footer-wid-title">Categories</h2>
                         <ul>
-                            <li><a href="index.php">Home</a></li>
+                            <li><a href="webpage.php">Home</a></li>
                             <li><a href="ListOfProducts.php">ListOfProducts</a></li>
                             <li><a href="ListOfProducts.php">Top Rated Film</a></li>
                             <li><a href="ListOfProducts.php">Search</a></li>

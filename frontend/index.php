@@ -76,7 +76,7 @@
 				</div>
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="index.php">Home</a></li>
-                        <li><a href="shop.php">All Product</a></li> 
+                        <li><a href="DetailedProduct.php">All Product</a></li> 
                     </ul>
                 
 				</div>
@@ -456,9 +456,8 @@
                         <h2 class="footer-wid-title">Categories</h2>
                         <ul>
                             <li><a href="index.php">Home</a></li>
-                            <li><a href="shop.php">New Realese</a></li>
-                            <li><a href="shop.php">Top Rated Film</a></li>
-                            <li><a href="shop.php">Search</a></li>
+                            <li><a href="ListOfProducts.php">List Of Product</a></li>
+                        
                         </ul>                        
                     </div>
                 </div>
