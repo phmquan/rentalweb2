@@ -41,7 +41,7 @@ foreach ($invoiceData as $item) {
 //echo json_encode($jsonData, JSON_PRETTY_PRINT);
 
 // Đường dẫn tới tệp tin
-$file_path = 'json/chart.json';
+$file_path = 'json/chartdata.json';
 file_put_contents($file_path, json_encode(['Areachart' => $jsonData], JSON_PRETTY_PRINT));
 
 
@@ -75,7 +75,7 @@ foreach ($invoiceData as $item) {
 }
 
 // Lưu dữ liệu vào tệp JSON
-$jsonFileName = 'json/bar.json';
+$jsonFileName = 'json/bardata.json';
 file_put_contents($jsonFileName, json_encode(['Barchart'=>$jsonData], JSON_PRETTY_PRINT));
 
 //echo "Dữ liệu đã được lưu vào tệp $jsonFileName";

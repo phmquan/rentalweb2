@@ -6,7 +6,7 @@ var la_bar;
 var da_bar;
 
 function getdata() {
-  var file_path = 'json/bar.json';
+  var file_path = 'json/bardata.json';
 
   // Sử dụng XMLHttpRequest để đọc dữ liệu từ tệp tin JSON
   var xhr_bar = new XMLHttpRequest();

@@ -4,7 +4,7 @@ Chart.defaults.global.defaultFontColor = '#292b2c';
 var la;
 var da;
 function getdata() {
-    var file_path = 'json/chart.json';
+    var file_path = 'json/chartdata.json';
 
     // Sử dụng XMLHttpRequest để đọc dữ liệu từ tệp tin JSON
     var xhr = new XMLHttpRequest();
