@@ -1,4 +1,5 @@
 <?php
+//CHECK GITHUB
 require('includes/header.php');
 require('includes/navbar.php');
 require('includes/sidebar.php');
