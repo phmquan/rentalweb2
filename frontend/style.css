@@ -34,9 +34,7 @@ h5,
 h6 {
   margin: 0 0 15px;
 }
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
+body { font-family:Arial, Helvetica, sans-serif; }
 
 .header-area {
   background: none repeat scroll 0 0 #f4f4f4;
@@ -1230,8 +1228,60 @@ div.cart-collaterals ul.products li.product:hover .add_to_cart_button {
   color: #5a88ca;
 }
 .product-item {
-  cursor: pointer;
+  display: inline-block;
+  margin: 10px;
+  text-decoration: none;
+  color: #333;
   text-align: center;
+  width: 330px; /* Set your desired width */
+  cursor: pointer;
+}
+
+.product-image {
+  max-width: 100%;
+  height: auto;
+  cursor: pointer;
+}
+.product-title {
+  margin-top: 3px; /* Adjust the margin as needed */
+  font-weight: bold;
+}
+.center-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.product-details {
+  text-align: center;
+  font-family: 'Arial', sans-serif; /* Thay đổi phông chữ theo ý muốn */
+  font-size: 16px; /* Điều chỉnh kích thước chữ */
+  line-height: 1.5; /* Điều chỉnh độ cao dòng */
+  color: #333; /* Màu chữ */
+  /* Thêm các thuộc tính CSS khác theo nhu cầu */
+}
+
+.product-details img {
+  width:330px;
+  height: auto;
+  margin-top: 20px; /* Adjust margin as needed */
+}
+.product-details h1 {
+  text-align: center;
+  margin: 10px 0;
+}
+
+.product-details p {
+  text-align: center;
+  margin: 10px 0;
+  font-size: 18px; /* Điều chỉnh kích thước chữ */
+}
+
+.product-details .price {
+  font-size: 20px; /* Điều chỉnh kích thước chữ */
+  font-style: italic; /* In nghiêng */
 }
 #main-search {
   padding: 20px 0;

@@ -148,15 +148,14 @@ $sql = "SELECT title, productimage FROM DVD";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
-    echo '<div class="product-container">';
     while ($row = $result->fetch_assoc()) {
         echo '<div class="product-item">';
         echo '<a href="DetailedProduct.php?title=' . urlencode($row["title"]) . '">';
-        echo '<img src="' . $row["productimage"] . '" alt="' . $row["title"] . '">';
+        echo '<img class="product-image" src="' . $row["productimage"] . '" alt="' . $row["title"] . '">';
         echo '</a>';
+        echo '<div class="product-title">' . $row["title"] . '</div>';
         echo '</div>';
     }
-    echo '</div>';
 } else {
     echo "Không có sản phẩm nào trong cơ sở dữ liệu.";
 }

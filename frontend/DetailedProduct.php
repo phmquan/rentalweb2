@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Product Page - DVDTrendy</title>
+    <title>Product Page - i-CD 电影</title>
     
     <!-- Google Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet' type='text/css'>
@@ -38,9 +38,9 @@
                 <div class="col-md-5">
                     <div class="header-right">
                         <ul class="list-unstyled list-inline">
-							<li><a href="cart.php"><i class="glyphicon glyphicon-shopping-cart"></i> Cart - <span class="cart-amunt">$100</span>  </a></li>
-							<li><a href="profile.php"><i class="glyphicon glyphicon-user"></i> My Account</a></li>
-							<li><a href="login.php"><i class="glyphicon glyphicon-log-in"></i> Logout</a></li>
+							<li><a href="cart.html"><i class="glyphicon glyphicon-shopping-cart"></i> Cart - <span class="cart-amunt">$100</span>  </a></li>
+							<li><a href="profile.html"><i class="glyphicon glyphicon-user"></i> My Account</a></li>
+							<li><a href="login.html"><i class="glyphicon glyphicon-log-in"></i> Logout</a></li>
 
                         </ul>
                     </div>
@@ -55,7 +55,7 @@
 				<div class="col-md-7">	
 				<div class="shopping-item">
 				<div class="navbar-header">
-				<h1><a href="webpage.php">DVDTrendy</a></h1>
+				<h1><a href="index.html"><img src="img/brand3.png"></a></h1>
 				</div>
 				<div class="navbar-header">
 				<a class="navbar-brand" href="#"></a>				
@@ -112,10 +112,14 @@ $result_detail = $conn->query($sql_detail);
 // Kiểm tra và hiển thị thông tin chi tiết
 if ($result_detail->num_rows > 0) {
     $row_detail = $result_detail->fetch_assoc();
+    echo '<div class="product-details">';
     echo '<h1>' . $row_detail["title"] . '</h1>';
     echo '<p>Giá: ' . $row_detail["price"] . '</p>';
     echo '<p>Mô tả: ' . $row_detail["description"] . '</p>';
-} else {
+    echo '<img src="' . $row_detail["productimage"] . '" alt="' . $row_detail["title"] . '">';
+    echo '</div>';  
+}
+ else {
     echo 'Không tìm thấy thông tin chi tiết.';
 }
 
@@ -128,7 +132,7 @@ $conn->close();
             <div class="row">
                 <div class="col-md-3 col-sm-6">
                     <div class="footer-about-us">
-                        <h2><a href="index.php"><img src="img/brand2.png"></a></h2>
+                        <h2><a href="index.html"><img src="img/brand2.png"></a></h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis sunt id doloribus vero quam laborum quas alias dolores blanditiis iusto consequatur, modi aliquid eveniet eligendi iure eaque ipsam iste, pariatur omnis sint! Suscipit, debitis, quisquam. Laborum commodi veritatis magni at?</p>
                         <div class="footer-social">
                             <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
@@ -143,10 +147,10 @@ $conn->close();
                     <div class="footer-menu">
                         <h2 class="footer-wid-title">User Navigation </h2>
                         <ul>
-                            <li><a href="profile.php">My account</a></li>
-                            <li><a href="shop.php">Shop</a></li>
-                            <li><a href="cart.php">Cart</a></li>
-                            <li><a href="checkout.php">Check Out</a></li>
+                            <li><a href="profile.html">My account</a></li>
+                            <li><a href="shop.html">Shop</a></li>
+                            <li><a href="cart.html">Cart</a></li>
+                            <li><a href="checkout.html">Check Out</a></li>
                         </ul>                        
                     </div>
                 </div>
@@ -155,10 +159,10 @@ $conn->close();
                     <div class="footer-menu">
                         <h2 class="footer-wid-title">Categories</h2>
                         <ul>
-                            <li><a href="index.php">Home</a></li>
-                            <li><a href="shop.php">New Realese</a></li>
-                            <li><a href="shop.php">Top Rated Film</a></li>
-                            <li><a href="shop.php">Search</a></li>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="shop.html">New Realese</a></li>
+                            <li><a href="shop.html">Top Rated Film</a></li>
+                            <li><a href="shop.html">Search</a></li>
                         </ul>                        
                     </div>
                 </div>
@@ -184,7 +188,7 @@ $conn->close();
             <div class="row">
                 <div class="col-md-4">
 				<br/><br/>
-                2023 © DVDTrendy    
+                2016 - 2018 © PT i-CD Dianying Indonesia    
                 </div>
                 
                 <div class="col-md-8">
