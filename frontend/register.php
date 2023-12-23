@@ -1,10 +1,41 @@
+<?php
+    include "./model/user.php";
+    if(isset($_POST["register"]) && $_POST["register"]){
+        if (empty($_POST["billing_full_name"]) || empty($_POST["billing_date_of_birth"]) || empty($_POST["billing_address"]) || empty($_POST["billing_email"]) || empty($_POST["billing_username"]) || empty($_POST["billing_phone"]) || empty($_POST["account_password"])) {
+            $txt_notification = "Vui lòng điền đầy đủ thông tin vào các trường bắt buộc.";
+        } else {
+            $conn=connectdb();
+            $fullName = $_POST['billing_full_name'];
+            $dateOfBirth = $_POST['billing_date_of_birth'];
+            $address = $_POST['billing_address'];
+            $email = $_POST['billing_email'];
+            $username = $_POST['billing_username'];
+            $phone = $_POST['billing_phone'];
+            $password = $_POST['account_password'];
+        
+    
+            // Thực hiện truy vấn để chèn dữ liệu vào cơ sở dữ liệu
+            $query = "INSERT INTO user (fullname, dayofbirth, address, email, account, PhoneNumber, password, role_id) 
+              VALUES ('$fullName', '$dateOfBirth', '$address', '$email', '$username', '$phone', '$password','2')";
+    
+            if ($conn->query($query) === TRUE) {
+                // Nếu truy vấn thành công, hiển thị thông báo
+                $txt_notification= "Thông tin của bạn đã được lưu thành công.";
+            } else {
+                // Nếu truy vấn thất bại, hiển thị thông báo lỗi
+                $txt_notification= "Lỗi: " . $conn->error;
+            }
+        }
+       
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Register Page - i-CD 电影</title>
+    <title>Register Page - DVDTrendy</title>
     
     <!-- Google Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet' type='text/css'>
@@ -39,8 +70,7 @@
                     <div class="header-right">
                         <ul class="list-unstyled list-inline">
 							<li><a href="cart.html"><i class="glyphicon glyphicon-shopping-cart"></i> Cart - <span class="cart-amunt">$100</span>  </a></li>
-							<li><a href="profile.html"><i class="glyphicon glyphicon-user"></i> My Account</a></li>
-							<li><a href="login.html"><i class="glyphicon glyphicon-log-in"></i> Login</a></li>
+							<li><a href="login.php"><i class="glyphicon glyphicon-log-in"></i> Login</a></li>
 
                         </ul>
                     </div>
@@ -55,7 +85,7 @@
 				<div class="col-md-7">	
 				<div class="shopping-item">
 				<div class="navbar-header">
-				<h1><a href="index.html"><img src="img/brand3.png"></a></h1>
+				<h1><a href="index.html">DVDTrendy</a></h1>
 				</div>
 				<div class="navbar-header">
 				<a class="navbar-brand" href="#"></a>				
@@ -145,6 +175,7 @@
                 <div class="col-md-8">
                     <div class="product-content-right">
                         <div class="woocommerce">
+                        <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
                                 <div id="customer_details" class="col2-set">
                                     <div class="col-1">
                                         <div class="woocommerce-billing-fields">
@@ -153,19 +184,19 @@
                                             <p id="billing_full_name_field" class="form-row form-row-last validate-required">
                                                 <label class="" for="billing_full_name">Full Name <abbr title="required" class="required">*</abbr>
                                                 </label>
-                                                <input type="text" value="" placeholder="" id="billing_full_name" name="billing_full_name" class="input-text ">
+                                                <input type="text" value="" placeholder="John Doe" id="billing_full_name" name="billing_full_name" class="input-text ">
                                             </p>
                                             <div class="clear"></div>
 
                                             <p id="billing_day_of_birth_field" class="form-row form-row-wide">
                                                 <label class="" for="billing_company">Date Of Birth</label>
-                                                <input type="text" value="" placeholder="" id="billing_date_of_birth" name="billing_date_of_birth" class="input-text ">
+                                                <input type="text" value="" placeholder="YYYY-MM-DD" id="billing_date_of_birth" name="billing_date_of_birth" class="input-text ">
                                             </p>
 
                                             <p id="billing_address_1_field" class="form-row form-row-wide address-field validate-required">
                                                 <label class="" for="billing_address">Address <abbr title="required" class="required">*</abbr>
                                                 </label>
-                                                <input type="text" value="" placeholder="Street address" id="billing_address" name="billing_address_1" class="input-text ">
+                                                <input type="text" value="" placeholder="address" id="billing_address" name="billing_address" class="input-text ">
                                             </p>
 
                                             <div class="clear"></div>
@@ -173,13 +204,19 @@
                                             <p id="billing_email_field" class="form-row form-row-first validate-required validate-email">
                                                 <label class="" for="billing_email">Email Address <abbr title="required" class="required">*</abbr>
                                                 </label>
-                                                <input type="text" value="" placeholder="" id="billing_email" name="billing_email" class="input-text ">
+                                                <input type="text" value="" placeholder="abc@example.com" id="billing_email" name="billing_email" class="input-text ">
+                                            </p>
+
+                                            <p id="billing_email_field" class="form-row form-row-first validate-required validate-email">
+                                                <label class="" for="billing_user_name">Username <abbr title="required" class="required">*</abbr>
+                                                </label>
+                                                <input type="text" value="" placeholder="username" id="billing_username" name="billing_username" class="input-text ">
                                             </p>
 
                                             <p id="billing_phone_field" class="form-row form-row-last validate-required validate-phone">
                                                 <label class="" for="billing_phone">Phone <abbr title="required" class="required">*</abbr>
                                                 </label>
-                                                <input type="text" value="" placeholder="" id="billing_phone" name="billing_phone" class="input-text ">
+                                                <input type="text" value="" placeholder="123456789" id="billing_phone" name="billing_phone" class="input-text ">
                                             </p>
                                             <div class="clear"></div>
 
@@ -192,27 +229,29 @@
                                                 </p>
                                                 <div class="clear"></div>
                                             </div>
-
                                         </div>
                                     </div>
                                         </div>
-
                                     </div>
-
                                 </div>
-
+                                <?php
+                                     if(isset($txt_notification)&&($txt_notification!="")){
+                                     echo "<font color='red'>".$txt_notification."</font>";
+                                }
+                                 ?>
 
                                 <div id="order_review" style="position: relative;">
                                     
                                     <div id="payment">
                                         <div class="form-row place-order">
-                                            <input type="submit" data-value="Place order" value="Submit" id="place_order" name="woocommerce_checkout_place_order" class="button alt">
+                                            <input type="submit" data-value="Place order" value="Submit" id="place_order" name="register" class="button alt">
                                         </div>
 
                                         <div class="clear"></div>
 
                                     </div>
                                 </div>
+                               
                             </form>
 
                         </div>                       
@@ -228,7 +267,7 @@
             <div class="row">
                 <div class="col-md-3 col-sm-6">
                     <div class="footer-about-us">
-                        <h2><a href="index.html"><img src="img/brand2.png"></a></h2>
+                        <h2><a href="index.html">DVDTrendy</a></h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis sunt id doloribus vero quam laborum quas alias dolores blanditiis iusto consequatur, modi aliquid eveniet eligendi iure eaque ipsam iste, pariatur omnis sint! Suscipit, debitis, quisquam. Laborum commodi veritatis magni at?</p>
                         <div class="footer-social">
                             <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
@@ -255,10 +294,9 @@
                     <div class="footer-menu">
                         <h2 class="footer-wid-title">Categories</h2>
                         <ul>
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="shop.html">New Realese</a></li>
-                            <li><a href="shop.html">Top Rated Film</a></li>
-                            <li><a href="shop.html">Search</a></li>
+                            <li><a href="webpage.php">Home</a></li>
+                            <li><a href="ListOfProduct.php">List Of Product</a></li>
+                            
                         </ul>                        
                     </div>
                 </div>
@@ -284,7 +322,7 @@
             <div class="row">
                 <div class="col-md-4">
 				<br/><br/>
-                2016 - 2018 © PT i-CD Dianying Indonesia    
+                2023 © DVDTrendy   
                 </div>
                 
                 <div class="col-md-8">

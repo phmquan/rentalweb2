@@ -44,15 +44,14 @@
                             ob_start();
     // Kiểm tra xem có session role và role có giá trị 2 không
     if (isset($_SESSION['role']) && $_SESSION['role'] == 2) {
-        // Nếu role là 2, ẩn My Account và Login
+        // Nếu role là 2, ẩn Login
         echo'<li><a href="profile.php"><i class="glyphicon glyphicon-user"></i> My Account</a></li>';
     } else {
-        // Nếu role không phải là 2, hiển thị My Account và Login
+        // Nếu role không phải là 2, hiển thị Login
         // echo '<li><a href="register.php"><i class="glyphicon glyphicon-user"></i> My Account</a></li>';
         echo '<li><a href="login.php"><i class="glyphicon glyphicon-log-in"></i> Login</a></li>';
     }
     ?>
-
                         </ul>
                     </div>
                 </div>
@@ -66,7 +65,7 @@
 				<div class="col-md-7">	
 				<div class="shopping-item">
 				<div class="navbar-header">
-				<h1><a href="webpage.php"><img src="img/brand3.png"></a></h1>
+				<h1><a href="webpage.php">DVDTrendy</a></h1>
 				</div>
 				<div class="navbar-header">
 				<a class="navbar-brand" href="#"></a>				
