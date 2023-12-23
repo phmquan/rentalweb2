@@ -184,19 +184,32 @@ if (isset($_POST['logout'])) {
           <div class="col-md-8">
             <h1>Your Detail Information</h1>
             <?php
-                if (isset($_SESSION['id'])) {
-                  $userId = $_SESSION['id'];
-                  $userInfo = getUserInformation($userId);
+               if(isset($_SESSION['role']) && isset($_SESSION['username'])) {
+                $role = $_SESSION['role'];
+                $username = $_SESSION['username'];
+            
+                // Now you can use $role and $username to load user information or perform other actions
+            
+                // Example: Accessing user information
+                $userInfo = getUserInformation($username);
               
-                  if ($userInfo !== null) {
-                      // Hiển thị thông tin người dùng
-                      echo "Full Name: " . $userInfo['fullname'] . "<br>";
-                      echo "Date of Birth: " . $userInfo['dateofbirth'] . "<br>";
-                      echo "Address: " . $userInfo['address'] . "<br>";
-                      echo "Email: " . $userInfo['email'] . "<br>";
-                      echo "Phone Number: " . $userInfo['PhoneNumber'] . "<br>";
-                  }
+                if ($userInfo !== false) {
+                    $fullName = $userInfo['fullname'];
+                    $dateOfBirth = $userInfo['dayofbirth'];
+                    $address = $userInfo['address'];
+                    $email = $userInfo['email'];
+                    $phoneNumber = $userInfo['PhoneNumber'];
+            
+                    // Now use $fullName, $dateOfBirth, $address, $email, $phoneNumber as needed
                 }
+                printf('<p style="font-size:24px;">Full Name: %s</p>', $fullName);
+                printf('<p style="font-size:24px;">Date of Birth: %s</p>', $dateOfBirth);
+                printf('<p style="font-size:24px;">Address: %s</p>', $address);
+                printf('<p style="font-size:24px;">Email: %s</p>', $email);
+                printf('<p style="font-size:24px;">Phone Number: %s</p>', $phoneNumber);
+
+                
+            }
             ?>
             <a href="webpage.php"
               ><button

@@ -37,18 +37,17 @@ function connectdb() {
     return $conn;
 }
 
-function getUserInformation($userId) {
+function getUserInformation($username) {
     $conn = connectdb();
-    $stmt = $conn->prepare("SELECT fullname, dateofbirth, address, email, PhoneNumber FROM users WHERE id = ?");
-    $stmt->bind_param("i", $userId);
+    $stmt = $conn->prepare("SELECT fullname, dayofbirth, email,PhoneNumber,address FROM user WHERE email = ?");
+    $stmt->bind_param("s", $username);
     $stmt->execute();
     $result = $stmt->get_result();
+    $userInfo = $result->fetch_assoc();
+    $stmt->close();
+    $conn->close();
 
-    if ($result->num_rows > 0) {
-        // Trả về một mảng chứa thông tin người dùng
-        return $result->fetch_assoc();
-    }
+    return $userInfo;
 }
 ?>
 
-?>
