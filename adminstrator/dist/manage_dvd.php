@@ -5,7 +5,7 @@ require('includes/sidebar.php');
 require_once('database/dbhelper.php'); // Import dbhelper.php
 
 // Step 1: Viết truy vấn SQL
-$sql = "SELECT * FROM DVD";
+$sql = "SELECT * FROM DVD WHERE id BETWEEN 1 AND 20";
 
 // Step 2: Thực hiện truy vấn và nhận kết quả
 $dvdList = execute_result($sql);

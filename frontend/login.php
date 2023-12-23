@@ -10,7 +10,7 @@
     if ($role == 1) {
         // Nếu là admin, chuyển hướng đến trang admin
         $_SESSION['role'] = $role;
-        header('location: ../adminstrator/dist/index.php');
+        header('location: /adminstrator/dist/index.php');
     } else if ($role == 2) {
         // Nếu là role 2, chuyển hướng đến trang index
         $_SESSION['role'] = $role;
@@ -105,14 +105,14 @@
             <div class="shopping-item">
               <div class="navbar-header">
                 <h1>
-                  <a href="index.php">DVDTrendy</a>
+                  <a href="webpage.php">DVDTrendy</a>
                 </h1>
               </div>
               <div class="navbar-header">
                 <a class="navbar-brand" href="#"></a>
               </div>
               <ul class="nav navbar-nav">
-                <li class="active"><a href="index.php">Home</a></li>
+                <li class="active"><a href="webpage.php">Home</a></li>
                 <li><a href="shop.php">All Product</a></li>
               </ul>
             </div>
@@ -251,7 +251,7 @@
           <div class="col-md-3 col-sm-6">
             <div class="footer-about-us">
               <h2>
-                <a href="index.php">DVDTrendy</a>
+                <a href="webpage.php">DVDTrendy</a>
               </h2>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit.
@@ -285,7 +285,7 @@
             <div class="footer-menu">
               <h2 class="footer-wid-title">Categories</h2>
               <ul>
-                <li><a href="index.php">Home</a></li>
+                <li><a href="webpage.php">Home</a></li>
                 <li><a href="shop.php">All Product</a></li>
                 <li><a href="shop.php">Search</a></li>
               </ul>

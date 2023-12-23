@@ -1,6 +1,4 @@
 <?php
-//CHECK GITHUB
-// Check pornhub
 require('includes/header.php');
 require('includes/navbar.php');
 require('includes/sidebar.php');
@@ -41,7 +39,7 @@ foreach ($invoiceData as $item) {
 //echo json_encode($jsonData, JSON_PRETTY_PRINT);
 
 // Đường dẫn tới tệp tin
-$file_path = 'json/chart.json';
+$file_path = 'json/chartdata.json';
 file_put_contents($file_path, json_encode(['Areachart' => $jsonData], JSON_PRETTY_PRINT));
 
 
@@ -75,7 +73,7 @@ foreach ($invoiceData as $item) {
 }
 
 // Lưu dữ liệu vào tệp JSON
-$jsonFileName = 'json/bar.json';
+$jsonFileName = 'json/bardata.json';
 file_put_contents($jsonFileName, json_encode(['Barchart'=>$jsonData], JSON_PRETTY_PRINT));
 
 //echo "Dữ liệu đã được lưu vào tệp $jsonFileName";
@@ -112,7 +110,7 @@ file_put_contents($jsonFileName, json_encode(['Barchart'=>$jsonData], JSON_PRETT
         <div class="row">
             <div class="col-xl-6">
                 <div class="card mb-4">
-                <?php
+                    <?php
                 // Lấy tháng hiện tại
                 $currentMonth = date('m');
                 ?>
@@ -126,7 +124,7 @@ file_put_contents($jsonFileName, json_encode(['Barchart'=>$jsonData], JSON_PRETT
 
             <div class="col-xl-6">
                 <div class="card mb-4">
-                <?php
+                    <?php
                 // Lấy tháng hiện tại
                 $currentYear = date('Y');
                 ?>

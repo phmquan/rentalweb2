@@ -130,7 +130,22 @@ INSERT INTO DVD (category_id, title, price, Quantity, description, productimage,
 (1, 'The Northman', 22, 6, 'Alexander Skarsgård stars in this epic revenge story set in 10th century Iceland.', 'database/productimage/productimage_4.png', 4, NOW(), NOW()),
 (1, 'Everything Everywhere All at Once', 15, 5, 'An aging Chinese immigrant is swept up in an insane adventure where she alone can save the world by connecting with parallel universes.', 'database/productimage/productimage_5.png', 5, NOW(), NOW());
 
+
+INSERT INTO DVD (category_id, title, price, Quantity, description, productimage, discount_id, created_at, updated_at) VALUES
+(1, 'John Wick: Chapter 4', 25, 9, 'John Wick is back for another round of action-packed violence.', CONCAT('database/productimage/productimage_', 1, '.png'), 1, NOW(), NOW()),
+(1, 'The Batman', 20, 8, 'Robert Pattinson stars as the Dark Knight in this gritty and dark take on the character.', CONCAT('database/productimage/productimage_', 2, '.png'), 2, NOW(), NOW()),
+(1, 'Top Gun: Maverick', 18, 7, 'Tom Cruise returns as Pete "Maverick" Mitchell in this long-awaited sequel.', CONCAT('database/productimage/productimage_', 3, '.png'), 3, NOW(), NOW()),
+(1, 'The Northman', 22, 6, 'Alexander Skarsgård stars in this epic revenge story set in 10th century Iceland.', CONCAT('database/productimage/productimage_', 4, '.png'), 4, NOW(), NOW()),
+(1, 'Everything Everywhere All at Once', 15, 5, 'An aging Chinese immigrant is swept up in an insane adventure where she alone can save the world by connecting with parallel universes.', CONCAT('database/productimage/productimage_', 5, '.png'), 5, NOW(), NOW());
+
 -- Cổ trang
+INSERT INTO DVD (category_id, title, price, Quantity, description, productimage, discount_id, created_at, updated_at) VALUES
+(2, 'The Last Emperor', 25, 8, 'The story of Puyi, the last emperor of China, from his rise to power to his fall.', 'image_url_1', 1, NOW(), NOW()),
+(2, 'Crouching Tiger, Hidden Dragon', 20, 7, 'A martial arts epic set in Qing Dynasty China.', 'image_url_2', 2, NOW(), NOW()),
+(2, 'The Princess Bride', 18, 6, 'A classic tale of love, adventure, and swordplay.', 'image_url_3', 3, NOW(), NOW()),
+(2, 'The Shawshank Redemption', 22, 5, 'A story of hope and redemption set in a prison.', 'image_url_4', 4, NOW(), NOW()),
+(2, 'The Lord of the Rings: The Fellowship of the Ring', 15, 4, 'The first installment in the epic Lord of the Rings trilogy.', 'image_url_5', 5, NOW(), NOW());
+
 INSERT INTO DVD (category_id, title, price, Quantity, description, productimage, discount_id, created_at, updated_at) VALUES
 (2, 'The Last Emperor', 25, 8, 'The story of Puyi, the last emperor of China, from his rise to power to his fall.', 'image_url_1', 1, NOW(), NOW()),
 (2, 'Crouching Tiger, Hidden Dragon', 20, 7, 'A martial arts epic set in Qing Dynasty China.', 'image_url_2', 2, NOW(), NOW()),
@@ -146,6 +161,14 @@ INSERT INTO DVD (category_id, title, price, Quantity, description, productimage,
 (3, 'The Hurt Locker', 22, 4, 'A harrowing and realistic depiction of the Iraq War.', 'image_url_4', 4, NOW(), NOW()),
 (3, '1917', 15, 3, 'A stunning and unforgettable story of two British soldiers sent on a dangerous mission in World War I.', 'image_url_5', 5, NOW(), NOW());
 
+-- Chiến tranh
+INSERT INTO DVD (category_id, title, price, Quantity, description, productimage, discount_id, created_at, updated_at) VALUES
+(3, 'Saving Private Ryan', 25, 7, 'A harrowing and realistic depiction of the D-Day invasion.', CONCAT('database/productimage/productimage_', 11, '.png'), 1, NOW(), NOW()),
+(3, 'The Thin Red Line', 20, 6, 'A powerful and moving story of war and sacrifice.', CONCAT('database/productimage/productimage_', 12, '.png'), 2, NOW(), NOW()),
+(3, 'Dunkirk', 18, 5, 'A gripping and suspenseful story of the evacuation of Dunkirk in World War II.', CONCAT('database/productimage/productimage_', 13, '.png'), 3, NOW(), NOW()),
+(3, 'The Hurt Locker', 22, 4, 'A harrowing and realistic depiction of the Iraq War.', CONCAT('database/productimage/productimage_', 14, '.png'), 4, NOW(), NOW()),
+(3, '1917', 15, 3, 'A stunning and unforgettable story of two British soldiers sent on a dangerous mission in World War I.', CONCAT('database/productimage/productimage_', 15, '.png'), 5, NOW(), NOW());
+
 -- Viễn tưởng
 INSERT INTO DVD (category_id, title, price, quantity, description, productimage, discount_id, created_at, updated_at) VALUES
 (4, 'The Matrix', 25, 6, 'A mind-bending science fiction thriller that explores the nature of reality.', 'image_url_1', 1, NOW(), NOW()),
@@ -153,6 +176,14 @@ INSERT INTO DVD (category_id, title, price, quantity, description, productimage,
 (4, 'The Terminator', 18, 4, 'A science fiction action film that explores the dangers of artificial intelligence.', 'image_url_3', 3, NOW(), NOW()),
 (4, 'Back to the Future', 22, 3, 'A classic science fiction comedy that tells the story of a teenager who travels back in time.', 'image_url_4', 4, NOW(), NOW()),
 (4, 'E.T. the Extra-Terrestrial', 15, 2, 'A heartwarming science fiction film about a boy who befriends an alien.', 'image_url_5', 5, NOW(), NOW());
+
+-- Viễn tưởng
+INSERT INTO DVD (category_id, title, price, quantity, description, productimage, discount_id, created_at, updated_at) VALUES
+(4, 'The Matrix', 25, 6, 'A mind-bending science fiction thriller that explores the nature of reality.', CONCAT('database/productimage/productimage_', 16, '.png'), 1, NOW(), NOW()),
+(4, 'Star Wars: Episode IV - A New Hope', 20, 5, 'The classic film that launched one of the most successful film franchises of all time.', CONCAT('database/productimage/productimage_', 17, '.png'), 2, NOW(), NOW()),
+(4, 'The Terminator', 18, 4, 'A science fiction action film that explores the dangers of artificial intelligence.', CONCAT('database/productimage/productimage_', 18, '.png'), 3, NOW(), NOW()),
+(4, 'Back to the Future', 22, 3, 'A classic science fiction comedy that tells the story of a teenager who travels back in time.', CONCAT('database/productimage/productimage_', 19, '.png'), 4, NOW(), NOW()),
+(4, 'E.T. the Extra-Terrestrial', 15, 2, 'A heartwarming science fiction film about a boy who befriends an alien.', CONCAT('database/productimage/productimage_', 20, '.png'), 5, NOW(), NOW());
 
 -- Kinh dị
 INSERT INTO DVD (category_id, title, price, quantity, description, productimage, discount_id, created_at, updated_at) VALUES
@@ -318,6 +349,9 @@ INSERT INTO USER (fullname, dayofbirth, email, PhoneNumber, address, avartar, ac
 ('Lê Quang C', '1997-04-22', 'lequang.c@example.com', '0934567890', '789 Lê Duẩn, Quận 10, TP.HCM', 'url_avartar', 'lequang.c', 'hashed_password', 2, NOW(), NOW()),
 ('Đặng Thị D', '1998-05-23', 'dangthi.d@example.com', '0945678901', '1011 Nguyễn Thị Minh Khai, Quận 3, TP.HCM', 'url_avartar', 'dangthi.d', 'hashed_password', 2, NOW(), NOW());
 
+
+INSERT INTO USER (fullname, dayofbirth, email, PhoneNumber, address, avartar, account, password, role_id, created_at, updated_at) VALUES
+('admin', '1997-04-22', 'lequang.c@example.com', '0934567890', '789 Lê Duẩn, Quận 10, TP.HCM', 'url_avartar', 'lequang.c', 'admin', 1, NOW(), NOW());
 
 -- Dữ liệu mẫu cho INVOICE
 INSERT INTO INVOICE (user_id, fullname, email, phone_number, address, note, order_date, status, total_money) VALUES

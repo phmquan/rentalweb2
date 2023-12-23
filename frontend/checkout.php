@@ -33,8 +33,19 @@
                     <div class="header-right">
                         <ul class="list-unstyled list-inline">
 							<li><a href="cart.php"><i class="glyphicon glyphicon-shopping-cart"></i> Cart - <span class="cart-amunt">$100</span>  </a></li>
-							<li><a href="profile.php"><i class="glyphicon glyphicon-user"></i> My Account</a></li>
-							<li><a href="login.html"><i class="glyphicon glyphicon-log-in"></i> Logout</a></li>
+                            <?php
+                            session_start();
+                            ob_start();
+    // Kiểm tra xem có session role và role có giá trị 2 không
+    if (isset($_SESSION['role']) && $_SESSION['role'] == 2) {
+        // Nếu role là 2, ẩn My Account và Login
+        echo'<li><a href="profile.php"><i class="glyphicon glyphicon-user"></i> My Account</a></li>';
+    } else {
+        // Nếu role không phải là 2, hiển thị My Account và Login
+        // echo '<li><a href="register.php"><i class="glyphicon glyphicon-user"></i> My Account</a></li>';
+        echo '<li><a href="login.php"><i class="glyphicon glyphicon-log-in"></i> Login</a></li>';
+    }
+    ?>
 
                         </ul>
                     </div>
@@ -49,13 +60,13 @@
 				<div class="col-md-7">	
 				<div class="shopping-item">
 				<div class="navbar-header">
-				<h1><a href="index.php"><img src="img/brand3.png"></a></h1>
+				<h1><a href="webpage.php"><img src="img/brand3.png"></a></h1>
 				</div>
 				<div class="navbar-header">
 				<a class="navbar-brand" href="#"></a>				
 				</div>
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="index.php">Home</a></li>
+                        <li class="active"><a href="webpage.php">Home</a></li>
                         <li><a href="shop.php">All Product</a></li>
                     </ul>
                 
@@ -551,7 +562,7 @@
             <div class="row">
                 <div class="col-md-3 col-sm-6">
                     <div class="footer-about-us">
-                        <h2><a href="index.php">DVDTrendy</a></h2>
+                        <h2><a href="webpage.php">DVDTrendy</a></h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis sunt id doloribus vero quam laborum quas alias dolores blanditiis iusto consequatur, modi aliquid eveniet eligendi iure eaque ipsam iste, pariatur omnis sint! Suscipit, debitis, quisquam. Laborum commodi veritatis magni at?</p>
                         <div class="footer-social">
                             <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
@@ -578,7 +589,7 @@
                     <div class="footer-menu">
                         <h2 class="footer-wid-title">Categories</h2>
                         <ul>
-                            <li><a href="index.php">Home</a></li>
+                            <li><a href="webpage.php">Home</a></li>
                             <li><a href="shop.php">New Realese</a></li>
                             <li><a href="shop.php">Top Rated Film</a></li>
                             <li><a href="shop.php">Search</a></li>
