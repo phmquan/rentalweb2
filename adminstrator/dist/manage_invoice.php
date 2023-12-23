@@ -86,8 +86,6 @@ $invoiceList = execute_result($sql);
         </div>
     </main>
 <?php
-
-require('includes/script.php');
 require('includes/footer.php');
 ?> 
 

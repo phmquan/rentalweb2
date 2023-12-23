@@ -87,9 +87,5 @@ $dvdList = execute_result($sql);
             <!-- DATABASE TABLE END HERE BITCH -->
         </div>
     </main>
-<?php
-
-require('includes/script.php');
-require('includes/footer.php');
-?> 
+<?php require('includes/footer.php'); ?> 
 
