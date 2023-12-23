@@ -79,68 +79,68 @@ file_put_contents($jsonFileName, json_encode(['Barchart'=>$jsonData], JSON_PRETT
 //echo "Dữ liệu đã được lưu vào tệp $jsonFileName";
 ?>
 
-<main>
-    <div class="container-fluid px-4">
-        <h1 class="mt-4">Dashboard</h1>
-        <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item active">Dashboard</li>
-        </ol>
-        <div class="row">
-            <div class="col-xl-3 col-md-6">
-                <div class="card bg-primary text-white mb-4">
-                    <div class="card-body">Tổng Doanh Thu: <?php echo $totalRevenue[0]['total_revenue']; ?></div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-md-6">
-                <div class="card bg-warning text-white mb-4">
-                    <div class="card-body">Doanh Thu Tháng: <?php echo $monthlyRevenue[0]['monthly_revenue']; ?></div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-md-6">
-                <div class="card bg-success text-white mb-4">
-                    <div class="card-body">Tổng đơn hàng: <?php echo $totalOrders[0]['total_orders']; ?></div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-md-6">
-                <div class="card bg-danger text-white mb-4">
-                    <div class="card-body">Thể loại DVD hot: <?php echo $hotDVDGenres[0]['genre']; ?></div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xl-6">
-                <div class="card mb-4">
-                    <?php
-                // Lấy tháng hiện tại
-                $currentMonth = date('m');
-                ?>
-                    <div class="card-header">
-                        <i class="fas fa-chart-area me-1"></i>
-                        Doanh thu tháng <?php echo $currentMonth; ?>
+        <main>
+            <div class="container-fluid px-4">
+                <h1 class="mt-4">Dashboard</h1>
+                <ol class="breadcrumb mb-4">
+                    <li class="breadcrumb-item active">Dashboard</li>
+                </ol>
+                <div class="row">
+                    <div class="col-xl-3 col-md-6">
+                        <div class="card bg-primary text-white mb-4">
+                            <div class="card-body">Tổng Doanh Thu: <?php echo $totalRevenue[0]['total_revenue']; ?></div>
+                        </div>
                     </div>
-                    <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
-                </div>
-            </div>
-
-            <div class="col-xl-6">
-                <div class="card mb-4">
-                    <?php
-                // Lấy tháng hiện tại
-                $currentYear = date('Y');
-                ?>
-                    <div class="card-header">
-                        <i class="fas fa-chart-bar me-1"></i>
-                        Doanh thu năm <?php echo $currentYear; ?>
+                    <div class="col-xl-3 col-md-6">
+                        <div class="card bg-warning text-white mb-4">
+                            <div class="card-body">Doanh Thu Tháng: <?php echo $monthlyRevenue[0]['monthly_revenue']; ?></div>
+                        </div>
                     </div>
-                    <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
+                    <div class="col-xl-3 col-md-6">
+                        <div class="card bg-success text-white mb-4">
+                            <div class="card-body">Tổng đơn hàng: <?php echo $totalOrders[0]['total_orders']; ?></div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6">
+                        <div class="card bg-danger text-white mb-4">
+                            <div class="card-body">Thể loại DVD hot: <?php echo $hotDVDGenres[0]['genre']; ?></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-6">
+                        <div class="card mb-4">
+                            <?php
+                        // Lấy tháng hiện tại
+                        $currentMonth = date('m');
+                        ?>
+                            <div class="card-header">
+                                <i class="fas fa-chart-area me-1"></i>
+                                Doanh thu tháng <?php echo $currentMonth; ?>
+                            </div>
+                            <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-6">
+                        <div class="card mb-4">
+                            <?php
+                        // Lấy tháng hiện tại
+                        $currentYear = date('Y');
+                        ?>
+                            <div class="card-header">
+                                <i class="fas fa-chart-bar me-1"></i>
+                                Doanh thu năm <?php echo $currentYear; ?>
+                            </div>
+                            <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-        </div>
-    </div>
-</main>
-
+        </main>
 <?php
+
 require('includes/script.php');
 require('includes/footer.php');
 ?>
+
