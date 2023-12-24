@@ -5,7 +5,7 @@ require('includes/sidebar.php');
 require_once('database/dbhelper.php'); // Import dbhelper.php
 
 // Step 1: Viết truy vấn SQL
-$sql = "SELECT * FROM DVD WHERE id BETWEEN 1 AND 20";
+$sql = "SELECT * FROM DVD WHERE id BETWEEN 1 AND 20 "; //WHERE id BETWEEN 1 AND 20
 
 // Step 2: Thực hiện truy vấn và nhận kết quả
 $dvdList = execute_result($sql);
@@ -75,7 +75,7 @@ $dvdList = execute_result($sql);
                             echo "<td>{$dvd['discount_id']}</td>";
                             echo "<td>{$dvd['created_at']}</td>";
                             echo "<td>{$dvd['updated_at']}</td>";
-                            echo "<td><button type='button' class='btn btn-warning btn-sm' data-bs-toggle='modal' data-bs-target='#editModal' >Edit</button> <button type='button' class='btn btn-danger btn-sm' onclick='feature_delete({$dvd['id']})'>Delete</button></td>";
+                            echo "<td><button type='button' class='btn btn-warning btn-sm' data-bs-toggle='modal' data-bs-target='#editModal' >Edit</button> <button type='button' class='btn btn-danger btn-sm' onclick='feature_delete({$dvd['id']},1)'>Delete</button></td>";
                             // Thêm các cột khác tùy thuộc vào cần hiển thị
                             echo "</tr>";
                         }

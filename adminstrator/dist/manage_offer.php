@@ -59,7 +59,7 @@ $offerList = execute_result($sql);
                             echo "<td>{$offer['start_date']}</td>";
                             echo "<td>{$offer['end_date']}</td>";
                             echo "<td>{$offer['status']}</td>";
-                            echo "<td><button type='button' class='btn btn-warning btn-sm' data-bs-toggle='modal' data-bs-target='#editModal' >Edit</button> <button type='button' class='btn btn-danger btn-sm' onclick=''>Delete</button></td>";
+                            echo "<td><button type='button' class='btn btn-warning btn-sm' data-bs-toggle='modal' data-bs-target='#editModal' >Edit</button> <button type='button' class='btn btn-danger btn-sm' onclick='feature_delete({$offer['id']},5)'>Delete</button></td>";
                             // Thêm các cột khác tùy thuộc vào cần hiển thị
                             echo "</tr>";
                         }

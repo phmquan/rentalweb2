@@ -80,7 +80,7 @@ $userList = execute_result($sql);
                             echo "<td>{$user['role_id']}</td>";
                             echo "<td>{$user['created_at']}</td>";
                             echo "<td>{$user['updated_at']}</td>";
-                            echo "<td><button type='button' class='btn btn-warning btn-sm' data-bs-toggle='modal' data-bs-target='#editModal' >Edit</button> <button type='button' class='btn btn-danger btn-sm' onclick='Feature_delete({$user['id']})'>Delete</button></td>";
+                            echo "<td><button type='button' class='btn btn-warning btn-sm' data-bs-toggle='modal' data-bs-target='#editModal' >Edit</button> <button type='button' class='btn btn-danger btn-sm' onclick='feature_delete({$user['id']},3)'>Delete</button></td>";
                             // Thêm các cột khác tùy thuộc vào cần hiển thị
                             echo "</tr>";
                         }

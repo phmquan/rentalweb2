@@ -8,56 +8,198 @@
 // 
 
 
-function feature_delete(id) {
-    var check = 0;
-    Swal.fire({
-        title: 'Bạn chắc chứ?',
-        text: 'Sẽ không thể khôi phục lại đâu nhé!',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#d33',
-        cancelButtonColor: '#3085d6',
-        confirmButtonText: 'Xoá đi!'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            $.ajax({
-                type: 'POST',
-                url: 'includes/ajax.php',
-                data: { action: 'delete', id: id },
-                // success: function (response) {
-                //     // Kiểm tra xem server có trả về 'success' không
-                //     if (response == 'success') {
-                //         console.log(response);
-                //         // Cập nhật bảng DataTable sau khi xoá thành công
-                //         $('#datatablesSimple').DataTable().row($('#row_' + id)).remove().draw();
-                        
-                //         Swal.fire('Đã xoá!', 'Thông tin DVD category đã xoá.', 'success');
-                //     } else {
-                //         console.log(response);
-                //         // Xử lý lỗi khi xoá không thành công
-                //         Swal.fire('Lỗi!', 'Xảy ra lỗi khi xoá DVD category.', 'error');
-                //     }
-                // }
-                Error: function (response) {
-                    Swal.fire('Lỗi!', 'Xảy ra lỗi khi xoá DVD category.', 'error'); 
-                },
-                success: function (response) {
-                    Swal.fire({
-                        title: 'Deleted!',
-                        text: 'The DVD category has been deleted.',
-                        icon: 'success'
-                    }).then(() => {
-                        // Refresh trang hiện tại
-                        location.reload();
-                        check = 1;
-                        // Xóa hàng trong bảng mà không làm mới trang
-                        //$('#datatablesSimple').DataTable().row($('#row_' + id)).remove().draw();
-                    });
-                }
-                
-            });
-        }
-    });
+function feature_delete(id, casede) {
+    if (casede == 1){
+        var check = 0;
+        Swal.fire({
+            title: 'Bạn chắc xoá DVD này chứ?',
+            text: 'Sẽ không thể khôi phục lại đâu nhé!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Xoá đi!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: 'POST',
+                    url: 'includes/ajax.php',
+                    data: { action: 'deletedvd', id: id },
+                    
+                    error: function (response) {
+                        Swal.fire('Lỗi!', 'Xảy ra lỗi khi xoá DVD.', 'error'); 
+                    },
+                    success: function (response) {
+                        Swal.fire({
+                            title: 'Đã xoá!',
+                            text: 'Sản phẩm DVD đã được xoá.',
+                            icon: 'success'
+                        }).then(() => {
+                            // Refresh trang hiện tại
+                            location.reload();
+                            check = 1;
+                            // Xóa hàng trong bảng mà không làm mới trang
+                            //$('#datatablesSimple').DataTable().row($('#row_' + id)).remove().draw();
+                        });
+                    }
+                    
+                });
+            }
+        });
+    };
+    if (casede == 2){
+        var check = 0;
+        Swal.fire({
+            title: 'Bạn chắc xoá thể loại này chứ?',
+            text: 'Sẽ không thể khôi phục lại đâu nhé!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Xoá đi!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: 'POST',
+                    url: 'includes/ajax.php',
+                    data: { action: 'deletecategory', id: id },
+                    
+                    error: function (response) {
+                        Swal.fire('Lỗi!', 'Xảy ra lỗi khi xoá DVD category.', 'error'); 
+                    },
+                    success: function (response) {
+                        Swal.fire({
+                            title: 'Đã xoá!',
+                            text: 'Thể loại trên đã được xoá.',
+                            icon: 'success'
+                        }).then(() => {
+                            // Refresh trang hiện tại
+                            location.reload();
+                            check = 1;
+                            // Xóa hàng trong bảng mà không làm mới trang
+                            //$('#datatablesSimple').DataTable().row($('#row_' + id)).remove().draw();
+                        });
+                    }
+                    
+                });
+            }
+        });
+    };
+    if (casede == 3){
+        var check = 0;
+        Swal.fire({
+            title: 'Bạn chắc xoá user này chứ?',
+            text: 'Sẽ không thể khôi phục lại đâu nhé!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Xoá đi!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: 'POST',
+                    url: 'includes/ajax.php',
+                    data: { action: 'deleteuser', id: id },
+                    
+                    error: function (response) {
+                        Swal.fire('Lỗi!', 'Xảy ra lỗi khi xoá DVD category.', 'error'); 
+                    },
+                    success: function (response) {
+                        Swal.fire({
+                            title: 'Đã xoá!',
+                            text: 'User trên đã xoá.',
+                            icon: 'success'
+                        }).then(() => {
+                            // Refresh trang hiện tại
+                            location.reload();
+                            check = 1;
+                            // Xóa hàng trong bảng mà không làm mới trang
+                            //$('#datatablesSimple').DataTable().row($('#row_' + id)).remove().draw();
+                        });
+                    }
+                    
+                });
+            }
+        });
+    };
+    if (casede == 5){
+        var check = 0;
+        Swal.fire({
+            title: 'Bạn chắc xoá voucher này chứ?',
+            text: 'Sẽ không thể khôi phục lại đâu nhé!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Xoá đi!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: 'POST',
+                    url: 'includes/ajax.php',
+                    data: { action: 'deleteoffer', id: id },
+                    
+                    error: function (response) {
+                        Swal.fire('Lỗi!', 'Xảy ra lỗi khi xoá DVD category.', 'error'); 
+                    },
+                    success: function (response) {
+                        Swal.fire({
+                            title: 'Đã xoá!',
+                            text: 'Voucher trên đã xoá.',
+                            icon: 'success'
+                        }).then(() => {
+                            // Refresh trang hiện tại
+                            location.reload();
+                            check = 1;
+                            // Xóa hàng trong bảng mà không làm mới trang
+                            //$('#datatablesSimple').DataTable().row($('#row_' + id)).remove().draw();
+                        });
+                    }
+                    
+                });
+            }
+        });
+    };
+    if (casede == 4){
+        var check = 0;
+        Swal.fire({
+            title: 'Bạn chắc xoá hoá đơn này chứ?',
+            text: 'Sẽ không thể khôi phục lại đâu nhé!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Xoá đi!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: 'POST',
+                    url: 'includes/ajax.php',
+                    data: { action: 'deleteinvoice', id: id },
+                    
+                    error: function (response) {
+                        Swal.fire('Lỗi!', 'Xảy ra lỗi khi xoá DVD category.', 'error'); 
+                    },
+                    success: function (response) {
+                        Swal.fire({
+                            title: 'Đã xoá!',
+                            text: 'Hoá đơn trên đã xoá.',
+                            icon: 'success'
+                        }).then(() => {
+                            // Refresh trang hiện tại
+                            location.reload();
+                            check = 1;
+                            // Xóa hàng trong bảng mà không làm mới trang
+                            //$('#datatablesSimple').DataTable().row($('#row_' + id)).remove().draw();
+                        });
+                    }
+                    
+                });
+            }
+        });
+    };
+    
 } 
 
 

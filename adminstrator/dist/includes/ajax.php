@@ -31,10 +31,44 @@ if ($action == 'edit') {
    $sql = "UPDATE DVDCategory SET name = '$name' WHERE id = $id";
    execute($sql);
 }; 
-if ($action == 'delete') {
+if ($action == 'deletecategory') {
    // Xử lý xoá
    $id = $_POST['id'];
    $sql = "DELETE FROM DVDCategory WHERE id = $id";
+   execute($sql);
+};
+if ($action == 'deletedvd') {
+   // Xử lý xoá
+   $id = $_POST['id'];
+   $sql = "DELETE FROM DVD WHERE id = $id";
+   execute($sql);
+};
+if ($action == 'deleteuser') {
+   // Xử lý xoá
+   $id = $_POST['id'];
+   $sql = "DELETE FROM USER WHERE id = $id";
+   execute($sql);
+};
+if ($action == 'deleteoffer') {
+   // Xử lý xoá
+   $id = $_POST['id'];
+   $sql = "DELETE FROM OFFER WHERE id = $id";
+   execute($sql);
+};
+if ($action == 'deleteinvoice') {
+   // Xử lý xoá
+   $id = $_POST['id'];
+   // Delete records from the child table (invoice_detail)
+   $sqlChild = "DELETE FROM Invoice_detail WHERE order_id = $id";
+   execute($sqlChild);
+   // Delete record from the parent table (INVOICE)
+   $sqlParent = "DELETE FROM INVOICE WHERE id = $id";
+   execute($sqlParent);
+};
+if ($action == 'deleteinvoidetail') {
+   // Xử lý xoá
+   $id = $_POST['id'];
+   $sql = "DELETE FROM Invoice_detail WHERE id = $id";
    execute($sql);
 };
 ?>

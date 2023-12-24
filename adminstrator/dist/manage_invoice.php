@@ -72,7 +72,7 @@ $invoiceList = execute_result($sql);
                                 echo "<td>{$invoice['order_date']}</td>";
                                 echo "<td>{$invoice['status']}</td>";
                                 echo "<td>{$invoice['total_money']}</td>";
-                                echo "<td><button type='button' class='btn btn-warning btn-sm' data-bs-toggle='modal' data-bs-target='#editModal' >Edit</button> <button type='button' class='btn btn-danger btn-sm' onclick=''>Delete</button></td>";                    
+                                echo "<td><button type='button' class='btn btn-warning btn-sm' data-bs-toggle='modal' data-bs-target='#editModal' >Edit</button> <button type='button' class='btn btn-danger btn-sm' onclick='feature_delete({$invoice['id']},4)'>Delete</button></td>";                    
                                 // Thêm các cột khác tùy thuộc vào cần hiển thị
                                 echo "</tr>";
                             }

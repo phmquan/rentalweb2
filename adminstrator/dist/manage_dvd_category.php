@@ -50,7 +50,7 @@ $dvdList = execute_result($sql);
                             echo "<td>{$dvd['id']}</td>";
                             echo "<td>{$dvd['name']}</td>";
                             echo "<td>
-                                    <button type='button' class='btn btn-danger btn-sm' data-id='{$dvd['id']}' data-name='{$dvd['name']}' onclick='feature_delete({$dvd['id']})'>Delete</button>
+                                    <button type='button' class='btn btn-danger btn-sm' data-id='{$dvd['id']}' data-name='{$dvd['name']}' onclick='feature_delete({$dvd['id']},2);'>Delete</button>
                                     <button type='button' class='btn btn-warning btn-sm' data-id='{$dvd['id']}' data-name='{$dvd['name']}'>Edit</button> 
                                 </td>";
                     
