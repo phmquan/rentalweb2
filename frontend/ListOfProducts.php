@@ -44,15 +44,14 @@
                             ob_start();
     // Kiểm tra xem có session role và role có giá trị 2 không
     if (isset($_SESSION['role']) && $_SESSION['role'] == 2) {
-        // Nếu role là 2, ẩn My Account và Login
+        // Nếu role là 2, ẩn Login
         echo'<li><a href="profile.php"><i class="glyphicon glyphicon-user"></i> My Account</a></li>';
     } else {
-        // Nếu role không phải là 2, hiển thị My Account và Login
+        // Nếu role không phải là 2, hiển thị Login
         // echo '<li><a href="register.php"><i class="glyphicon glyphicon-user"></i> My Account</a></li>';
         echo '<li><a href="login.php"><i class="glyphicon glyphicon-log-in"></i> Login</a></li>';
     }
     ?>
-
                         </ul>
                     </div>
                 </div>
@@ -66,7 +65,7 @@
 				<div class="col-md-7">	
 				<div class="shopping-item">
 				<div class="navbar-header">
-				<h1><a href="webpage.php"><img src="img/brand3.png"></a></h1>
+				<h1><a href="webpage.php">DVDTrendy</a></h1>
 				</div>
 				<div class="navbar-header">
 				<a class="navbar-brand" href="#"></a>				
@@ -115,10 +114,12 @@
                 </form>
                  
     <?php
-$servername = "localhost";
+// $servername = "localhost";
+// $dbname = "web_dvdrental";
+$servername = "127.0.0.1";
+$dbname = "DVD_WEBRENTAL";
 $username = "root";
 $password = "";
-$dbname = "web_dvdrental";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -144,10 +145,20 @@ $conn->close();
 	
             
 <?php
-$servername = "localhost";
+// $servername = "localhost";
+// $dbname = "web_dvdrental";
+$servername = "127.0.0.1";
+$dbname = "DVD_WEBRENTAL";
 $username = "root";
 $password = "";
-$dbname = "web_dvdrental";
+
+// Hàm thêm kí tự vào đường dẫn
+function insertCharacterToImagePath($imagePath, $prefix) {
+        // Thêm đường dẫn vào trước đường dẫn hình ảnh
+        $newImagePath = $prefix . $imagePath;
+
+        return $newImagePath;
+}
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -159,19 +170,20 @@ $sql = "SELECT title, productimage FROM DVD";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
-    echo '<div class="product-container">';
     while ($row = $result->fetch_assoc()) {
         echo '<div class="product-item">';
         echo '<a href="DetailedProduct.php?title=' . urlencode($row["title"]) . '">';
-        echo '<img src="' . $row["productimage"] . '" alt="' . $row["title"] . '">';
+        // Thêm kí tự vào đường dẫn
+        $newImagePath = insertCharacterToImagePath($row["productimage"],'../adminstrator/dist/');
+
+        echo '<img class="product-image" src="' . $newImagePath . '" alt="' . $row["title"] . '">';
         echo '</a>';
+        echo '<div class="product-title">' . $row["title"] . '</div>';
         echo '</div>';
     }
-    echo '</div>';
 } else {
     echo "Không có sản phẩm nào trong cơ sở dữ liệu.";
 }
-
 $conn->close();
 ?>
 

@@ -34,19 +34,19 @@
         },
         {
             "order_month": "9",
-            "monthly_revenue": 0
-        },
-        {
-            "order_month": "10",
-            "monthly_revenue": 0
-        },
-        {
-            "order_month": "11",
             "monthly_revenue": 76
         },
         {
+            "order_month": "10",
+            "monthly_revenue": 31
+        },
+        {
+            "order_month": "11",
+            "monthly_revenue": 23
+        },
+        {
             "order_month": "12",
-            "monthly_revenue": 206
+            "monthly_revenue": 152
         }
     ]
 }

@@ -45,19 +45,20 @@ file_put_contents($file_path, json_encode(['Areachart' => $jsonData], JSON_PRETT
 
 // Truy vấn SQL để lấy tổng doanh thu mỗi tháng, bao gồm cả tháng không có doanh thu
 $sql = "
-    SELECT 
-        YEAR(A.order_date) AS year,
-        M.month_number AS month,
-        COALESCE(SUM(A.total_money), 0) AS monthly_revenue
-    FROM 
-        AllMonths M
-    LEFT JOIN 
-        INVOICE A ON M.month_number = MONTH(A.order_date)
-            AND YEAR(A.order_date) = 2023 -- Thay 2023 bằng năm bạn quan tâm
-    GROUP BY 
-        YEAR(A.order_date), M.month_number
-    ORDER BY 
-        year, month;
+SELECT 
+    YEAR(A.order_date) AS year,
+    M.month_number AS month,
+    COALESCE(SUM(A.total_money), 0) AS monthly_revenue
+FROM (
+    SELECT 1 AS month_number UNION SELECT 2 UNION SELECT 3 UNION SELECT 4
+    UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8
+    UNION SELECT 9 UNION SELECT 10 UNION SELECT 11 UNION SELECT 12
+) M
+LEFT JOIN INVOICE A ON M.month_number = MONTH(A.order_date)
+    AND YEAR(A.order_date) = 2023 -- Thay 2023 bằng năm bạn quan tâm
+GROUP BY YEAR(A.order_date), M.month_number
+ORDER BY year, month;
+
 ";
 
 // Thực hiện truy vấn SQL để lấy dữ liệu từ cơ sở dữ liệu
@@ -116,7 +117,7 @@ file_put_contents($jsonFileName, json_encode(['Barchart'=>$jsonData], JSON_PRETT
                         ?>
                             <div class="card-header">
                                 <i class="fas fa-chart-area me-1"></i>
-                                Doanh thu tháng <?php echo $currentMonth; ?>
+                                Doanh thu  <!--<?php echo $currentMonth; ?> -->   
                             </div>
                             <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
                         </div>

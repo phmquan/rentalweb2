@@ -7,7 +7,7 @@ if (isset($_POST['logout'])) {
     session_destroy();
 
     // Chuyển hướng người dùng đến trang đăng nhập hoặc trang chính
-    header('Location: /frontend/index.php');
+    header('Location: /frontend/webpage.php');
     exit();
 }
 ?>

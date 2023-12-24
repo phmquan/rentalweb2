@@ -61,6 +61,7 @@ CREATE TABLE `Invoice_Detail` (
 CREATE TABLE `OFFER` (
   `id` integer PRIMARY KEY AUTO_INCREMENT,
   `name` varchar(100),
+  `offerimage` varchar(255),
   `start_date` datetime,
   `end_date` datetime,
   `status` varchar(50),
@@ -113,12 +114,12 @@ INSERT INTO DVDCategory (name) VALUES
 ('Phim Hoạt Hình');
 
 -- Dữ liệu mẫu cho OFFER
-INSERT INTO OFFER (name, start_date, end_date, status, discount_percentage) VALUES
-('Khuyến mãi Giáng Sinh - Mùa Xanh', '2023-12-20', '2024-01-05', 'Active', 25),
-('Tuần lễ Công Nghệ - Nâng Cấp Cuộc Sống', '2023-12-27', '2024-01-02', 'Active', 30),
-('Flash Sale 5 Giờ Vàng', '2023-12-26', '2023-12-30', 'Active', 50),
-('Hỗ trợ Phí Ship - Giao Hàng Yêu Thương', '2023-12-18', '2023-12-31', 'Active', 10),
-('Đố vui Giáng Sinh - Rộn Ràng Quà Tặng', '2023-12-22', '2023-12-25', 'Active', 10);
+INSERT INTO OFFER (name, offerimage, start_date, end_date, status, discount_percentage) VALUES
+('Khuyến mãi Giáng Sinh - Mùa Xanh', 'database/offerimage/offerimage_1.png', '2023-12-20', '2024-01-05', 'Active', 25),
+('Tuần lễ Công Nghệ - Nâng Cấp Cuộc Sống', 'database/offerimage/offerimage_2.png', '2023-12-27', '2024-01-02', 'Active', 30),
+('Flash Sale 5 Giờ Vàng', 'database/offerimage/offerimage_3.png', '2023-12-26', '2023-12-30', 'Active', 50),
+('Hỗ trợ Phí Ship - Giao Hàng Yêu Thương','database/offerimage/offerimage_4.png', '2023-12-18', '2023-12-31', 'Active', 10),
+('Đố vui Giáng Sinh - Rộn Ràng Quà Tặng','database/offerimage/offerimage_5.png', '2023-12-22', '2023-12-25', 'Active', 10);
 
 
 -- Dữ liệu mẫu cho DVD
@@ -306,28 +307,30 @@ INSERT INTO DVD (category_id, title, price, quantity, description, productimage,
 (23, 'Spider-Man: Into the Spider-Verse', 15, 3, 'A computer-animated film about a multiverse of Spider-Men.', 'database/productimage/productimage_120.png', 5, NOW(), NOW());
 
 
-
 -- Dữ liệu mẫu cho USER
 INSERT INTO USER (fullname, dayofbirth, email, PhoneNumber, address, avartar, account, password, role_id, created_at, updated_at) VALUES
-('John Doe', '1990-01-15', 'john.doe@example.com', '1234567890', '123 Main St', 'url_avartar', 'john_doe', 'hashed_password', 2, NOW(), NOW()),
-('Nguyễn Văn A', '1995-02-20', 'nguyenvan.a@example.com', '0912345678', '123 Nguyễn Văn Trỗi, Quận 1, TP.HCM', 'url_avartar', 'nguyenvan.a', 'hashed_password', 2, NOW(), NOW()),
-('Trần Thị B', '1996-03-21', 'tranthi.b@example.com', '0923456789', '456 Trần Hưng Đạo, Quận 5, TP.HCM', 'url_avartar', 'tranthi.b', 'hashed_password', 2, NOW(), NOW()),
-('Lê Quang C', '1997-04-22', 'lequang.c@example.com', '0934567890', '789 Lê Duẩn, Quận 10, TP.HCM', 'url_avartar', 'lequang.c', 'hashed_password', 2, NOW(), NOW()),
-('Đặng Thị D', '1998-05-23', 'dangthi.d@example.com', '0945678901', '1011 Nguyễn Thị Minh Khai, Quận 3, TP.HCM', 'url_avartar', 'dangthi.d', 'hashed_password', 2, NOW(), NOW());
+('John Doe', '1990-01-15', 'john.doe@example.com', '1234567890', '123 Main St', 'database/avaimage/ava_1.png', 'john_doe', '123123', 2, NOW(), NOW()),
+('Nguyễn Văn A', '1995-02-20', 'nguyenvan.a@example.com', '0912345678', '123 Nguyễn Văn Trỗi, Quận 1, TP.HCM', 'database/avaimage/ava_2.png', 'nguyenvan.a', '123123', 2, NOW(), NOW()),
+('Trần Thị B', '1996-03-21', 'tranthi.b@example.com', '0923456789', '456 Trần Hưng Đạo, Quận 5, TP.HCM', 'database/avaimage/ava_3.png', 'tranthi.b', '123123', 2, NOW(), NOW()),
+('Lê Quang C', '1997-04-22', 'lequang.c@example.com', '0934567890', '789 Lê Duẩn, Quận 10, TP.HCM', 'database/avaimage/ava_4.png', 'lequang.c', '123123', 2, NOW(), NOW()),
+('Đặng Thị D', '1998-05-23', 'dangthi.d@example.com', '0945678901', '1011 Nguyễn Thị Minh Khai, Quận 3, TP.HCM', 'database/avaimage/ava_5.png', 'dangthi.d', '123123', 2, NOW(), NOW());
 
-
+-- Dữ liệu mẫu cho USER (phần thêm 4 user mới với role_id là 1)
 INSERT INTO USER (fullname, dayofbirth, email, PhoneNumber, address, avartar, account, password, role_id, created_at, updated_at) VALUES
-('admin', '1997-04-22', 'lequang.c@example.com', '0934567890', '789 Lê Duẩn, Quận 10, TP.HCM', 'url_avartar', 'lequang.c', 'admin', 1, NOW(), NOW());
+('Triết', '1999-06-01', 'triet@example.com', '0956789012', '123 ABC St', 'database/avaimage/ava_6.png', 'triet', '123123', 1, NOW(), NOW()),
+('Đạt', '2000-07-02', 'dat@example.com', '0967890123', '456 XYZ St', 'database/avaimage/ava_7.png', 'dat', '123123', 1, NOW(), NOW()),
+('Đăng', '2001-08-03', 'dang@example.com', '0978901234', '789 QWE St', 'database/avaimage/ava_8.png', 'dang', '123123', 1, NOW(), NOW()),
+('Quân', '2002-09-04', 'quan@example.com', '0989012345', '101 DEF St', 'database/avaimage/ava_9.png', 'quan', '123123', 1, NOW(), NOW());
 
 -- Dữ liệu mẫu cho INVOICE
 INSERT INTO INVOICE (user_id, fullname, email, phone_number, address, note, order_date, status, total_money) VALUES
-(3, 'Trần Thị B', 'tranthi.b@example.com', '0923456789', '456 Trần Hưng Đạo, Quận 5, TP.HCM', 'Special instructions', DATE_SUB(NOW(), INTERVAL 1 MONTH), 1, 76);
+(3, 'Trần Thị B', 'tranthi.b@example.com', '0923456789', '456 Trần Hưng Đạo, Quận 5, TP.HCM', 'Special instructions', DATE_SUB(NOW(), INTERVAL 3 MONTH), 1, 76);
 
 INSERT INTO INVOICE (user_id, fullname, email, phone_number, address, note, order_date, status, total_money) VALUES
-(1, 'John Doe', 'john.doe@example.com', '1234567890', '123 Main St', 'Special instructions', NOW(), 1, 31);
+(1, 'John Doe', 'john.doe@example.com', '1234567890', '123 Main St', 'Special instructions', DATE_SUB(NOW(), INTERVAL 2 MONTH), 1, 31);
 
 INSERT INTO INVOICE (user_id, fullname, email, phone_number, address, note, order_date, status, total_money) VALUES
-(1, 'John Doe', 'john.doe@example.com', '1234567890', '123 Main St', 'Special instructions', NOW(), 1, 23);
+(1, 'John Doe', 'john.doe@example.com', '1234567890', '123 Main St', 'Special instructions', DATE_SUB(NOW(), INTERVAL 1 MONTH), 1, 23);
 
 INSERT INTO INVOICE (user_id, fullname, email, phone_number, address, note, order_date, status, total_money) VALUES
 (2, 'Nguyễn Văn A', 'nguyenvan.a@example.com', '0912345678', '123 Nguyễn Văn Trỗi, Quận 1, TP.HCM', 'Special instructions', NOW(), 1, 76);
@@ -369,13 +372,3 @@ INSERT INTO Invoice_Detail (order_id, product_id, price, num, total_money) VALUE
 
 
 
-INSERT INTO DVDCategory (name) VALUES
-('check');
-INSERT INTO OFFER (name, start_date, end_date, status, discount_percentage) VALUES
-('Check', '2023-12-20', '2024-01-05', 'Active', 25);
-
-INSERT INTO USER (fullname, dayofbirth, email, PhoneNumber, address, avartar, account, password, role_id, created_at, updated_at) VALUES
-('Check', '1990-01-15', 'check', '1234567890', '123 Main St', 'url_avartar', 'check', 'check', 2, NOW(), NOW());
-
-INSERT INTO INVOICE (user_id, fullname, email, phone_number, address, note, order_date, status, total_money) VALUES
-(2, 'Nguyễn Văn A', 'nguyenvan.a@example.com', '0912345678', '123 Nguyễn Văn Trỗi, Quận 1, TP.HCM', 'Special instructions', NOW(), 1, 76);
