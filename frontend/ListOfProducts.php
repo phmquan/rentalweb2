@@ -1,3 +1,6 @@
+<?php
+    include "./model/user.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -114,18 +117,10 @@
                 </form>
                  
     <?php
-// $servername = "localhost";
-// $dbname = "web_dvdrental";
-$servername = "127.0.0.1";
-$dbname = "DVD_WEBRENTAL";
-$username = "root";
-$password = "";
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = connectdb();
 
-if ($conn->connect_error) {
-    die("Kết nối thất bại: " . $conn->connect_error);
-}
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $search_query = $_POST["search_query"];
@@ -135,23 +130,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     exit();
 }
 
-$conn->close();
 ?>
                 		</div>
         </div>
         </div>
     </div>
 </center>
-	
-            
+<div class="product-list">
 <?php
-// $servername = "localhost";
-// $dbname = "web_dvdrental";
-$servername = "127.0.0.1";
-$dbname = "DVD_WEBRENTAL";
-$username = "root";
-$password = "";
-
 // Hàm thêm kí tự vào đường dẫn
 function insertCharacterToImagePath($imagePath, $prefix) {
         // Thêm đường dẫn vào trước đường dẫn hình ảnh
@@ -159,33 +145,30 @@ function insertCharacterToImagePath($imagePath, $prefix) {
 
         return $newImagePath;
 }
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    die("Kết nối thất bại: " . $conn->connect_error);
-}
-
+$conn = connectdb();
 $sql = "SELECT title, productimage FROM DVD";
 $result = $conn->query($sql);
-
+$count = 0;
 if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
+    while (($row = $result->fetch_assoc()) && $count <20) {
         echo '<div class="product-item">';
         echo '<a href="DetailedProduct.php?title=' . urlencode($row["title"]) . '">';
         // Thêm kí tự vào đường dẫn
-        $newImagePath = insertCharacterToImagePath($row["productimage"],'../adminstrator/dist/');
-
+        $newImagePath = insertCharacterToImagePath($row["productimage"], '../adminstrator/dist/');
         echo '<img class="product-image" src="' . $newImagePath . '" alt="' . $row["title"] . '">';
         echo '</a>';
         echo '<div class="product-title">' . $row["title"] . '</div>';
         echo '</div>';
+        $count++;   
     }
 } else {
     echo "Không có sản phẩm nào trong cơ sở dữ liệu.";
 }
-$conn->close();
+
+
 ?>
+</div>    
+
 
 <div class="row">
                 <div class="col-md-12">

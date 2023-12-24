@@ -1,10 +1,15 @@
+<?php
+    include "./model/user.php";
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>i-CD电影</title>
+    <title>DVDTrendy</title>
     
     <!-- Google Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet' type='text/css'>
@@ -40,8 +45,16 @@
                     <div class="header-right">
                         <ul class="list-unstyled list-inline">
 							<li><a href="cart.html"><i class="glyphicon glyphicon-shopping-cart"></i> Cart - <span class="cart-amunt">$100</span>  </a></li>
-							<li><a href="register.html"><i class="glyphicon glyphicon-user"></i> My Account</a></li>
-							<li><a href="login.html"><i class="glyphicon glyphicon-log-in"></i> Login</a></li>
+							<?php
+                             if (isset($_SESSION['role']) && $_SESSION['role'] == 2) {
+                                // Nếu role là 2, ẩn My Account và Login
+                                echo'<li><a href="profile.php"><i class="glyphicon glyphicon-user"></i> My Account</a></li>';
+                            } else {
+                                // Nếu role không phải là 2, hiển thị My Account và Login
+                                // echo '<li><a href="register.php"><i class="glyphicon glyphicon-user"></i> My Account</a></li>';
+                                echo '<li><a href="login.php"><i class="glyphicon glyphicon-log-in"></i> Login</a></li>';
+                            }
+                            ?>
 
                         </ul>
                     </div>
@@ -83,21 +96,16 @@
     <body>
 
     <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "web_dvdrental";
 
-$conn = new mysqli($servername, $username, $password, $dbname);
 
-if ($conn->connect_error) {
-    die("Kết nối thất bại: " . $conn->connect_error);
-}
+$conn = connectdb();
+
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $search_query = $_POST["search_query"];
 
-    echo "<p>Sản phẩm bạn tìm kiếm: $search_query</p>";
+    echo "<h1>Sản phẩm bạn tìm kiếm: $search_query</h1>";
 
     $sql = "SELECT title, productimage FROM DVD WHERE title LIKE '%$search_query%'";
     $result = $conn->query($sql);

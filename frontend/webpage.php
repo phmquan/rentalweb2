@@ -41,6 +41,7 @@
                         <ul class="list-unstyled list-inline">
 							<li><a href="cart.php"><i class="glyphicon glyphicon-shopping-cart"></i> Cart - <span class="cart-amunt">$100</span>  </a></li>
                             <?php
+                            include "./model/user.php";
                             session_start();
                             ob_start();
     // Kiểm tra xem có session role và role có giá trị 2 không
@@ -93,18 +94,11 @@
     
     <?php
     
-// $servername = "localhost";
-$servername = "127.0.0.1";
-$username = "root";
-$password = "";
-// $dbname = "web_dvdrental";
-$dbname = "DVD_WEBRENTAL";
 
-$conn = new mysqli($servername, $username, $password, $dbname);
 
-if ($conn->connect_error) {
-    die("Kết nối thất bại: " . $conn->connect_error);
-}
+$conn = connectdb();
+
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $search_query = $_POST["search_query"];
@@ -113,8 +107,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     header("Location: search.php?query=" . urlencode($search_query));
     exit();
 }
-
-$conn->close();
 ?>
    
 <div class="slider-area">

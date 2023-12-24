@@ -39,8 +39,8 @@ function connectdb() {
 
 function getUserInformation($username) {
     $conn = connectdb();
-    $stmt = $conn->prepare("SELECT fullname, dayofbirth, email,PhoneNumber,address FROM user WHERE email = ?");
-    $stmt->bind_param("s", $username);
+    $stmt = $conn->prepare("SELECT fullname, dayofbirth, email,PhoneNumber,address FROM user WHERE email = ? OR account = ?");
+    $stmt->bind_param("ss", $username, $username);
     $stmt->execute();
     $result = $stmt->get_result();
     $userInfo = $result->fetch_assoc();

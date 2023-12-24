@@ -34,7 +34,9 @@ h5,
 h6 {
   margin: 0 0 15px;
 }
-body { font-family:Arial, Helvetica, sans-serif; }
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
 
 .header-area {
   background: none repeat scroll 0 0 #f4f4f4;
@@ -488,6 +490,11 @@ body { font-family:Arial, Helvetica, sans-serif; }
   position: absolute;
   right: 0;
   top: 0;
+}
+
+.product-list {
+  margin: auto;
+  width: 1400px;
 }
 
 .latest-product .owl-nav div,
@@ -1264,7 +1271,7 @@ div.cart-collaterals ul.products li.product:hover .add_to_cart_button {
 }
 
 .product-details img {
-  width:330px;
+  width: 330px;
   height: auto;
   margin-top: 20px; /* Adjust margin as needed */
 }
