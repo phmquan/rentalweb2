@@ -5,7 +5,6 @@ $start = isset($_GET['start']) ? intval($_GET['start']) : 0;
 function insertCharacterToImagePath($imagePath, $prefix) {
     // Thêm đường dẫn vào trước đường dẫn hình ảnh
     $newImagePath = $prefix . $imagePath;
-
     return $newImagePath;
 }
 $conn = connectdb();

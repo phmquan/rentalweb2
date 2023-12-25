@@ -1962,6 +1962,7 @@ progress {
 }
 .form-label {
   margin-bottom: 0.5rem;
+  font-weight: bold;
 }
 
 .col-form-label {

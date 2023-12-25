@@ -23,7 +23,7 @@ $userList = execute_result($sql);
             <div class="card-header">
                 <i class="fas fa-table me-1"></i>
                 DataTable Example
-                <button type='button' class='btn btn-success btn-sm' onclick=''>Add</button>
+                <button type='button' class='btn btn-success btn-sm' onclick='openAddModal_User();'>Create User</button>
             </div>
             <div class="card-body">
                 <table id="datatablesSimple">
@@ -80,7 +80,23 @@ $userList = execute_result($sql);
                             echo "<td>{$user['role_id']}</td>";
                             echo "<td>{$user['created_at']}</td>";
                             echo "<td>{$user['updated_at']}</td>";
-                            echo "<td><button type='button' class='btn btn-warning btn-sm' data-bs-toggle='modal' data-bs-target='#editModal' >Edit</button> <button type='button' class='btn btn-danger btn-sm' onclick='feature_delete({$user['id']},3)'>Delete</button></td>";
+                            echo "<td>
+                                        <button type='button' class='btn btn-warning btn-sm' data-bs-toggle='modal' data-bs-target='#editUserModal' 
+                                        onclick='openEditModal_User(
+                                                {$user['id']}, 
+                                                \"{$user['fullname']}\",
+                                                \"{$user['dayofbirth']}\", 
+                                                \"{$user['email']}\",
+                                                \"{$user['PhoneNumber']}\",
+                                                \"{$user['address']}\", 
+                                                \"{$user['avartar']}\", 
+                                                \"{$user['account']}\", 
+                                                \"{$user['password']}\", 
+                                                {$user['role_id']})'>
+                                        Edit
+                                        </button>                    
+                                        <button type='button' class='btn btn-danger btn-sm' onclick='feature_delete({$user['id']},3)'>Delete</button>
+                                </td>";
                             // Thêm các cột khác tùy thuộc vào cần hiển thị
                             echo "</tr>";
                         }
@@ -91,6 +107,127 @@ $userList = execute_result($sql);
         </div>
         <!-- DATABASE TABLE END HERE -->
     </div>
+    <!-- Thêm modal cho USER Edit -->
+    <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="margin-top: 200px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editUserModalLabel">Edit User</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Thêm các trường chỉnh sửa thông tin vào đây -->
+                    <form id="editUserForm">
+                        <div class="mb-3">
+                            <label for="editUserId" class="form-label">ID</label>
+                            <input  type="text" class="form-control" id="editUserIdValue" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editUserFullname" class="form-label">Fullname</label>
+                            <input type="text" class="form-control" id="editUserFullname" name="editUserFullname">
+                        </div>
+                        <div class="mb-3">
+                            <label for="editUserDayOfBirth" class="form-label">Day of Birth</label>
+                            <input type="date" class="form-control" id="editUserDayOfBirth" name="editUserDayOfBirth">
+                        </div>
+                        <div class="mb-3">
+                            <label for="editUserEmail" class="form-label">Email</label>
+                            <input type="text" class="form-control" id="editUserEmail" name="editUserEmail">
+                        </div>
+                        <div class="mb-3">
+                            <label for="editUserPhoneNumber" class="form-label">Phone Number</label>
+                            <input type="text" class="form-control" id="editUserPhoneNumber" name="editUserPhoneNumber">
+                        </div>
+                        <div class="mb-3">
+                            <label for="editUserAddress" class="form-label">Address</label>
+                            <input type="text" class="form-control" id="editUserAddress" name="editUserAddress">
+                        </div>
+                        <div class="mb-3">
+                            <label for="editUserAvatar" class="form-label">Avartar</label>
+                            <input type="text" class="form-control" id="editUserAvatar" name="editUserAvatar">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="editUserAccount" class="form-label">Account</label>
+                            <input type="text" class="form-control" id="editUserAccount" name="editUserAccount">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="editUserPassword" class="form-label">Password</label>
+                            <input type="text" class="form-control" id="editUserPassword" name="editUserPassword">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="editUserRoleid" class="form-label">Role ID</label>
+                            <input type="number" class="form-control" id="editUserRoleid" name="editUserRoleid">
+                        </div>
+
+                        <!-- Thêm các trường khác nếu cần -->
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="saveUserChanges()">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Add User -->
+    <div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="addUserModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addUserModalLabel">Add New User</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Form for Add User -->
+                    <form id="addUserForm">
+                        <div class="mb-3">
+                            <label for="addFullName" class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="addFullName" placeholder="Enter Full Name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="addDateOfBirth" class="form-label">Date of Birth</label>
+                            <input type="date" class="form-control" id="addDateOfBirth">
+                        </div>
+                        <div class="mb-3">
+                            <label for="addEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="addEmail" placeholder="Enter Email">
+                        </div>
+                        <div class="mb-3">
+                            <label for="addPhoneNumber" class="form-label">Phone Number</label>
+                            <input type="tel" class="form-control" id="addPhoneNumber" placeholder="Enter Phone Number">
+                        </div>
+                        <div class="mb-3">
+                            <label for="addAddress" class="form-label">Address</label>
+                            <textarea class="form-control" id="addAddress" rows="3" placeholder="Enter Address"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="addAvatar" class="form-label">Avatar URL</label>
+                            <input type="text" class="form-control" id="addAvatar" placeholder="Enter Avatar URL">
+                        </div>
+                        <div class="mb-3">
+                            <label for="addAccount" class="form-label">Account</label>
+                            <input type="text" class="form-control" id="addAccount" placeholder="Enter Account">
+                        </div>
+                        <div class="mb-3">
+                            <label for="addPassword" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="addPassword" placeholder="Enter Password">
+                        </div>
+                        <div class="mb-3">
+                            <label for="addRoleId" class="form-label">Role ID</label>
+                            <input type="number" class="form-control" id="addRoleId" placeholder="Enter Role ID">
+                        </div>
+
+                        <button type="button" class="btn btn-primary" onclick="saveNewUser()">Save User</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </main>
 
 <?php

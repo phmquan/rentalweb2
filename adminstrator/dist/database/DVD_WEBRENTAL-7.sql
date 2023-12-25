@@ -260,51 +260,51 @@ INSERT INTO DVD (category_id, title, price, quantity, description, productimage,
 
 -- Thần Thoại
 INSERT INTO DVD (category_id, title, price, quantity, description, productimage, discount_id, created_at, updated_at) VALUES
-(18, 'The Lord of the Rings: The Fellowship of the Ring', 25, 7, 'The first installment in the epic Lord of the Rings trilogy.', 'database/productimage/productimage_91.png', 1, NOW(), NOW()),
-(18, 'The Odyssey', 20, 6, 'The classic Greek epic about the journey of Odysseus home from the Trojan War.', 'database/productimage/productimage_92.png', 2, NOW(), NOW()),
-(18, 'The Iliad', 18, 5, 'The classic Greek epic about the Trojan War.', 'database/productimage/productimage_93.png', 3, NOW(), NOW()),
-(18, 'The Matrix', 22, 4, 'A mind-bending science fiction thriller that explores the nature of reality.', 'database/productimage/productimage_94.png', 4, NOW(), NOW()),
-(18, 'Crouching Tiger, Hidden Dragon', 15, 3, 'A martial arts epic set in Qing Dynasty China.', 'database/productimage/productimage_95.png', 5, NOW(), NOW());
+(18, 'The Lord of the Rings: The Fellowship of the Ring', 25, 7, 'The first installment in the epic Lord of the Rings trilogy.', 'database/productimage/productimage_86.png', 1, NOW(), NOW()),
+(18, 'The Odyssey', 20, 6, 'The classic Greek epic about the journey of Odysseus home from the Trojan War.', 'database/productimage/productimage_87.png', 2, NOW(), NOW()),
+(18, 'The Iliad', 18, 5, 'The classic Greek epic about the Trojan War.', 'database/productimage/productimage_88.png', 3, NOW(), NOW()),
+(18, 'The Matrix', 22, 4, 'A mind-bending science fiction thriller that explores the nature of reality.', 'database/productimage/productimage_89.png', 4, NOW(), NOW()),
+(18, 'Crouching Tiger, Hidden Dragon', 15, 3, 'A martial arts epic set in Qing Dynasty China.', 'database/productimage/productimage_90.png', 5, NOW(), NOW());
 
 -- Chính Kịch
 INSERT INTO DVD (category_id, title, price, quantity, description, productimage, discount_id, created_at, updated_at) VALUES
-(19, 'The Godfather', 25, 7, 'A classic crime film about the Corleone family, a powerful Mafia clan.', 'database/productimage/productimage_96.png', 1, NOW(), NOW()),
-(19, 'Schindlers List', 20, 6, 'A historical drama about Oskar Schindler, a German businessman who saved the lives of over 1,000 Jews during the Holocaust.', 'database/productimage/productimage_97.png', 2, NOW(), NOW()),
-(19, '12 Angry Men', 18, 5, 'A courtroom drama about a jury that must decide the guilt or innocence of a young man accused of murder.', 'database/productimage/productimage_98.png', 3, NOW(), NOW()),
-(19, 'The Silence of the Lambs', 22, 4, 'A psychological thriller about a young FBI agent who is sent to interview a serial killer to help catch another killer.', 'database/productimage/productimage_99.png', 4, NOW(), NOW()),
-(19, 'The Shawshank Redemption', 15, 3, 'A story of hope and redemption set in a prison.', 'database/productimage/productimage_100.png', 5, NOW(), NOW());
+(19, 'The Godfather', 25, 7, 'A classic crime film about the Corleone family, a powerful Mafia clan.', 'database/productimage/productimage_91.png', 1, NOW(), NOW()),
+(19, 'Schindlers List', 20, 6, 'A historical drama about Oskar Schindler, a German businessman who saved the lives of over 1,000 Jews during the Holocaust.', 'database/productimage/productimage_92.png', 2, NOW(), NOW()),
+(19, '12 Angry Men', 18, 5, 'A courtroom drama about a jury that must decide the guilt or innocence of a young man accused of murder.', 'database/productimage/productimage_93.png', 3, NOW(), NOW()),
+(19, 'The Silence of the Lambs', 22, 4, 'A psychological thriller about a young FBI agent who is sent to interview a serial killer to help catch another killer.', 'database/productimage/productimage_94.png', 4, NOW(), NOW()),
+(19, 'The Shawshank Redemption', 15, 3, 'A story of hope and redemption set in a prison.', 'database/productimage/productimage_95.png', 5, NOW(), NOW());
 
 -- Kinh Điển
 INSERT INTO DVD (category_id, title, price, quantity, description, productimage, discount_id, created_at, updated_at) VALUES
-(20, 'The Shawshank Redemption', 25, 7, 'A story of hope and redemption set in a prison.', 'database/productimage/productimage_101.png', 1, NOW(), NOW()),
-(20, 'The Godfather', 20, 6, 'A classic crime film about the Corleone family, a powerful Mafia clan.', 'database/productimage/productimage_102.png', 2, NOW(), NOW()),
-(20, 'Schindlers List', 18, 5, 'A historical drama about Oskar Schindler, a German businessman who saved the lives of over 1,000 Jews during the Holocaust.', 'database/productimage/productimage_103.png', 3, NOW(), NOW()),
-(20, '12 Angry Men', 22, 4, 'A courtroom drama about a jury that must decide the guilt or innocence of a young man accused of murder.', 'database/productimage/productimage_104.png', 4, NOW(), NOW()),
-(20, 'The Silence of the Lambs', 15, 3, 'A psychological thriller about a young FBI agent who is sent to interview a serial killer to help catch another killer.', 'database/productimage/productimage_105.png', 5, NOW(), NOW());
+(20, 'The Shawshank Redemption', 25, 7, 'A story of hope and redemption set in a prison.', 'database/productimage/productimage_96.png', 1, NOW(), NOW()),
+(20, 'The Godfather', 20, 6, 'A classic crime film about the Corleone family, a powerful Mafia clan.', 'database/productimage/productimage_97.png', 2, NOW(), NOW()),
+(20, 'Schindlers List', 18, 5, 'A historical drama about Oskar Schindler, a German businessman who saved the lives of over 1,000 Jews during the Holocaust.', 'database/productimage/productimage_98.png', 3, NOW(), NOW()),
+(20, '12 Angry Men', 22, 4, 'A courtroom drama about a jury that must decide the guilt or innocence of a young man accused of murder.', 'database/productimage/productimage_99.png', 4, NOW(), NOW()),
+(20, 'The Silence of the Lambs', 15, 3, 'A psychological thriller about a young FBI agent who is sent to interview a serial killer to help catch another killer.', 'database/productimage/productimage_100.png', 5, NOW(), NOW());
 
 -- Đam Mỹ
 INSERT INTO DVD (category_id, title, price, quantity, description, productimage, discount_id, created_at, updated_at) VALUES
-(21, 'Call Me By Your Name', 25, 7, 'A coming-of-age story about a young man who falls in love with an older man.', 'database/productimage/productimage_106.png', 1, NOW(), NOW()),
-(21, 'Brokeback Mountain', 20, 6, 'A romantic drama about two cowboys who fall in love.', 'database/productimage/productimage_107.png', 2, NOW(), NOW()),
-(21, 'My Beautiful Laundrette', 18, 5, 'A British film about two young men who fall in love in London.', 'database/productimage/productimage_108.png', 3, NOW(), NOW()),
-(21, 'Moonlight', 22, 4, 'A coming-of-age story about a young black man who struggles with his sexuality.', 'database/productimage/productimage_109.png', 4, NOW(), NOW()),
-(21, 'Call Me by Your Name', 15, 3, 'A coming-of-age story about a young man who falls in love with an older man.', 'database/productimage/productimage_110.png', 5, NOW(), NOW());
+(21, 'Call Me By Your Name', 25, 7, 'A coming-of-age story about a young man who falls in love with an older man.', 'database/productimage/productimage_101.png', 1, NOW(), NOW()),
+(21, 'Brokeback Mountain', 20, 6, 'A romantic drama about two cowboys who fall in love.', 'database/productimage/productimage_102.png', 2, NOW(), NOW()),
+(21, 'My Beautiful Laundrette', 18, 5, 'A British film about two young men who fall in love in London.', 'database/productimage/productimage_103.png', 3, NOW(), NOW()),
+(21, 'Moonlight', 22, 4, 'A coming-of-age story about a young black man who struggles with his sexuality.', 'database/productimage/productimage_104.png', 4, NOW(), NOW()),
+(21, 'Call Me by Your Name', 15, 3, 'A coming-of-age story about a young man who falls in love with an older man.', 'database/productimage/productimage_105.png', 5, NOW(), NOW());
 
 -- Bách Hợp
 INSERT INTO DVD (category_id, title, price, quantity, description, productimage, discount_id, created_at, updated_at) VALUES
-(22, 'Carol', 25, 7, 'A romantic drama about two women who fall in love in 1950s New York.', 'database/productimage/productimage_111.png', 1, NOW(), NOW()),
-(22, 'Blue is the Warmest Color', 20, 6, 'A French film about two teenage girls who fall in love.', 'database/productimage/productimage_112.png', 2, NOW(), NOW()),
-(22, 'Chungking Express', 18, 5, 'A Hong Kong film about two policemen who fall in love with the same woman.', 'database/productimage/productimage_113.png', 3, NOW(), NOW()),
-(22, 'The Handmaiden', 22, 4, 'A South Korean film about a woman who is forced to become a surrogate mother for a wealthy family.', 'database/productimage/productimage_114.png', 4, NOW(), NOW()),
-(22, 'Carol', 15, 3, 'A romantic drama about two women who fall in love in 1950s New York.', 'database/productimage/productimage_115.png', 5, NOW(), NOW());
+(22, 'Carol', 25, 7, 'A romantic drama about two women who fall in love in 1950s New York.', 'database/productimage/productimage_106.png', 1, NOW(), NOW()),
+(22, 'Blue is the Warmest Color', 20, 6, 'A French film about two teenage girls who fall in love.', 'database/productimage/productimage_107.png', 2, NOW(), NOW()),
+(22, 'Chungking Express', 18, 5, 'A Hong Kong film about two policemen who fall in love with the same woman.', 'database/productimage/productimage_108.png', 3, NOW(), NOW()),
+(22, 'The Handmaiden', 22, 4, 'A South Korean film about a woman who is forced to become a surrogate mother for a wealthy family.', 'database/productimage/productimage_109.png', 4, NOW(), NOW()),
+(22, 'Carol', 15, 3, 'A romantic drama about two women who fall in love in 1950s New York.', 'database/productimage/productimage_110.png', 5, NOW(), NOW());
 
 -- Phim Hoạt Hình
 INSERT INTO DVD (category_id, title, price, quantity, description, productimage, discount_id, created_at, updated_at) VALUES
-(23, 'Spirited Away', 25, 7, 'A Japanese animated film about a young girl who enters the spirit world.', 'database/productimage/productimage_116.png', 1, NOW(), NOW()),
-(23, 'Toy Story', 20, 6, 'A computer-animated film about a group of toys who come to life when their owner is not around.', 'database/productimage/productimage_117.png', 2, NOW(), NOW()),
-(23, 'The Lion King', 18, 5, 'A musical about a lion prince who must learn to take his place as king.', 'database/productimage/productimage_118.png', 3, NOW(), NOW()),
-(23, 'Inside Out', 22, 4, 'A computer-animated film about the emotions inside the head of a young girl.', 'database/productimage/productimage_119.png', 4, NOW(), NOW()),
-(23, 'Spider-Man: Into the Spider-Verse', 15, 3, 'A computer-animated film about a multiverse of Spider-Men.', 'database/productimage/productimage_120.png', 5, NOW(), NOW());
+(23, 'Spirited Away', 25, 7, 'A Japanese animated film about a young girl who enters the spirit world.', 'database/productimage/productimage_111.png', 1, NOW(), NOW()),
+(23, 'Toy Story', 20, 6, 'A computer-animated film about a group of toys who come to life when their owner is not around.', 'database/productimage/productimage_112.png', 2, NOW(), NOW()),
+(23, 'The Lion King', 18, 5, 'A musical about a lion prince who must learn to take his place as king.', 'database/productimage/productimage_113.png', 3, NOW(), NOW()),
+(23, 'Inside Out', 22, 4, 'A computer-animated film about the emotions inside the head of a young girl.', 'database/productimage/productimage_114.png', 4, NOW(), NOW()),
+(23, 'Spider-Man: Into the Spider-Verse', 15, 3, 'A computer-animated film about a multiverse of Spider-Men.', 'database/productimage/productimage_115.png', 5, NOW(), NOW());
 
 
 -- Dữ liệu mẫu cho USER

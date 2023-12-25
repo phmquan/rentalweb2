@@ -21,7 +21,8 @@ $invoiceList = execute_result($sql);
                 <div class="card-header">
                     <i class="fas fa-table me-1"></i>
                     DataTable Example
-                    <button type='button' class='btn btn-success btn-sm' onclick=''>Add</button>
+                    <button type='button' class='btn btn-success btn-sm' onclick='openCreateInvoiceModal();'>Create Invoice</button>
+
                 </div>
                 <div class="card-body">
                     <table id="datatablesSimple">
@@ -72,7 +73,24 @@ $invoiceList = execute_result($sql);
                                 echo "<td>{$invoice['order_date']}</td>";
                                 echo "<td>{$invoice['status']}</td>";
                                 echo "<td>{$invoice['total_money']}</td>";
-                                echo "<td><button type='button' class='btn btn-warning btn-sm' data-bs-toggle='modal' data-bs-target='#editModal' >Edit</button> <button type='button' class='btn btn-danger btn-sm' onclick='feature_delete({$invoice['id']},4)'>Delete</button></td>";                    
+                                echo "<td>
+                                        <button type='button' class='btn btn-warning btn-sm' data-bs-toggle='modal' data-bs-target='#editInvoiceModal' 
+                                            onclick='openEditModal_Invoice(
+                                                {$invoice['id']},
+                                                {$invoice['user_id']},
+                                                \"{$invoice['fullname']}\",
+                                                \"{$invoice['email']}\", 
+                                                \"{$invoice['phone_number']}\",
+                                                \"{$invoice['address']}\", 
+                                                \"{$invoice['note']}\",
+                                                \"{$invoice['order_date']}\", 
+                                                {$invoice['status']},
+                                                {$invoice['total_money']});'>
+                                        Edit
+                                        </button>
+                        
+                                        <button type='button' class='btn btn-danger btn-sm' onclick='feature_delete({$invoice['id']},4)'>Delete</button>       
+                                        <button type='button' class='btn bg-primary btn-sm text-white' onclick=''>Detail Invoice</button></td>";                    
                                 // Thêm các cột khác tùy thuộc vào cần hiển thị
                                 echo "</tr>";
                             }
@@ -83,6 +101,121 @@ $invoiceList = execute_result($sql);
    
             </div>
             <!-- DATABASE TABLE END HERE BITCH -->
+        </div>
+        <!-- Thêm modal -->
+        <div class="modal fade" id="editInvoiceModal" tabindex="-1" aria-labelledby="editInvoiceModalLabel" aria-hidden="true">
+            <div class="modal-dialog" style="margin-top: 200px;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editInvoiceModalLabel">Edit Invoice</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Thêm các trường chỉnh sửa thông tin vào đây -->
+                        <form id="editInvoiceForm">
+                            <div class="mb-3">
+                                <label for="editInvoiceId" class="form-label">ID</label>
+                                <input  type="text" class="form-control" id="editInvoiceIdValue" readonly>
+                            </div>
+                            <div class="mb-3">
+                                <label for="editInvoiceUserId" class="form-label">User ID</label>
+                                <input type="number" class="form-control" id="editInvoiceUserId" name="editInvoiceUserId">
+                            </div>
+                            <div class="mb-3">
+                                <label for="editInvoiceFullname" class="form-label">Fullname</label>
+                                <input type="text" class="form-control" id="editInvoiceFullname" name="editInvoiceFullname">
+                            </div>
+                            <div class="mb-3">
+                                <label for="editInvoiceEmail" class="form-label">Email</label>
+                                <input type="text" class="form-control" id="editInvoiceEmail" name="editInvoiceEmail">
+                            </div>
+                            <div class="mb-3">
+                                <label for="editInvoicePhoneNumber" class="form-label">Phone Number</label>
+                                <input type="text" class="form-control" id="editInvoicePhoneNumber" name="editInvoicePhoneNumber">
+                            </div>
+                            <div class="mb-3">
+                                <label for="editInvoiceAddress" class="form-label">Address</label>
+                                <input type="text" class="form-control" id="editInvoiceAddress" name="editInvoiceAddress">
+                            </div>
+                            <div class="mb-3">
+                                <label for="editInvoiceNote" class="form-label">Note</label>
+                                <textarea class="form-control" id="editInvoiceNote" name="editInvoiceNote"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="editInvoiceOrderDate" class="form-label">Order Date</label>
+                                <input type="datetime-local" class="form-control" id="editInvoiceOrderDate" name="editInvoiceOrderDate">
+                            </div>
+                            <div class="mb-3">
+                                <label for="editInvoiceStatus" class="form-label">Status</label>
+                                <input type="number" class="form-control" id="editInvoiceStatus" name="editInvoiceStatus">
+                            </div>
+                            <div class="mb-3">
+                                <label for="editInvoiceTotalMoney" class="form-label">Total Money</label>
+                                <input type="number" class="form-control" id="editInvoiceTotalMoney" name="editInvoiceTotalMoney" readonly>
+                            </div>
+                            <!-- Thêm các trường khác nếu cần -->
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" onclick="saveInvoiceChanges()">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal for Create Invoice -->
+        <div class="modal fade" id="createInvoiceModal" tabindex="-1" aria-labelledby="createInvoiceModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="createInvoiceModalLabel">Create New Invoice (for demo only)</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Form for Create Invoice -->
+                        <form id="createInvoiceForm">
+                            <div class="mb-3">
+                                <label for="createInvoiceUserId" class="form-label">User ID</label>
+                                <input type="number" class="form-control" id="createInvoiceUserId" placeholder="Enter User ID">
+                            </div>
+                            <div class="mb-3">
+                                <label for="createInvoiceFullName" class="form-label">Full Name</label>
+                                <input type="text" class="form-control" id="createInvoiceFullName" placeholder="Enter Full Name">
+                            </div>
+                            <div class="mb-3">
+                                <label for="createInvoiceEmail" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="createInvoiceEmail" placeholder="Enter Email">
+                            </div>
+                            <div class="mb-3">
+                                <label for="createInvoicePhoneNumber" class="form-label">Phone Number</label>
+                                <input type="tel" class="form-control" id="createInvoicePhoneNumber" placeholder="Enter Phone Number">
+                            </div>
+                            <div class="mb-3">
+                                <label for="createInvoiceAddress" class="form-label">Address</label>
+                                <textarea class="form-control" id="createInvoiceAddress" rows="3" placeholder="Enter Address"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="createInvoiceNote" class="form-label">Note</label>
+                                <textarea class="form-control" id="createInvoiceNote" rows="3" placeholder="Enter Note"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="createInvoiceOrderDate" class="form-label">Order Date</label>
+                                <input type="datetime-local" class="form-control" id="createInvoiceOrderDate">
+                            </div>
+                            <div class="mb-3">
+                                <label for="createInvoiceStatus" class="form-label">Status</label>
+                                <input type="number" class="form-control" id="createInvoiceStatus" placeholder="Enter Status">
+                            </div>
+                            <div class="mb-3">
+                                <label for="createInvoiceTotalMoney" class="form-label">Total Money</label>
+                                <input type="number" class="form-control" id="createInvoiceTotalMoney" placeholder="Enter Total Money">
+                            </div>
+
+                            <button type="button" class="btn btn-primary" onclick="saveNewInvoice()">Create Invoice</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
 <?php

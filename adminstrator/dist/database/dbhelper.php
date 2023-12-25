@@ -7,7 +7,7 @@ function execute($sql){
     if (!$conn) {
         die("Kết nối thất bại: " . mysqli_connect_error());
     }
-    mysqli_set_charset($conn,'utf-8');
+    //mysqli_set_charset($conn,'utf-8');
 
     //query
     mysqli_query($conn, $sql);
