@@ -116,12 +116,8 @@
                     
                 </form>
                  
-    <?php
-
+<?php
 $conn = connectdb();
-
-
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $search_query = $_POST["search_query"];
 
@@ -129,7 +125,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     header("Location: search.php?query=" . urlencode($search_query));
     exit();
 }
-
 ?>
                 		</div>
         </div>
@@ -150,7 +145,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!-- Add a button with an onclick event -->
 <!-- Your existing HTML code -->
 
-<!-- Add a button with an onclick event -->
 <button id="watchMoreBtn" onclick="loadMoreProducts()">Watch More</button>
 
 <script>
@@ -175,6 +169,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         xhttp.send();
     }
 </script>
+
+<!-- Add a button with an onclick event -->
+
 
 
                         </nav>                        

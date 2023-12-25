@@ -18,14 +18,17 @@ if ($result->num_rows > 0) {
         echo '<div class="product-item">';
         echo '<a href="DetailedProduct.php?title=' . urlencode($row["title"]) . '">';
         $newImagePath = insertCharacterToImagePath($row["productimage"], '../adminstrator/dist/');
-        echo '<img class="product-image" style="width:236px;height:236px" src="' . $newImagePath . '" alt="' . $row["title"] . '">';
-        echo '</a>';
+        echo '<img class="product-image" style="width:246px;height:246px" src="' . $newImagePath . '" alt="' . $row["title"] . '">';
+        
         echo '<div class="product-title">' . $row["title"] . '</div>';
         echo '<div class="product-price">$' . $row["price"] . ' </div>';
         echo '</div>';
+        echo '</a>';
         $count++;
     }
 } else {
     echo "Không có sản phẩm nào trong cơ sở dữ liệu.";
 }
+
+
 ?>

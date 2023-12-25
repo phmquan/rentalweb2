@@ -485,6 +485,8 @@ body {
 
 .product-carousel {
   padding-top: 40px;
+  width: 216px;
+  height: 401px;
 }
 .latest-product .owl-nav {
   position: absolute;
@@ -496,7 +498,10 @@ body {
   margin: auto;
   width: 1400px;
 }
-
+.search-container {
+  width: 1400px;
+  margin: 30px auto;
+}
 #watchMoreBtn {
   padding: 10px 40px;
   margin-bottom: 30px;
@@ -1244,11 +1249,12 @@ div.cart-collaterals ul.products li.product:hover .add_to_cart_button {
 }
 .product-item {
   display: inline-block;
+  margin-right: 30px;
   margin: 10px;
   text-decoration: none;
   color: #333;
   text-align: center;
-  width: 330px; /* Set your desired width */
+  width: 246px; /* Set your desired width */
   cursor: pointer;
 }
 
@@ -1270,26 +1276,38 @@ div.cart-collaterals ul.products li.product:hover .add_to_cart_button {
 }
 
 .product-details {
-  text-align: center;
+  display: flex;
+  /* text-align: center; */
   font-family: 'Arial', sans-serif; /* Thay đổi phông chữ theo ý muốn */
   font-size: 16px; /* Điều chỉnh kích thước chữ */
   line-height: 1.5; /* Điều chỉnh độ cao dòng */
   color: #333; /* Màu chữ */
+  width: 1200px;
+  margin: auto;
   /* Thêm các thuộc tính CSS khác theo nhu cầu */
 }
 
-.product-details img {
-  width: 330px;
+.product-details .product-image {
+  flex-direction: column;
+  width: 50%;
   height: auto;
   margin-top: 20px; /* Adjust margin as needed */
 }
+.product-details .product-information {
+  margin-top: 30px;
+  flex-direction: column;
+  width: 50%;
+}
+.product-details .product-quantity {
+  margin: 10px;
+}
 .product-details h1 {
-  text-align: center;
+  margin-top: 100px;
   margin: 10px 0;
 }
 
 .product-details p {
-  text-align: center;
+  /* text-align: center; */
   margin: 10px 0;
   font-size: 18px; /* Điều chỉnh kích thước chữ */
 }

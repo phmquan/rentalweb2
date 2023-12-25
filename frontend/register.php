@@ -85,13 +85,13 @@
 				<div class="col-md-7">	
 				<div class="shopping-item">
 				<div class="navbar-header">
-				<h1><a href="index.html">DVDTrendy</a></h1>
+				<h1><a href="webpage.php">DVDTrendy</a></h1>
 				</div>
 				<div class="navbar-header">
 				<a class="navbar-brand" href="#"></a>				
 				</div>
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="index.html">Home</a></li>
+                        <li class="active"><a href="webpage.php">Home</a></li>
                         <li><a href="shop.html">New Realese</a></li>
                         <li><a href="shop.html">Top Rated Film</a></li>
                     </ul>
@@ -267,7 +267,7 @@
             <div class="row">
                 <div class="col-md-3 col-sm-6">
                     <div class="footer-about-us">
-                        <h2><a href="index.html">DVDTrendy</a></h2>
+                        <h2><a href="webpage.php">DVDTrendy</a></h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis sunt id doloribus vero quam laborum quas alias dolores blanditiis iusto consequatur, modi aliquid eveniet eligendi iure eaque ipsam iste, pariatur omnis sint! Suscipit, debitis, quisquam. Laborum commodi veritatis magni at?</p>
                         <div class="footer-social">
                             <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
