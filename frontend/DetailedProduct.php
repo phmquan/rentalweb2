@@ -85,10 +85,10 @@
 				</div>
                 <div class="col-sm-5">
                     <div class="shopping-item">
-					<form action="#">
-									<input type="text" placeholder="Search products...">
+					<form action="search.php" method = "post" target = "_blank">
+									<input type="text" name="search_query" placeholder="Search products...">
 									<input type="submit" value="Search">
-					</form>                    
+					</form>                      
 				</div>
                 </div>
             </div>
@@ -106,19 +106,21 @@
             </div>
         </div>
     </div>
-    <?php
-
+<?php
 $conn = connectdb();
  
-if ($conn->connect_error) {
-    die("Kết nối thất bại: " . $conn->connect_error);
-}
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $search_query = $_POST["search_query"];
 
+    // Chuyển hướng đến trang search.php với tham số tìm kiếm
+    header("Location: search.php?query=" . urlencode($search_query));
+    exit();
+}
 // Lấy tham số từ URL
 $title = urldecode($_GET['title']);
 
 // Truy vấn database để lấy thông tin chi tiết
-$sql_detail = "SELECT * FROM DVD WHERE title = '$title'";
+$sql_detail = "SELECT * FROM DVD WHERE title LIKE '%$title%'";
 $result_detail = $conn->query($sql_detail);
 
 function insertCharacterToImagePath($imagePath, $prefix) {
@@ -131,17 +133,26 @@ function insertCharacterToImagePath($imagePath, $prefix) {
 if ($result_detail->num_rows > 0) {
     $row_detail = $result_detail->fetch_assoc();
     echo '<div class="product-details">';
-    echo '<h1>' . $row_detail["title"] . '</h1>';
-    echo '<p>Giá: ' . $row_detail["price"] . '</p>';
-    echo '<p>Mô tả: ' . $row_detail["description"] . '</p>';
+    
+    echo '<div class="product-image">';
     $newImagePath = insertCharacterToImagePath($row_detail["productimage"], '../adminstrator/dist/');
     echo '<img src="' . $newImagePath . '" alt="' . $row_detail["title"] . '">';
+    echo '</div>';
+    echo '<div class="product-info">';
+    echo '<h1 style="margin-top:100px">' . $row_detail["title"] . '</h1>';
+    echo '<p>Giá: ' . $row_detail["price"] . '</p>';
+    echo '<p>Mô tả: ' . $row_detail["description"] . '</p>';
+    echo '<input type="number" name="quantity" id="quantity" placeholder="Quantity" min="1" style="margin-right:30px">';
+    echo '<button class="add-to-cart-button" style="border-radius:5px;border:none;color:#5a88ca;padding: 5px 15px">Add to Cart</button>';
+    echo '</div>';
+    
     echo '</div>';  
 }
  else {
     echo 'Không tìm thấy thông tin chi tiết.';
 }
 ?>
+
                        
 <div class="footer-top-area">
         <div class="container">

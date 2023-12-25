@@ -1,7 +1,4 @@
-<?php
-    include "./model/user.php";
-    session_start();
-?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -69,7 +66,7 @@
 				<div class="col-md-7">	
 				<div class="shopping-item">
 				<div class="navbar-header">
-				<h1><a href="index.html">DVDTrendy</a></h1>
+				<h1><a href="webpage.php">DVDTrendy</a></h1>
 				</div>
 				<div class="navbar-header">
 				<a class="navbar-brand" href="#"></a>				
@@ -93,9 +90,10 @@
         </div>
     </div>
 
-    <body>
-
-    <?php
+<body>
+<div class="search-container">
+<?php
+include "./model/user.php";
 
 
 $conn = connectdb();
@@ -105,29 +103,40 @@ $conn = connectdb();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $search_query = $_POST["search_query"];
 
-    echo "<h1>Sản phẩm bạn tìm kiếm: $search_query</h1>";
+    echo '<h1 style="color: #5a88ca; text-align:center">Sản phẩm bạn tìm kiếm</h1>';
 
-    $sql = "SELECT title, productimage FROM DVD WHERE title LIKE '%$search_query%'";
+
+    $sql = "SELECT title, productimage, price FROM DVD WHERE title LIKE '%$search_query%'";
     $result = $conn->query($sql);
+    $start = isset($_GET['start']) ? intval($_GET['start']) : 0;
+function insertCharacterToImagePath($imagePath, $prefix) {
+    // Thêm đường dẫn vào trước đường dẫn hình ảnh
+    $newImagePath = $prefix . $imagePath;
 
+    return $newImagePath;
+}
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
             echo '<div class="product-item">';
             echo '<a href="DetailedProduct.php?title=' . urlencode($row["title"]) . '">';
-            echo '<img class="product-image" src="' . $row["productimage"] . '" alt="' . $row["title"] . '">';
+            $newImagePath = insertCharacterToImagePath($row["productimage"], '../adminstrator/dist/');
+            echo '<img class="product-image" src="' . $newImagePath . '" alt="' . $row["title"] . '">';
             echo '</a>';
             echo '<div class="product-title">' . $row["title"] . '</div>';
+            echo '<div class="product-title">$' . $row["price"] . '</div>';
             echo '</div>';
         }
         echo '</div>';
     } else {
-        echo "Không có sản phẩm nào được tìm thấy.";
+        echo '<h1 style="color: #5a88ca;">Không tìm thấy sản phẩm</h1>';
     }
 }
 
 $conn->close();
 ?>
 
+</div>
+  
 
 </body>
 
@@ -136,7 +145,7 @@ $conn->close();
             <div class="row">
                 <div class="col-md-3 col-sm-6">
                     <div class="footer-about-us">
-                        <h2><a href="index.html">DVDTrendy</a></h2>
+                        <h2><a href="webpage.php">DVDTrendy</a></h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis sunt id doloribus vero quam laborum quas alias dolores blanditiis iusto consequatur, modi aliquid eveniet eligendi iure eaque ipsam iste, pariatur omnis sint! Suscipit, debitis, quisquam. Laborum commodi veritatis magni at?</p>
                         <div class="footer-social">
                             <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
@@ -163,7 +172,7 @@ $conn->close();
                     <div class="footer-menu">
                         <h2 class="footer-wid-title">Categories</h2>
                         <ul>
-                            <li><a href="index.html">Home</a></li>
+                            <li><a href="webpage.php">Home</a></li>
                             <li><a href="shop.html">New Realese</a></li>
                             <li><a href="shop.html">Top Rated Film</a></li>
                             <li><a href="shop.html">Search</a></li>

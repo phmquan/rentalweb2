@@ -39,7 +39,7 @@
                 <div class="col-md-5">
                     <div class="header-right">
                         <ul class="list-unstyled list-inline">
-							<li><a href="cart.php"><i class="glyphicon glyphicon-shopping-cart"></i> Cart - <span class="cart-amunt">$100</span>  </a></li>
+							<li><a href="cart.php"><i class="glyphicon glyphicon-shopping-cart"></i> Cart - <span class="cart-amunt">$0</span>  </a></li>
                             <?php
                             include "./model/user.php";
                             session_start();
@@ -93,13 +93,7 @@
     </div>
     
     <?php
-    
-
-
 $conn = connectdb();
-
-
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $search_query = $_POST["search_query"];
 
@@ -184,252 +178,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </div>
     </div> <!-- End Page title area -->
-						
-						
-                        <div class="product-carousel">
-                            <div class="single-product">
-                                <div class="product-f-image">
-                                    <img src="img/product-1.jpg" alt="">
-                                    <div class="product-hover">
-                                        <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                        <a href="single-product.php" class="view-details-link"><i class="fa fa-link"></i> See details</a>
-                                    </div>
-                                </div>
-                                <center>
-                                <h2><a href="single-product.php">Star Trek Future Begins</a></h2>
-                                
-                                <div class="product-carousel-price">
-                                    <ins>Rp120.000</ins> <del>Rp.180.000</del>
-                                </div> 
-								</center>
-                            </div>
-                            <div class="single-product">
-                                <div class="product-f-image">
-                                    <img src="img/product-2.jpg" alt="">
-                                    <div class="product-hover">
-                                        <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                        <a href="single-product.php" class="view-details-link"><i class="fa fa-link"></i> See details</a>
-                                    </div>
-                                </div>
-                                <center>
-                                <h2>Marvel - The Avengers</h2>
-                                <div class="product-carousel-price">
-                                    <ins>Rp.250.000</ins> <del>Rp.400.000</del>
-                                </div> 
-								</center>
-                            </div>
-                            <div class="single-product">
-                                <div class="product-f-image">
-                                    <img src="img/product-3.jpg" alt="">
-                                    <div class="product-hover">
-                                        <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                        <a href="single-product.php" class="view-details-link"><i class="fa fa-link"></i> See details</a>
-                                    </div>
-                                </div>
-                                <center>
-                                <h2>Negeri 5 Menara</h2>
+    <div id="product-container"></div>
+	<script>
+        let start = 16;
+let xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        // Assuming you have a container with the id "product-container" to display the products
+        document.getElementById("product-container").innerHTML = this.responseText;
+    }
+};
+xhttp.open("GET", "ShowListProduct.php?start=" + start, true);
+xhttp.send();
 
-                                <div class="product-carousel-price">
-                                    <ins>Rp.99.000</ins> <del>Rp.140.000</del>
-                                </div> 
-								</center>
-                            </div>
-                            <div class="single-product">
-                                <div class="product-f-image">
-                                    <img src="img/product-4.jpg" alt="">
-                                    <div class="product-hover">
-                                        <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                        <a href="single-product.php" class="view-details-link"><i class="fa fa-link"></i> See details</a>
-                                    </div>
-                                </div>
-                                <center>
-                                <h2><a href="single-product.php">Satvnic</a></h2>
-
-                                <div class="product-carousel-price">
-                                    <ins>Rp.140.000</ins> <del>$180.000</del>
-                                </div> 
-								</center>
-                            </div>
-                            <div class="single-product">
-                                <div class="product-f-image">
-                                    <img src="img/product-5.jpg" alt="">
-                                    <div class="product-hover">
-                                        <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                        <a href="single-product.php" class="view-details-link"><i class="fa fa-link"></i> See details</a>
-                                    </div>
-                                </div>
-                                <center>
-                                <h2>Amateur Night</h2>
-
-                                <div class="product-carousel-price">
-                                    <ins>Rp.120.000</ins> <del>Rp.155.000</del>
-                                </div> 
-								</center>
-                            </div>
-                        </div>
-						<div class="product-carousel">
-                            <div class="single-product">
-                                <div class="product-f-image">
-                                    <img src="img/product-6.jpg" alt="">
-                                    <div class="product-hover">
-                                        <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                        <a href="single-product.php" class="view-details-link"><i class="fa fa-link"></i> See details</a>
-                                    </div>
-                                </div>
-                                <center>
-                                <h2><a href="single-product.php">Ninja Turtles</a></h2>
-                                
-                                <div class="product-carousel-price">
-                                    <ins>Rp.70.000</ins> <del>Rp.180.000</del>
-                                </div> 
-								</center>
-                            </div>
-                            <div class="single-product">
-                                <div class="product-f-image">
-                                    <img src="img/product-7.jpg" alt="">
-                                    <div class="product-hover">
-                                        <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                        <a href="single-product.php" class="view-details-link"><i class="fa fa-link"></i> See details</a>
-                                    </div>
-                                </div>
-                                <center>
-                                <h2>The Legend of Tarzan</h2>
-                                <div class="product-carousel-price">
-                                    <ins>Rp.289.000</ins> <del>Rp.499.000</del>
-                                </div> 
-								</center>
-                            </div>
-                            <div class="single-product">
-                                <div class="product-f-image">
-                                    <img src="img/product-8.jpg" alt="">
-                                    <div class="product-hover">
-                                        <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                        <a href="single-product.php" class="view-details-link"><i class="fa fa-link"></i> See details</a>
-                                    </div>
-                                </div>
-                                <center>
-                                <h2>Shutter Island</h2>
-
-                                <div class="product-carousel-price">
-                                    <ins>Rp.94.000</ins> <del>Rp.125.000</del>
-                                </div>     
-								</center>
-                            </div>
-                            <div class="single-product">
-                                <div class="product-f-image">
-                                    <img src="img/product-9.jpg" alt="">
-                                    <div class="product-hover">
-                                        <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                        <a href="single-product.php" class="view-details-link"><i class="fa fa-link"></i> See details</a>
-                                    </div>
-                                </div>
-                                <center>
-                                <h2><a href="single-product.php">The Raid Redemption</a></h2>
-
-                                <div class="product-carousel-price">
-                                    <ins>Rp.120.000</ins> <del>Rp.225.000</del>
-                                </div>  
-								</center>
-                            </div>
-                            <div class="single-product">
-                                <div class="product-f-image">
-                                    <img src="img/product-10.jpg" alt="">
-                                    <div class="product-hover">
-                                        <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                        <a href="single-product.php" class="view-details-link"><i class="fa fa-link"></i> See details</a>
-                                    </div>
-                                </div>
-                                <center>
-                                <h2>The Fault in Our Stars</h2>
-
-                                <div class="product-carousel-price">
-                                    <ins>$220.000</ins> <del>RP.355.000</del>
-                                </div>
-								</center>
-                            </div>
-                        </div>
-						<div class="product-carousel">
-                            <div class="single-product">
-                                <div class="product-f-image">
-                                    <img src="img/product-11.jpg" alt="">
-                                    <div class="product-hover">
-                                        <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                        <a href="single-product.php" class="view-details-link"><i class="fa fa-link"></i> See details</a>
-                                    </div>
-                                </div>
-                                <center>
-                                <h2><a href="single-product.php">Big Mommas</a></h2>
-                                
-                                <div class="product-carousel-price">
-                                    <ins>Rp.170.000</ins> <del>Rp.190.000</del>
-                                </div> 
-								</center>
-                            </div>
-                            <div class="single-product">
-                                <div class="product-f-image">
-                                    <img src="img/product-12.jpg" alt="">
-                                    <div class="product-hover">
-                                        <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                        <a href="single-product.php" class="view-details-link"><i class="fa fa-link"></i> See details</a>
-                                    </div>
-                                </div>
-                                <center>
-                                <h2>The Angry Birds Movie</h2>
-                                <div class="product-carousel-price">
-                                    <ins>RP.99.000</ins> <del>Rp.199.000</del>
-                                </div> 
-								</center>
-                            </div>
-                            <div class="single-product">
-                                <div class="product-f-image">
-                                    <img src="img/product-13.jpg" alt="">
-                                    <div class="product-hover">
-                                        <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                        <a href="single-product.php" class="view-details-link"><i class="fa fa-link"></i> See details</a>
-                                    </div>
-                                </div>
-                                <center>
-                                <h2>The Mechanic</h2>
-
-                                <div class="product-carousel-price">
-                                    <ins>Rp.200.000</ins> <del>Rp.325.000</del>
-                                </div> 
-								</center>
-                            </div>
-                            <div class="single-product">
-                                <div class="product-f-image">
-                                    <img src="img/product-14.jpg" alt="">
-                                    <div class="product-hover">
-                                        <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                        <a href="single-product.php" class="view-details-link"><i class="fa fa-link"></i> See details</a>
-                                    </div>
-                                </div>
-                                <center>
-                                <h2><a href="single-product.php">Alvin and The Chipmunks</a></h2>
-
-                                <div class="product-carousel-price">
-                                    <ins>Rp.69.000</ins> <del>Rp.125.000</del>
-                                </div> 
-								</center>
-                            </div>
-                            <div class="single-product">
-                                <div class="product-f-image">
-                                    <img src="img/product-15.jpg" alt="">
-                                    <div class="product-hover">
-                                        <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                        <a href="single-product.php" class="view-details-link"><i class="fa fa-link"></i> See details</a>
-                                    </div>
-                                </div>
-                                <center>
-                                <h2>The Eagle</h2>
-
-                                <div class="product-carousel-price">
-                                    <ins>Rp.120.000</ins> <del>Rp.179.000</del>
-                                </div>
-								</center>
-                            </div>
-                        </div>
-                    </div>
+    </script>
 					<br><br>
 					<ul class="pager">
   <!-- <li><a href="#">Previous</a></li>
