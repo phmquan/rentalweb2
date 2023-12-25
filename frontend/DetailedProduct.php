@@ -71,7 +71,7 @@
 				<div class="col-md-7">	
 				<div class="shopping-item">
 				<div class="navbar-header">
-				<h1><a href="index.html">DVDTrendy</a></h1>
+				<h1><a href="webpage.php">DVDTrendy</a></h1>
 				</div>
 				<div class="navbar-header">
 				<a class="navbar-brand" href="#"></a>				
