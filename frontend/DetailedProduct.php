@@ -121,6 +121,12 @@ $title = urldecode($_GET['title']);
 $sql_detail = "SELECT * FROM DVD WHERE title = '$title'";
 $result_detail = $conn->query($sql_detail);
 
+function insertCharacterToImagePath($imagePath, $prefix) {
+    // Thêm đường dẫn vào trước đường dẫn hình ảnh
+    $newImagePath = $prefix . $imagePath;
+    return $newImagePath;
+}
+
 // Kiểm tra và hiển thị thông tin chi tiết
 if ($result_detail->num_rows > 0) {
     $row_detail = $result_detail->fetch_assoc();
@@ -128,7 +134,8 @@ if ($result_detail->num_rows > 0) {
     echo '<h1>' . $row_detail["title"] . '</h1>';
     echo '<p>Giá: ' . $row_detail["price"] . '</p>';
     echo '<p>Mô tả: ' . $row_detail["description"] . '</p>';
-    echo '<img src="' . $row_detail["productimage"] . '" alt="' . $row_detail["title"] . '">';
+    $newImagePath = insertCharacterToImagePath($row_detail["productimage"], '../adminstrator/dist/');
+    echo '<img src="' . $newImagePath . '" alt="' . $row_detail["title"] . '">';
     echo '</div>';  
 }
  else {
