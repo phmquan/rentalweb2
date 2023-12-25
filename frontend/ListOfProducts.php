@@ -136,37 +136,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </div>
 </center>
-<div class="product-list">
-<?php
-// Hàm thêm kí tự vào đường dẫn
-function insertCharacterToImagePath($imagePath, $prefix) {
-        // Thêm đường dẫn vào trước đường dẫn hình ảnh
-        $newImagePath = $prefix . $imagePath;
+<div id="product-list">
 
-        return $newImagePath;
-}
-$conn = connectdb();
-$sql = "SELECT title, productimage FROM DVD";
-$result = $conn->query($sql);
-$count = 0;
-if ($result->num_rows > 0) {
-    while (($row = $result->fetch_assoc()) && $count <20) {
-        echo '<div class="product-item">';
-        echo '<a href="DetailedProduct.php?title=' . urlencode($row["title"]) . '">';
-        // Thêm kí tự vào đường dẫn
-        $newImagePath = insertCharacterToImagePath($row["productimage"], '../adminstrator/dist/');
-        echo '<img class="product-image" src="' . $newImagePath . '" alt="' . $row["title"] . '">';
-        echo '</a>';
-        echo '<div class="product-title">' . $row["title"] . '</div>';
-        echo '</div>';
-        $count++;   
-    }
-} else {
-    echo "Không có sản phẩm nào trong cơ sở dữ liệu.";
-}
-
-
-?>
 </div>    
 
 
@@ -174,23 +145,38 @@ if ($result->num_rows > 0) {
                 <div class="col-md-12">
                     <div class="product-pagination text-center">
                         <nav>
-                          <ul class="pagination">
-                            <li>
-                              <a href="#" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                              </a>
-                            </li>
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                            <li>
-                              <a href="#" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                              </a>
-                            </li>
-                          </ul>
+                          <!-- Your existing HTML code -->
+
+<!-- Add a button with an onclick event -->
+<!-- Your existing HTML code -->
+
+<!-- Add a button with an onclick event -->
+<button id="watchMoreBtn" onclick="loadMoreProducts()">Watch More</button>
+
+<script>
+    let start = 0; // Set the initial starting point
+
+    // Initial load when the page loads
+    window.onload = function() {
+        loadMoreProducts();
+    };
+
+    function loadMoreProducts() {
+        // Use AJAX to fetch more products from the server
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState === 4 && this.status === 200) {
+                // Append the new products to the existing content
+                document.getElementById("product-list").innerHTML += this.responseText;
+                start += 20; // Increment the starting point for the next batch of products
+            }
+        };
+        xhttp.open("GET", "ShowListProduct.php?start=" + start, true);
+        xhttp.send();
+    }
+</script>
+
+
                         </nav>                        
                     </div>
                 </div>

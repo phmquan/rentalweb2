@@ -492,11 +492,19 @@ body {
   top: 0;
 }
 
-.product-list {
+#product-list {
   margin: auto;
   width: 1400px;
 }
 
+#watchMoreBtn {
+  padding: 10px 40px;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  border-radius: 5px;
+  border: none;
+  color: #5a88ca;
+}
 .latest-product .owl-nav div,
 .related-products-wrapper .owl-nav div {
   background: #fa8072;
