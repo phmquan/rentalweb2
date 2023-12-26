@@ -60,7 +60,7 @@
             <div class="col-md-7">
                 <div class="shopping-item">
                     <div class="navbar-header">
-                        <h1><a href="webpage.php"><img style="width: 173px; height: 50px;" src="img/brand3.png"></a></h1>
+                        <h1><a href="webpage.php"><img style="width: 165px; height: 50px;" src="img/brand3.png"></a></h1>
                     </div>
                     <div class="navbar-header">
                         <a class="navbar-brand" href="#"></a>
@@ -490,7 +490,7 @@
                                                     <p>Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
                                                 </div>
                                             </li>
-                                            <img alt="PayPal Acceptance Mark" src="img/payment.png">
+                                            <img alt="PayPal Acceptance Mark" src="img/payment1.png">
                                                
                                         </ul>
 
