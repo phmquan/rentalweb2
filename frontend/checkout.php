@@ -490,7 +490,7 @@
                                                     <p>Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
                                                 </div>
                                             </li>
-                                            <img alt="PayPal Acceptance Mark" src="img/payment.png">
+                                            <img alt="PayPal Acceptance Mark" src="img/payment1.png">
                                                
                                         </ul>
 
