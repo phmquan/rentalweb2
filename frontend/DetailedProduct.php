@@ -141,7 +141,7 @@ if ($result_detail->num_rows > 0) {
     echo '<div class="product-info">';
     echo '<h1 style="margin-top:100px">' . $row_detail["title"] . '</h1>';
     echo '<p>Giá: ' . $row_detail["price"] . '</p>';
-    echo '<p>Mô tả: ' . $row_detail["description"] . '</p>';
+    echo '<p>Description: ' . $row_detail["description"] . '</p>';
     echo '<input type="number" name="quantity" id="quantity" placeholder="Quantity" min="1" style="margin-right:30px">';
     echo '<button class="add-to-cart-button" style="border-radius:5px;border:none;color:#5a88ca;padding: 5px 15px">Add to Cart</button>';
     echo '</div>';
