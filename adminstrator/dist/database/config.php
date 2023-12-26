@@ -3,7 +3,7 @@
 // define('HOST', 'localhost');
 // define('DATABASE', 'web_dvdrental');
 define('HOST', 'localhost');
-define('DATABASE', 'DVD_WEBRENTAL');
+define('DATABASE', 'web_dvdrental');
 define('USERNAME', 'root');
 define('PASSWORD', '');
 //--------- CAO TRIET CONFIG--------- 

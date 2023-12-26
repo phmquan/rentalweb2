@@ -66,6 +66,7 @@
     </div> <!-- End header area -->
 
    <div class="site-branding-area">
+        
         <div class="container">
             <div class="row">			
 				<div class="col-md-7">	
@@ -129,6 +130,7 @@ function insertCharacterToImagePath($imagePath, $prefix) {
     return $newImagePath;
 }
 
+
 // Kiểm tra và hiển thị thông tin chi tiết
 if ($result_detail->num_rows > 0) {
     $row_detail = $result_detail->fetch_assoc();
@@ -141,7 +143,7 @@ if ($result_detail->num_rows > 0) {
     echo '<div class="product-info">';
     echo '<h1 style="margin-top:100px">' . $row_detail["title"] . '</h1>';
     echo '<p>Giá: ' . $row_detail["price"] . '</p>';
-    echo '<p>Description: ' . $row_detail["description"] . '</p>';
+    echo '<p>Mô tả: ' . $row_detail["description"] . '</p>';
     echo '<input type="number" name="quantity" id="quantity" placeholder="Quantity" min="1" style="margin-right:30px">';
     echo '<button class="add-to-cart-button" style="border-radius:5px;border:none;color:#5a88ca;padding: 5px 15px">Add to Cart</button>';
     echo '</div>';
@@ -156,6 +158,7 @@ if ($result_detail->num_rows > 0) {
                        
 <div class="footer-top-area">
         <div class="container">
+            
             <div class="row">
                 <div class="col-md-3 col-sm-6">
                     <div class="footer-about-us">
@@ -174,10 +177,10 @@ if ($result_detail->num_rows > 0) {
                     <div class="footer-menu">
                         <h2 class="footer-wid-title">User Navigation </h2>
                         <ul>
-                            <li><a href="profile.html">My account</a></li>
-                            <li><a href="shop.html">Shop</a></li>
-                            <li><a href="cart.html">Cart</a></li>
-                            <li><a href="checkout.html">Check Out</a></li>
+                            <li><a href="profile.php">My account</a></li>
+                            <li><a href="shop.php">Shop</a></li>
+                            <li><a href="cart.php">Cart</a></li>
+                            <li><a href="checkout.php">Check Out</a></li>
                         </ul>                        
                     </div>
                 </div>

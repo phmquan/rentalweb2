@@ -52,7 +52,7 @@
                 <li>
                   <a href="cart.php"
                     ><i class="glyphicon glyphicon-shopping-cart"></i> Cart -
-                    <span class="cart-amunt">$100</span>
+                    <span class="cart-amunt">$0</span>
                   </a>
                 </li>
                 <?php
@@ -82,14 +82,14 @@
           <div class="col-md-7">
             <div class="shopping-item">
               <div class="navbar-header">
-                <h1><a href="index.php">DVDTrendy</a></h1>
+                <h1><a href="webpage.php">DVDTrendy</a></h1>
               </div>
               <div class="navbar-header">
                 <a class="navbar-brand" href="#"></a>
               </div>
               <ul class="nav navbar-nav">
-                <li class="active"><a href="index.php">Home</a></li>
-                <li><a href="shop.php">All Product</a></li>
+                <li class="active"><a href="webpage.php">Home</a></li>
+                <li><a href="ListOfProducts.php">All Product</a></li>
               </ul>
             </div>
           </div>
@@ -109,8 +109,8 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12">
-            <div class="product-bit-title text-center">
-              <h2>Shopping Cart</h2>
+            <div class="product-bit-title text-center" >
+              <h2 style="font-weight:700">Shopping Cart</h2>
             </div>
           </div>
         </div>
@@ -122,50 +122,9 @@
       <div class="zigzag-bottom"></div>
       <div class="container">
         <div class="row">
-          <div class="col-md-4">
-            <div class="single-sidebar">
-              <h2 class="sidebar-title">Products</h2>
-              <div class="thubmnail-recent">
-                <img src="img/product-7.jpg" class="recent-thumb" alt="" />
-                <h2>The Legend of Tarzan</h2>
-                <div class="product-carousel-price">
-                  <ins>Rp.289.000</ins> <del>Rp.499.000</del>
-                </div>
-              </div>
-              <div class="thubmnail-recent">
-                <img src="img/product-8.jpg" class="recent-thumb" alt="" />
-                <h2>Shutter Island</h2>
-                <div class="product-carousel-price">
-                  <ins>Rp.94.000</ins> <del>Rp.125.000</del>
-                </div>
-              </div>
-              <div class="thubmnail-recent">
-                <img src="img/product-9.jpg" class="recent-thumb" alt="" />
-                <h2><a href="single-product.php">The Raid Redemption</a></h2>
-                <div class="product-carousel-price">
-                  <ins>Rp.120.000</ins> <del>Rp.225.000</del>
-                </div>
-              </div>
-              <div class="thubmnail-recent">
-                <img src="img/product-10.jpg" class="recent-thumb" alt="" />
-                <h2>The Fault in Our Stars</h2>
-                <div class="product-carousel-price">
-                  <ins>$220.000</ins> <del>RP.355.000</del>
-                </div>
-              </div>
-            </div>
+          <!--SIDEBAR HERE-->
 
-            <div class="single-sidebar">
-              <h2 class="sidebar-title">Recent Posts</h2>
-              <ul>
-                <li><a href="">Big Mommas</a></li>
-                <li><a href="">The Angry Birds Movie</a></li>
-                <li><a href="">The Mechanic</a></li>
-                <li><a href="">Alvin and The Chipmunks</a></li>
-                <li><a href="">The Eagle</a></li>
-              </ul>
-            </div>
-          </div>
+          <?php require('includes/sidebar_webpage.php'); ?>
 
           <div class="col-md-8">
             <div class="product-content-right">

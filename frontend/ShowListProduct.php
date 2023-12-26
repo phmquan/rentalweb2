@@ -8,7 +8,7 @@ function insertCharacterToImagePath($imagePath, $prefix) {
     return $newImagePath;
 }
 $conn = connectdb();
-$sql = "SELECT title, productimage, price FROM DVD LIMIT $start, 20";
+$sql = "SELECT title, productimage, price FROM DVD LIMIT $start, 21";
 $result = $conn->query($sql);
 
 $count = 0;

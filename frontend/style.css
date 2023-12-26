@@ -779,6 +779,7 @@ ol.slide-indicators li.active {
   margin: 0;
   padding: 50px 0;
   color: #fff;
+  font-weight:700;
 }
 
 .single-product-area .zigzag-bottom {
