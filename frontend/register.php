@@ -92,8 +92,8 @@
 				</div>
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="webpage.php">Home</a></li>
-                        <li><a href="shop.html">New Realese</a></li>
-                        <li><a href="shop.html">Top Rated Film</a></li>
+                        <li><a href="ListOfProducts.php">List Of Product</a></li>
+                    
                     </ul>
                 
 				</div>
@@ -134,28 +134,28 @@
                             <img src="img/product-7.jpg" class="recent-thumb" alt="">
                             <h2>The Legend of Tarzan</h2>
                                 <div class="product-carousel-price">
-                                    <ins>Rp.289.000</ins> <del>Rp.499.000</del>
+                                    <ins>$28.9</ins> <del>$49.4</del>
                                 </div>                             
                         </div>
                         <div class="thubmnail-recent">
                             <img src="img/product-8.jpg" class="recent-thumb" alt="">
                             <h2>Shutter Island</h2>
                                 <div class="product-carousel-price">
-                                    <ins>Rp.94.000</ins> <del>Rp.125.000</del>
+                                    <ins>$9.4</ins> <del>$12.5</del>
                                 </div>                             
                         </div>
                         <div class="thubmnail-recent">
                             <img src="img/product-9.jpg" class="recent-thumb" alt="">
                             <h2><a href="single-product.html">The Raid Redemption</a></h2>
                                 <div class="product-carousel-price">
-                                    <ins>Rp.120.000</ins> <del>Rp.225.000</del>
+                                    <ins>$12</ins> <del>$22.5</del>
                                 </div>                             
                         </div>
                         <div class="thubmnail-recent">
                             <img src="img/product-10.jpg" class="recent-thumb" alt="">
                             <h2>The Fault in Our Stars</h2>
                                 <div class="product-carousel-price">
-                                    <ins>$220.000</ins> <del>RP.355.000</del>
+                                    <ins>$22</ins> <del>$35.5</del>
                                 </div>                            
                         </div>
                     </div>

@@ -94,12 +94,7 @@
 <div class="search-container">
 <?php
 include "./model/user.php";
-
-
 $conn = connectdb();
-
-
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $search_query = $_POST["search_query"];
 
