@@ -1,23 +1,23 @@
 {
     "Areachart": [
         {
-            "order_month": "26\/09",
+            "order_month": "24\/09",
             "total_money": 76
         },
         {
-            "order_month": "26\/10",
+            "order_month": "24\/10",
             "total_money": 31
         },
         {
-            "order_month": "26\/11",
+            "order_month": "24\/11",
             "total_money": 23
         },
         {
-            "order_month": "26\/12",
+            "order_month": "24\/12",
             "total_money": 76
         },
         {
-            "order_month": "27\/12",
+            "order_month": "25\/12",
             "total_money": 76
         }
     ]

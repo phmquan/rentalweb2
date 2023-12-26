@@ -60,7 +60,7 @@
             <div class="col-md-7">
                 <div class="shopping-item">
                     <div class="navbar-header">
-                        <h1><a href="webpage.php"><img style="width: 173px; height: 50px;" src="img/brand3.png"></a></h1>
+                        <h1><a href="webpage.php"><img style="width: 165px; height: 50px;" src="img/brand3.png"></a></h1>
                     </div>
                     <div class="navbar-header">
                         <a class="navbar-brand" href="#"></a>

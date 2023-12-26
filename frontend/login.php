@@ -147,50 +147,7 @@
       <div class="zigzag-bottom"></div>
       <div class="container">
         <div class="row">
-          <div class="col-md-4">
-            <div class="single-sidebar">
-              <h2 class="sidebar-title">Products</h2>
-              <div class="thubmnail-recent">
-                <img src="img/product-7.jpg" class="recent-thumb" alt="" />
-                <h2>The Legend of Tarzan</h2>
-                <div class="product-carousel-price">
-                  <ins>$28.9</ins> <del>$49.9</del>
-                </div>
-              </div>
-              <div class="thubmnail-recent">
-                <img src="img/product-8.jpg" class="recent-thumb" alt="" />
-                <h2>Shutter Island</h2>
-                <div class="product-carousel-price">
-                  <ins>$9.4</ins> <del>$12.5</del>
-                </div>
-              </div>
-              <div class="thubmnail-recent">
-                <img src="img/product-9.jpg" class="recent-thumb" alt="" />
-                <h2><a href="#!">The Raid Redemption</a></h2>
-                <div class="product-carousel-price">
-                  <ins>$12</ins> <del>$22.5</del>
-                </div>
-              </div>
-              <div class="thubmnail-recent">
-                <img src="img/product-10.jpg" class="recent-thumb" alt="" />
-                <h2>The Fault in Our Stars</h2>
-                <div class="product-carousel-price">
-                  <ins>$22</ins> <del>$25</del>
-                </div>
-              </div>
-            </div>
-
-            <div class="single-sidebar">
-              <h2 class="sidebar-title">Recent Posts</h2>
-              <ul>
-                <li><a href="">Big Mommas</a></li>
-                <li><a href="">The Angry Birds Movie</a></li>
-                <li><a href="">The Mechanic</a></li>
-                <li><a href="">Alvin and The Chipmunks</a></li>
-                <li><a href="">The Eagle</a></li>
-              </ul>
-            </div>
-          </div>
+          <?php require('includes/sidebar_webpage.php') ?>
 
           <div class="col-md-8">
             <div class="product-content-right">
