@@ -816,6 +816,47 @@ function openCreateInvoiceModal() {
     $('#createInvoiceModal').modal('show');
 }
 
+
+function openDetailInvoiceModal(invoice_id) {
+    // Set giá trị của invoice_id vào input ẩn trong modal
+    $('#detailInvoiceIdValue').val(invoice_id);
+
+    // Hiển thị modal
+    $('#detailInvoiceModal').modal('show');
+
+    // Gọi hàm để load chi tiết hóa đơn dựa trên invoice_id
+    loadDetailInvoice(invoice_id);
+}
+
+function loadDetailInvoice(invoice_id) {
+    // Gửi request Ajax để lấy chi tiết hóa đơn từ server
+    $.ajax({
+        type: 'GET',
+        url: 'includes/get_invoice_detail.php',
+        data: { invoice_id: invoice_id },
+        success: function(response) {
+            // Xử lý kết quả trả về từ server và cập nhật nội dung bảng chi tiết hóa đơn
+            $('#detailInvoiceTable tbody').html(response);
+        },
+        error: function(error) {
+            console.error('Error: ' + error);
+        }
+    });
+}
+function addToCart(productId) {
+    var quantity = document.getElementById('quantity').value;
+
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            // Xử lý kết quả trả về (ví dụ: cập nhật số lượng sản phẩm trong giỏ hàng)
+            var result = xhr.responseText;
+            alert(result); // Hiển thị thông báo (có thể thay đổi theo ý của bạn)
+        }
+    };
+    xhr.open('GET', 'add_to_cart.php?productId=' + productId + '&quantity=' + quantity, true);
+    xhr.send();
+}
 function saveNewInvoice() {
     // Code to retrieve input values from the create invoice modal and send them to the server
     var userId = $('#createInvoiceUserId').val();

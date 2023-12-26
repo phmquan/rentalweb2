@@ -6,6 +6,7 @@ require_once('database/dbhelper.php'); // Import dbhelper.php
 // Step 1: Viết truy vấn SQL
 $sql = "SELECT * FROM INVOICE";
 
+
 // Step 2: Thực hiện truy vấn và nhận kết quả
 $invoiceList = execute_result($sql);
 ?>
@@ -90,7 +91,7 @@ $invoiceList = execute_result($sql);
                                         </button>
                         
                                         <button type='button' class='btn btn-danger btn-sm' onclick='feature_delete({$invoice['id']},4)'>Delete</button>       
-                                        <button type='button' class='btn bg-primary btn-sm text-white' onclick=''>Detail Invoice</button></td>";                    
+                                        <button type='button' class='btn bg-primary btn-sm text-white' onclick='openDetailInvoiceModal({$invoice['id']});'>Detail Invoice</button></td>";                    
                                 // Thêm các cột khác tùy thuộc vào cần hiển thị
                                 echo "</tr>";
                             }
@@ -217,6 +218,37 @@ $invoiceList = execute_result($sql);
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="detailInvoiceModal" tabindex="-1" aria-labelledby="detailInvoiceModal"
+        aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="detailInvoiceModal">Create New Invoice (for demo only)</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Form for Create Invoice -->
+                    <div class="card-body">
+                    <table id="detailInvoiceTable" class="table">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Product Name</th>
+                            <th>Product Image</th>
+                            <th>Quantity</th>
+                            <th>Total Money</th>
+                            <!-- Thêm các cột khác tùy thuộc vào cần hiển thị -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                       
+                    </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     </main>
 <?php
 require('includes/footer.php');
