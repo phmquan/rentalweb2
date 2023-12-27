@@ -45,7 +45,7 @@ CREATE TABLE `INVOICE` (
   `address` varchar(200),
   `note` varchar(1000),
   `order_date` datetime,
-  `status` int,
+  `status` varchar(200),
   `total_money` int
 );
 
@@ -65,8 +65,23 @@ CREATE TABLE `OFFER` (
   `start_date` datetime,
   `end_date` datetime,
   `status` varchar(50),
+  `code` varchar(50),
   `discount_percentage` int 
 );
+
+CREATE TABLE `User_cart` (
+  `id` integer PRIMARY KEY AUTO_INCREMENT,
+  `user_id` integer,
+  `dvd_id` integer,
+  `dvd_title` varchar(250),
+  `dvd_price` int,
+  `quantity` int,
+  `productimage` varchar(250),
+  `order_total` integer,
+  `created_at` datetime,
+  `updated_at` datetime
+);
+
 
 ALTER TABLE `INVOICE` ADD FOREIGN KEY (`user_id`) REFERENCES `USER` (`id`);
 
@@ -79,6 +94,10 @@ ALTER TABLE `DVD` ADD FOREIGN KEY (`category_id`) REFERENCES `DVDCategory` (`id`
 ALTER TABLE `DVD` ADD FOREIGN KEY (`discount_id`) REFERENCES `OFFER` (`id`);
 
 ALTER TABLE `Invoice_Detail` ADD FOREIGN KEY (`order_id`) REFERENCES `INVOICE` (`id`);
+
+ALTER TABLE `User_cart` ADD FOREIGN KEY (`user_id`) REFERENCES `USER` (`id`);
+
+ALTER TABLE `User_cart` ADD FOREIGN KEY (`dvd_id`) REFERENCES `DVD` (`id`);
 
 
 -- Dữ liệu mẫu cho User_role
@@ -114,12 +133,12 @@ INSERT INTO DVDCategory (name) VALUES
 ('Phim Hoạt Hình');
 
 -- Dữ liệu mẫu cho OFFER
-INSERT INTO OFFER (name, offerimage, start_date, end_date, status, discount_percentage) VALUES
-('Khuyến mãi Giáng Sinh - Mùa Xanh', 'database/offerimage/offerimage_1.png', '2023-12-20', '2024-01-05', 'Active', 25),
-('Tuần lễ Công Nghệ - Nâng Cấp Cuộc Sống', 'database/offerimage/offerimage_2.png', '2023-12-27', '2024-01-02', 'Active', 30),
-('Flash Sale 5 Giờ Vàng', 'database/offerimage/offerimage_3.png', '2023-12-26', '2023-12-30', 'Active', 50),
-('Hỗ trợ Phí Ship - Giao Hàng Yêu Thương','database/offerimage/offerimage_4.png', '2023-12-18', '2023-12-31', 'Active', 10),
-('Đố vui Giáng Sinh - Rộn Ràng Quà Tặng','database/offerimage/offerimage_5.png', '2023-12-22', '2023-12-25', 'Active', 10);
+INSERT INTO OFFER (name, offerimage, start_date, end_date, status, code, discount_percentage) VALUES
+('Khuyến mãi Giáng Sinh - Mùa Xanh', 'database/offerimage/offerimage_1.png', '2023-12-20', '2024-01-05', 'Active','OFFER001', 25),
+('Tuần lễ Công Nghệ - Nâng Cấp Cuộc Sống', 'database/offerimage/offerimage_2.png', '2023-12-27', '2024-01-02', 'Active','OFFER002', 30),
+('Flash Sale 5 Giờ Vàng', 'database/offerimage/offerimage_3.png', '2023-12-26', '2023-12-30', 'Active','OFFER003', 50),
+('Hỗ trợ Phí Ship - Giao Hàng Yêu Thương','database/offerimage/offerimage_4.png', '2023-12-18', '2023-12-31', 'Active','OFFER004', 10),
+('Đố vui Giáng Sinh - Rộn Ràng Quà Tặng','database/offerimage/offerimage_5.png', '2023-12-22', '2023-12-25', 'Active','OFFER005', 10);
 
 
 -- Dữ liệu mẫu cho DVD
@@ -324,19 +343,19 @@ INSERT INTO USER (fullname, dayofbirth, email, PhoneNumber, address, avartar, ac
 
 -- Dữ liệu mẫu cho INVOICE
 INSERT INTO INVOICE (user_id, fullname, email, phone_number, address, note, order_date, status, total_money) VALUES
-(3, 'Trần Thị B', 'tranthi.b@example.com', '0923456789', '456 Trần Hưng Đạo, Quận 5, TP.HCM', 'Special instructions', DATE_SUB(NOW(), INTERVAL 3 MONTH), 1, 76);
+(3, 'Trần Thị B', 'tranthi.b@example.com', '0923456789', '456 Trần Hưng Đạo, Quận 5, TP.HCM', 'Special instructions', DATE_SUB(NOW(), INTERVAL 3 MONTH), "CHỜ XỬ LÝ", 76);
 
 INSERT INTO INVOICE (user_id, fullname, email, phone_number, address, note, order_date, status, total_money) VALUES
-(1, 'John Doe', 'john.doe@example.com', '1234567890', '123 Main St', 'Special instructions', DATE_SUB(NOW(), INTERVAL 2 MONTH), 1, 31);
+(1, 'John Doe', 'john.doe@example.com', '1234567890', '123 Main St', 'Special instructions', DATE_SUB(NOW(), INTERVAL 2 MONTH), "CHỜ XỬ LÝ", 31);
 
 INSERT INTO INVOICE (user_id, fullname, email, phone_number, address, note, order_date, status, total_money) VALUES
-(1, 'John Doe', 'john.doe@example.com', '1234567890', '123 Main St', 'Special instructions', DATE_SUB(NOW(), INTERVAL 1 MONTH), 1, 23);
+(1, 'John Doe', 'john.doe@example.com', '1234567890', '123 Main St', 'Special instructions', DATE_SUB(NOW(), INTERVAL 1 MONTH), "CHỜ XỬ LÝ", 23);
 
 INSERT INTO INVOICE (user_id, fullname, email, phone_number, address, note, order_date, status, total_money) VALUES
-(2, 'Nguyễn Văn A', 'nguyenvan.a@example.com', '0912345678', '123 Nguyễn Văn Trỗi, Quận 1, TP.HCM', 'Special instructions', NOW(), 1, 76);
+(2, 'Nguyễn Văn A', 'nguyenvan.a@example.com', '0912345678', '123 Nguyễn Văn Trỗi, Quận 1, TP.HCM', 'Special instructions', NOW(), "CHỜ XỬ LÝ", 76);
 
 INSERT INTO INVOICE (user_id, fullname, email, phone_number, address, note, order_date, status, total_money) VALUES
-(3, 'Trần Thị B', 'tranthi.b@example.com', '0923456789', '456 Trần Hưng Đạo, Quận 5, TP.HCM', 'Special instructions', DATE_ADD(NOW(), INTERVAL 1 DAY), 1, 76);
+(3, 'Trần Thị B', 'tranthi.b@example.com', '0923456789', '456 Trần Hưng Đạo, Quận 5, TP.HCM', 'Special instructions', DATE_ADD(NOW(), INTERVAL 1 DAY), "CHỜ XỬ LÝ", 76);
 
 
 

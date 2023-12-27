@@ -5,6 +5,20 @@ include "./model/user.php";
 if (isset($_POST['logout'])) {
     // Huỷ tất cả các session
     session_destroy();
+    $jsonFilePath = '../adminstrator/dist/json/user_data.json';
+    $jsonFilePath1 = '../adminstrator/dist/json/usercart.json';
+    $jsonFilePath12 = '../adminstrator/dist/json/usercart1.json';
+    $file = fopen($jsonFilePath, 'w');
+    $file1 = fopen($jsonFilePath1, 'w');
+    $file2 = fopen($jsonFilePath12, 'w');
+    // Ghi nội dung rỗng vào tệp
+    fwrite($file, '');
+    fwrite($file1, '');
+    fwrite($file2, '');
+    // Đóng tệp sau khi ghi
+    fclose($file);
+    fclose($file1);
+    fclose($file2);
 
     // Chuyển hướng người dùng đến trang đăng nhập hoặc trang chính
     header('Location: webpage.php');
@@ -95,16 +109,16 @@ if (isset($_POST['logout'])) {
           <div class="col-md-7">
             <div class="shopping-item">
               <div class="navbar-header">
-                <h1>
-                  <a href="webpage.php">DVDTrendy</a>
-                </h1>
+              <div class="navbar-header">
+                  <h1><a href="webpage.php"><img style="width: 165px; height: 50px;" src="img/brand3.png"></a></h1>
+              </div>
               </div>
               <div class="navbar-header">
                 <a class="navbar-brand" href="#"></a>
               </div>
               <ul class="nav navbar-nav">
                 <li class="active"><a href="webpage.php">Home</a></li>
-                <li><a href="shop.php">All Product</a></li>
+                <li><a href="ListOfProducts.php">All Product</a></li>
               </ul>
             </div>
           </div>
@@ -169,7 +183,8 @@ if (isset($_POST['logout'])) {
                 
             }
             ?>
-            <a href="webpage.php"
+          <div class="">
+            <a href="webpage.php" style="margin-bottom :20px"
               ><button
                 class="button"
                 value="1"
@@ -177,98 +192,72 @@ if (isset($_POST['logout'])) {
                 type="submit"
               >
                 Back to Home
-              </button></a
-            >
-          </div>
-        </div>
+              </button> </a>
+            <br>
+            
+            <form enctype="multipart/form-data" action="#" class="checkout" method="post" name="checkout">
+            <div id="order_review" style="position: relative; margin-top:10px">
+            <table class="shop_table">
+                <thead>
+                    <tr>
+                        <th class="product-name">Product</th>
+                        <th class="product-name">Status</th>
+                        <th class="product-total">Total</th>
+                    </tr>                    
+                </thead>
+                <tbody>
+                  <?php
+                  // Đường dẫn đầy đủ đến tệp JSON usercart
+                  $jsonFilePath = '../adminstrator/dist/json/profile.json';
+
+                  // Kiểm tra xem tệp JSON có tồn tại hay không
+                  if (file_exists($jsonFilePath)) {
+                      // Đọc dữ liệu từ tệp JSON
+                      $userCartData = json_decode(file_get_contents($jsonFilePath), true);
+                      $cartSubtotal = 0; // Thêm biến để tính tổng giá trị
+
+                      // Hiển thị từng sản phẩm trong giỏ hàng
+                      foreach ($userCartData as $item) {
+                          echo '<tr class="cart_item">';
+                          echo '<td class="product-name">';
+                          echo $item['title'] . ' <strong class="product-quantity">× ' . $item['quantity'] . '</strong> </td>';
+                          echo '<td class="product-name">';
+                          echo $item['status']; // Hiển thị trạng thái
+                          echo '</td>';
+                          echo '<td class="product-total">';
+                          $subtotal = $item['price'] * $item['quantity'];
+                          echo '<span class="amount">' . $subtotal . '$</span> </td>';
+                          echo '</tr>';
+                          // Cập nhật tổng giá trị
+                          $cartSubtotal += $subtotal;
+                      }
+
+                // Hiển thị Cart Subtotal trong hàng thứ ba
+                echo '<tr>';
+                echo '<th class="product-total" colspan="2">Order Total</th>';
+                echo '<td class="product-total">';
+                echo '<span class="amount">' . $cartSubtotal . '$</span> </td>';
+                echo '</tr>';
+                  }
+                  ?>
+              </tbody>
+          </table>
       </div>
-    </div>
 
-    <div class="footer-top-area">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-3 col-sm-6">
-            <div class="footer-about-us">
-              <h2>
-                <a href="webpage.php">DVDTrendy</a>
-              </h2>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Perferendis sunt id doloribus vero quam laborum quas alias
-                dolores blanditiis iusto consequatur, modi aliquid eveniet
-                eligendi iure eaque ipsam iste, pariatur omnis sint! Suscipit,
-                debitis, quisquam. Laborum commodi veritatis magni at?
-              </p>
-              <div class="footer-social">
-                <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
-                <a href="#" target="_blank"><i class="fa fa-twitter"></i></a>
-                <a href="#" target="_blank"><i class="fa fa-youtube"></i></a>
-                <a href="#" target="_blank"><i class="fa fa-linkedin"></i></a>
-              </div>
-            </div>
+                            
+                            <script>
+                                var cartSubtotal = <?php echo $cartSubtotal; ?>;
+                            </script>
+                        </tbody>
           </div>
+                    </table>
+                </div>  
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
-          <div class="col-md-3 col-sm-6">
-            <div class="footer-menu">
-              <h2 class="footer-wid-title">User Navigation</h2>
-              <ul>
-                <li><a href="profile.php">My account</a></li>
-                <li><a href="shop.php">Shop</a></li>
-                <li><a href="cart.php">Cart</a></li>
-                <li><a href="checkout.php">Check Out</a></li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="col-md-3 col-sm-6">
-            <div class="footer-menu">
-              <h2 class="footer-wid-title">Categories</h2>
-              <ul>
-                <li><a href="webpage.php">Home</a></li>
-                <li><a href="shop.php">New Realese</a></li>
-                <li><a href="shop.php">Top Rated Film</a></li>
-                <li><a href="shop.php">Search</a></li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="col-md-3 col-sm-6">
-            <div class="footer-newsletter">
-              <h2 class="footer-wid-title">Newsletter</h2>
-              <p>
-                Sign up to our newsletter and get exclusive deals you wont find
-                anywhere else straight to your inbox!
-              </p>
-              <div class="newsletter-form">
-                <form action="#">
-                  <input type="email" placeholder="Type your email" />
-                  <input type="submit" value="Subscribe" />
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- End footer top area -->
-
-    <div class="footer-bottom-area">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-4">
-            <br /><br />
-            2023 © DVDTrendy
-          </div>
-
-          <div class="col-md-8">
-            <div class="footer-card-icon">
-              <img src="img/payment.png" alt="" />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- End footer bottom area -->
+    <?php require('includes/footer_webpage.php'); ?>
 
     <!-- Latest jQuery form server -->
     <script src="https://code.jquery.com/jquery.min.js"></script>

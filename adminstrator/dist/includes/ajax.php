@@ -199,7 +199,7 @@ if ($action == 'editinvoice') {
                 address = '$address',
                 note = '$note',
                 order_date = '$order_date',
-                status = $status,
+                status = '$status',
                 total_money = $total_money
             WHERE id = $id";
 

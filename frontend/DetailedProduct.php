@@ -71,9 +71,9 @@
             <div class="row">			
 				<div class="col-md-7">	
 				<div class="shopping-item">
-				<div class="navbar-header">
-				<h1><a href="webpage.php">DVDTrendy</a></h1>
-				</div>
+                <div class="navbar-header">
+                        <h1><a href="webpage.php"><img style="width: 165px; height: 50px;" src="img/brand3.png"></a></h1>
+                    </div>
 				<div class="navbar-header">
 				<a class="navbar-brand" href="#"></a>				
 				</div>
@@ -145,7 +145,7 @@ if ($result_detail->num_rows > 0) {
     echo '<p>Giá: ' . $row_detail["price"] . '</p>';
     echo '<p>Mô tả: ' . $row_detail["description"] . '</p>';
     echo '<input type="number" name="quantity" id="quantity" placeholder="Quantity" min="1" style="margin-right:30px">';
-    echo '<button class="add-to-cart-button" style="border-radius:5px;border:none;color:#5a88ca;padding: 5px 15px">Add to Cart</button>';
+    echo '<button class="add-to-cart-button" style="border-radius:5px;border:none;color:#5a88ca;padding: 5px 15px" onclick="addToCart(' . $row_detail["id"] . ', \'' . $row_detail["title"] . '\', ' . $row_detail["price"] . ', document.getElementById(\'quantity\').value, \'' . $newImagePath . '\')">Add to Cart</button>';
     echo '</div>';
     
     echo '</div>';  
@@ -153,6 +153,8 @@ if ($result_detail->num_rows > 0) {
  else {
     echo 'Không tìm thấy thông tin chi tiết.';
 }
+
+
 ?>
 
                        
@@ -173,5 +175,6 @@ if ($result_detail->num_rows > 0) {
     
     <!-- Main Script -->
     <script src="js/main.js"></script>
+    <script src="js/script_page.js"></script>
   </body>
 </html>

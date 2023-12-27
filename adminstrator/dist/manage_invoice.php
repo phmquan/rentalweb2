@@ -85,7 +85,7 @@ $invoiceList = execute_result($sql);
                                                 \"{$invoice['address']}\", 
                                                 \"{$invoice['note']}\",
                                                 \"{$invoice['order_date']}\", 
-                                                {$invoice['status']},
+                                                \"{$invoice['status']}\",
                                                 {$invoice['total_money']});'>
                                         Edit
                                         </button>
@@ -147,8 +147,12 @@ $invoiceList = execute_result($sql);
                                 <input type="datetime-local" class="form-control" id="editInvoiceOrderDate" name="editInvoiceOrderDate">
                             </div>
                             <div class="mb-3">
-                                <label for="editInvoiceStatus" class="form-label">Status</label>
-                                <input type="number" class="form-control" id="editInvoiceStatus" name="editInvoiceStatus">
+                                <label for="createInvoiceStatus" class="form-label">Status</label>
+                                <select class="form-select" id="editInvoiceStatus">
+                                    <option value="Chờ xử lý">Chờ xử lý</option>
+                                    <option value="Đang giao hàng">Đang giao hàng</option>
+                                    <option value="Đã nhận hàng">Đã nhận hàng</option>
+                                </select>
                             </div>
                             <div class="mb-3">
                                 <label for="editInvoiceTotalMoney" class="form-label">Total Money</label>
@@ -205,8 +209,13 @@ $invoiceList = execute_result($sql);
                             </div>
                             <div class="mb-3">
                                 <label for="createInvoiceStatus" class="form-label">Status</label>
-                                <input type="number" class="form-control" id="createInvoiceStatus" placeholder="Enter Status">
+                                <select class="form-select" id="createInvoiceStatus">
+                                    <option value="Chờ xử lý">Chờ xử lý</option>
+                                    <option value="Đang giao hàng">Đang giao hàng</option>
+                                    <option value="Đã nhận hàng">Đã nhận hàng</option>
+                                </select>
                             </div>
+
                             <div class="mb-3">
                                 <label for="createInvoiceTotalMoney" class="form-label">Total Money</label>
                                 <input type="number" class="form-control" id="createInvoiceTotalMoney" placeholder="Enter Total Money">
@@ -223,7 +232,7 @@ $invoiceList = execute_result($sql);
         <div class="modal-dialog modal-fullscreen">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="detailInvoiceModal">Create New Invoice (for demo only)</h5>
+                    <h5 class="modal-title" id="detailInvoiceModal">Invoice Detail</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">

@@ -1,21 +1,68 @@
 <?php
   session_start();
   ob_start();
+
+  function saveUserToJson($userData) {
+    $jsonFilePath = '../adminstrator/dist/json/user_data.json';
+
+    // Đọc dữ liệu từ file JSON hiện tại (nếu có)
+    $currentData = file_exists($jsonFilePath) ? json_decode(file_get_contents($jsonFilePath), true) : [];
+
+    // Thêm dữ liệu người dùng mới vào mảng
+    $currentData[] = $userData;
+
+    // Ghi dữ liệu vào file JSON
+    file_put_contents($jsonFilePath, json_encode($currentData, JSON_PRETTY_PRINT));
+  }
+
+
   include "./model/user.php";
   if (isset($_POST['login']) && $_POST['login']) {
+    
     $username = $_POST['username'];
     $password = $_POST['password'];
     $role = checkuser($username, $password);
-
+    // Kiểm tra xem tệp có tồn tại không trước khi xóa nội dung
+    // Mở tệp JSON với quyền ghi
+    $jsonFilePath = '../adminstrator/dist/json/user_data.json';
+    $jsonFilePath1 = '../adminstrator/dist/json/usercart.json';
+    $jsonFilePath12 = '../adminstrator/dist/json/usercart1.json';
+    $jsonFilePath13 = '../adminstrator/dist/json/profile.json';
+    $file = fopen($jsonFilePath, 'w');
+    $file1 = fopen($jsonFilePath1, 'w');
+    $file2 = fopen($jsonFilePath12, 'w');
+    $file3 = fopen($jsonFilePath13, 'w');
+    // Ghi nội dung rỗng vào tệp
+    fwrite($file, '');
+    fwrite($file1, '');
+    fwrite($file2, '');
+    fwrite($file3, '');
+    // Đóng tệp sau khi ghi
+    fclose($file);
+    fclose($file1);
+    fclose($file2);
+    fclose($file3);
     if ($role == 1) {
         // Nếu là admin, chuyển hướng đến trang admin
+        $_SESSION['id'] = $userid;
         $_SESSION['role'] = $role;
         $_SESSION['username'] = $username;
+        
+
+         // Lưu thông tin người dùng vào file JSON
+        $userData = ['name' => $username, 'role' => $role];
+        saveUserToJson($userData);
+
         header('location: /adminstrator/dist/index.php');
     } else if ($role == 2) {
         // Nếu là role 2, chuyển hướng đến trang index
         $_SESSION['role'] = $role;
         $_SESSION['username'] = $username;
+        
+         // Lưu thông tin người dùng vào file JSON
+         $userData = ['name' => $username, 'role' => $role];
+        saveUserToJson($userData);
+
         header('location: webpage.php');
     } else {
         // Nếu không phải là admin hoặc role 2, hiển thị thông báo lỗi
@@ -106,9 +153,9 @@
           <div class="col-md-7">
             <div class="shopping-item">
               <div class="navbar-header">
-                <h1>
-                  <a href="webpage.php">DVDTrendy</a>
-                </h1>
+              <div class="navbar-header">
+                  <h1><a href="webpage.php"><img style="width: 165px; height: 50px;" src="img/brand3.png"></a></h1>
+              </div>
               </div>
               <div class="navbar-header">
                 <a class="navbar-brand" href="#"></a>
@@ -204,72 +251,7 @@
       </div>
     </div>
 
-    <div class="footer-top-area">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-3 col-sm-6">
-            <div class="footer-about-us">
-              <h2>
-                <a href="webpage.php">DVDTrendy</a>
-              </h2>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Perferendis sunt id doloribus vero quam laborum quas alias
-                dolores blanditiis iusto consequatur, modi aliquid eveniet
-                eligendi iure eaque ipsam iste, pariatur omnis sint! Suscipit,
-                debitis, quisquam. Laborum commodi veritatis magni at?
-              </p>
-              <div class="footer-social">
-                <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
-                <a href="#" target="_blank"><i class="fa fa-twitter"></i></a>
-                <a href="#" target="_blank"><i class="fa fa-youtube"></i></a>
-                <a href="#" target="_blank"><i class="fa fa-linkedin"></i></a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-3 col-sm-6">
-            <div class="footer-menu">
-              <h2 class="footer-wid-title">User Navigation</h2>
-              <ul>
-                <li><a href="profile.php">My account</a></li>
-                <li><a href="shop.php">Shop</a></li>
-                <li><a href="cart.php">Cart</a></li>
-                <li><a href="checkout.php">Check Out</a></li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="col-md-3 col-sm-6">
-            <div class="footer-menu">
-              <h2 class="footer-wid-title">Categories</h2>
-              <ul>
-                <li><a href="webpage.php">Home</a></li>
-                <li><a href="shop.php">All Product</a></li>
-                <li><a href="shop.php">Search</a></li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="col-md-3 col-sm-6">
-            <div class="footer-newsletter">
-              <h2 class="footer-wid-title">Newsletter</h2>
-              <p>
-                Sign up to our newsletter and get exclusive deals you wont find
-                anywhere else straight to your inbox!
-              </p>
-              <div class="newsletter-form">
-                <form action="#">
-                  <input type="email" placeholder="Type your email" />
-                  <input type="submit" value="Subscribe" />
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- End footer top area -->
+    <?php require('includes/footer_webpage.php'); ?>
 
     <div class="footer-bottom-area">
       <div class="container">

@@ -823,7 +823,6 @@ button[type='submit']:hover {
   width: 100%;
 }
 .thubmnail-recent {
-  margin-bottom: 30px;
   overflow: hidden;
 }
 .recent-thumb {
@@ -1049,9 +1048,12 @@ td.actions div.coupon {
   width: 57%;
 }
 .cart_totals {
-  float: right;
   margin-bottom: 50px;
   width: 40%;
+}
+.table-and-button-container{
+  display: flex;
+  justify-content: space-between;
 }
 .cart-collaterals h2 {
   color: #5a88ca;

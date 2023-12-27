@@ -1,5 +1,5 @@
 <?php
-require_once('../adminstrator/dist/database/config.php');
+require_once('config_webpage.php');
 function checkuser($username, $password){
     $conn = connectdb();
    
@@ -49,5 +49,96 @@ function getUserInformation($username) {
 
     return $userInfo;
 }
+
+function execute($sql){
+    
+    //open connection
+    $conn = mysqli_connect(HOST, USERNAME, PASSWORD, DATABASE);
+    if (!$conn) {
+        die("Kết nối thất bại: " . mysqli_connect_error());
+    }
+    //mysqli_set_charset($conn,'utf-8');
+
+    //query
+    mysqli_query($conn, $sql);
+
+    //close connection
+    mysqli_close($conn);
+}
+
+function execute_result($sql){
+
+    $result = null;
+    //open connection
+    $conn = mysqli_connect(HOST, USERNAME, PASSWORD, DATABASE);
+    //$conn = mysqli_connect('127.0.0.1', 'root', '', 'DVD_WEBRENTAL');
+    if (!$conn) {
+        die("Kết nối thất bại: " . mysqli_connect_error());
+    }
+    //mysqli_set_charset($conn,'utf-8');
+
+    //query
+    $resultset = mysqli_query($conn, $sql);
+    while ($row = mysqli_fetch_assoc($resultset)) {
+        $result[]=$row;
+    }
+    
+    
+    //close connection
+    mysqli_close($conn);
+
+    return $result;
+
+}
+
+
+
+
+function find($email) {
+    $result = null;
+    //open connection
+    $conn = mysqli_connect(HOST, USERNAME, PASSWORD, DATABASE);
+    if (!$conn) {
+        die("Kết nối thất bại: " . mysqli_connect_error());
+    }
+    //mysqli_set_charset($conn,'utf-8');
+
+    //query
+
+    $sql = "SELECT id FROM USER WHERE ACCOUNT = '$email'";
+   
+    // Thực hiện truy vấn để lấy user_id dựa trên địa chỉ email
+    $result = mysqli_query($conn, $sql);
+    return $result;
+}
+
+function doit() {
+    // Đọc nội dung từ user_data.json
+    $userDataFilePath = '../adminstrator/dist/json/user_data.json';
+    $userData = json_decode(file_get_contents($userDataFilePath), true);
+
+    foreach ($userData as $user) {
+        $emailToFind = $user['name'];
+        echo json_encode(['status' =>  $user['name']]);
+        $user_id = find($emailToFind);
+
+        if ($user_id !== null) {
+            $sql2 = "INSERT INTO User_cart (user_id) VALUES ('$user_id')";
+            // Gọi hàm execute và kiểm tra kết quả
+            execute($sql2);
+        }
+    }
+}
+// Lấy id mới nhất vừa tạo trong bảng INVOICE
+function getLastInsertedId() {
+    $conn = mysqli_connect(HOST, USERNAME, PASSWORD, DATABASE); // Biến kết nối tới CSDL, hãy thay thế nó bằng biến kết nối của bạn
+    // Sử dụng hàm mysqli_insert_id để lấy id mới nhất được tạo ra trong kết nối hiện tại
+    $lastId = mysqli_insert_id($conn);
+
+    return $lastId;
+}
+
+
 ?>
+
 
