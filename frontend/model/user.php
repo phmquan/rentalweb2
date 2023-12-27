@@ -22,8 +22,8 @@ function checkuser($username, $password){
     }
 
     // Đóng kết nối (bạn có thể đặt ở cuối hàm hoặc khi không sử dụng nữa)
-    $stmt->close();
-    mysqli_close($conn);
+    // $stmt->close();
+    // mysqli_close($conn);
 }
 function connectdb() {
     // Khi nào dùng thì đổi lại config này cho thg Quân

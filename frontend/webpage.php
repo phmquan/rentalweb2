@@ -33,78 +33,7 @@
 </head>
 
 <body>
-    <div class="header-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-7">
-                </div>
-                <div class="col-md-5">
-                    <div class="header-right">
-                        <ul class="list-unstyled list-inline">
-                            <li><a href="cart.php"><i class="glyphicon glyphicon-shopping-cart"></i> Cart - <span
-                                        class="cart-amunt">$0</span> </a></li>
-                            <?php
-                            include "./model/user.php";
-                            session_start();
-                            ob_start();
-    // Kiểm tra xem có session role và role có giá trị 2 không
-    if (isset($_SESSION['role']) && $_SESSION['role'] == 2) {
-        // Nếu role là 2, ẩn My Account và Login
-        echo'<li><a href="profile.php"><i class="glyphicon glyphicon-user"></i> My Account</a></li>';
-    } else {
-        // Nếu role không phải là 2, hiển thị My Account và Login
-        // echo '<li><a href="register.php"><i class="glyphicon glyphicon-user"></i> My Account</a></li>';
-        echo '<li><a href="login.php"><i class="glyphicon glyphicon-log-in"></i> Login</a></li>';
-    }
-    ?>
-
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> <!-- End header area -->
-
-    <div class="site-branding-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-7">
-                    <div class="shopping-item">
-                        <div class="navbar-header">
-                            <h1><a href="webpage.php"><img style="width: 165px; height: 50px;" src="img/brand3.png"></a></h1>
-                        </div>
-                        <div class="navbar-header">
-                            <a class="navbar-brand" href="#"></a>
-                        </div>
-                        <ul class="nav navbar-nav">
-                            <li class="active"><a href="webpage.php">Home</a></li>
-                            <li><a href="ListOfProducts.php">List of Products</a></li>
-                        </ul>
-
-                    </div>
-                </div>
-                <div class="col-sm-5">
-                    <div class="shopping-item">
-                        <form action="search.php" method="post" target="_blank">
-                            <input type="text" name="search_query" placeholder="Search products...">
-                            <input type="submit" value="Search">
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <?php
-$conn = connectdb();
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $search_query = $_POST["search_query"];
-
-    // Chuyển hướng đến trang search.php với tham số tìm kiếm
-    header("Location: search.php?query=" . urlencode($search_query));
-    exit();
-}
-?>
+    <?php include "./includes/header_webpage.php"?>
 
     <div class="slider-area">
         <!-- Slider -->

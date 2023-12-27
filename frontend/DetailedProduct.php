@@ -1,5 +1,34 @@
 <?php
     include "./model/user.php";
+    $jsonFilePath = '../adminstrator/dist/json/usercart1.json';
+
+// Kiểm tra xem tệp JSON có tồn tại hay không
+if (file_exists($jsonFilePath)) {
+    // Đọc dữ liệu từ tệp JSON
+    $jsonContent = file_get_contents($jsonFilePath);
+
+    // Kiểm tra xem tệp JSON có dữ liệu hay không
+    if (!empty($jsonContent)) {
+        $userCartData = json_decode($jsonContent, true);
+        $cartSubtotal = 0; // Thêm biến để tính tổng giá trị
+
+        // Hiển thị từng sản phẩm trong giỏ hàng
+        foreach ($userCartData as $item) {
+            $subtotal = $item['price'] * $item['quantity'];
+            // Cập nhật tổng giá trị
+            $cartSubtotal += $subtotal;
+        }
+    } else {
+        // Tệp JSON rỗng, set $cartSubtotal = 0
+        $cartSubtotal = 0;
+    }
+} else {
+    // Tệp JSON không tồn tại, set $cartSubtotal = 0 hoặc thực hiện xử lý phù hợp
+    $cartSubtotal = 0;
+}
+
+// Tiếp tục xử lý hoặc hiển thị giá trị $cartSubtotal theo nhu cầu
+
 ?>
 
 
@@ -43,7 +72,8 @@
                 <div class="col-md-5">
                     <div class="header-right">
                         <ul class="list-unstyled list-inline">
-							<li><a href="cart.php"><i class="glyphicon glyphicon-shopping-cart"></i> Cart - <span class="cart-amunt">$100</span>  </a></li>
+							<li><a href="cart.php"><i class="glyphicon glyphicon-shopping-cart"></i> Cart - <?php echo '<span class="cart-amunt">$' . $cartSubtotal . '</span>'; ?>
+ </a></li>
 							<?php
                               session_start();
                               ob_start();
