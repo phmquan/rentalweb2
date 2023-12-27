@@ -244,20 +244,8 @@ if (isset($_POST['logout'])) {
           </table>
       </div>
 
-                            
-                            <script>
-                                var cartSubtotal = <?php echo $cartSubtotal; ?>;
-                            </script>
-                        </tbody>
-          </div>
-                    </table>
-                </div>  
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-    <?php require('includes/footer_webpage.php'); ?>
+   <?php include "./includes/footer_webpage.php"?>
+    <!-- End footer bottom area -->
 
     <!-- Latest jQuery form server -->
     <script src="https://code.jquery.com/jquery.min.js"></script>
