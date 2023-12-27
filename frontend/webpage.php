@@ -183,7 +183,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </div> <!-- End Page title area -->
                         <div id="product-container"></div>
                         <script>
-                        let start = 16;
+                        let start = 20;
                         let xhttp = new XMLHttpRequest();
                         xhttp.onreadystatechange = function() {
                             if (this.readyState == 4 && this.status == 200) {

@@ -36,7 +36,7 @@
                             <?php
                             session_start();
                             ob_start();
-    // Kiểm tra xem có session role và role có giá trị 2 không
+    // Kiểm tra xem có session role có giá trị 2 không
     if (isset($_SESSION['role']) && $_SESSION['role'] == 2) {
         // Nếu role là 2, ẩn My Account và Login
         echo'<li><a href="profile.php"><i class="glyphicon glyphicon-user"></i> My Account</a></li>';
