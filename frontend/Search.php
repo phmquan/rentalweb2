@@ -84,33 +84,34 @@
     </div> <!-- End header area -->
 
    <div class="site-branding-area">
-        <div class="container">
-            <div class="row">			
-				<div class="col-md-7">	
-				<div class="shopping-item">
-				<div class="navbar-header">
-				<h1><a href="webpage.php">DVDTrendy</a></h1>
-				</div>
-				<div class="navbar-header">
-				<a class="navbar-brand" href="#"></a>				
-				</div>
-                    <ul class="nav navbar-nav">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7">
+                <div class="shopping-item">
+                    <div class="navbar-header">
+                        <h1><a href="webpage.php"><img style="width: 165px; height: 50px;" src="img/brand3.png"></a></h1>
+                    </div>
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#"></a>
+                    </div>
+                    <ul class="nav navbar-nav" >
+                        
                         <li class="active"><a href="webpage.php">Home</a></li>
-                        <li><a href="ListOfProducts.php">List of Products</a></li>
+                        <li><a href="ListOfProducts.php">List Of Products</a></li>
                     </ul>
-                
-				</div>
-				</div>
-                <div class="col-sm-5">
-                    <div class="shopping-item">
-					<form action="#">
-									<input type="text" placeholder="Search products...">
-									<input type="submit" value="Search">
-					</form>                    
-				</div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="shopping-item">
+                    <form action="#">
+                        <input type="text" placeholder="Search products...">
+                        <input type="submit" value="Search">
+                    </form>
                 </div>
             </div>
         </div>
+    </div>
+
     </div>
 
 <body>
