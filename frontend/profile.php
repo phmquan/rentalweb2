@@ -1,6 +1,74 @@
 <?php
 session_start();
 include "./model/user.php";
+
+
+function saveUserToJson($userData) {
+  $jsonFilePath = '../adminstrator/dist/json/profile.json';
+  // Đọc dữ liệu từ file JSON hiện tại (nếu có)
+  $currentData = file_exists($jsonFilePath) ? json_decode(file_get_contents($jsonFilePath), true) : [];
+
+  // Thêm dữ liệu người dùng mới vào mảng
+  $currentData[] = $userData;
+
+  // Ghi dữ liệu vào file JSON
+  file_put_contents($jsonFilePath, json_encode($currentData, JSON_PRETTY_PRINT));
+}
+
+    $jsonFilePath13 = '../adminstrator/dist/json/profile.json';
+    $file3 = fopen($jsonFilePath13, 'w');
+    fwrite($file3, '');
+    fclose($file3);
+    $jsonFilePath13 = '../adminstrator/dist/json/user_data.json';
+    $userCartData1 = json_decode(file_get_contents($jsonFilePath13), true);
+    foreach ($userCartData1 as $item) {
+        $account = $item['name'];
+        $role = $item['role'];
+    }
+    $user_id = 0;
+    // Kiểm tra xem email đã tồn tại trong bảng user hay chưa
+    $sqlCheckUser = "SELECT id FROM user WHERE (account = '$account' OR email = '$account' )";
+    $result = execute_Result($sqlCheckUser);
+
+    // Nếu email tồn tại, lấy user_id, ngược lại thêm mới user và lấy user_id
+    if ($result && count($result) > 0) {
+      $user_id = $result[0]['id'];
+    } 
+
+
+    // Kiểm tra xem user_id đã được thiết lập hay không
+   
+    // Truy vấn để lấy dữ liệu từ bảng invoice tương ứng với user_id
+    $sqlGetInvoices = "SELECT
+                            Invoice_Detail.product_id AS dvd_id,
+                            Invoice_Detail.price,
+                            Invoice_Detail.num AS quantity,
+                            Invoice_Detail.total_money AS total_money,
+                            Invoice.status
+                        FROM
+                            Invoice_Detail
+                        JOIN
+                            Invoice ON Invoice_Detail.order_id = Invoice.id
+                        WHERE
+                            Invoice.user_id = $user_id;
+                        ";
+    $invoiceResults = execute_Result($sqlGetInvoices);
+
+    // Tạo một mảng để lưu trữ thông tin của từng đơn hàng
+    $userCartData = [];
+    if (!empty($invoiceResults)){    // Duyệt qua kết quả của truy vấn
+    foreach ($invoiceResults as $invoiceResult) {
+        $userCartData[] = [
+            'product_id' => $invoiceResult['dvd_id'],
+            'price' => $invoiceResult['price'],
+            'quantity' => $invoiceResult['quantity'],
+            'total_money' => $invoiceResult['total_money'],
+            'status' => $invoiceResult['status']
+        ];
+    }};
+saveUserToJson($userCartData);  
+
+
 // Kiểm tra nếu người dùng đã nhấp vào nút "Logout"
 if (isset($_POST['logout'])) {
     // Huỷ tất cả các session
@@ -8,24 +76,58 @@ if (isset($_POST['logout'])) {
     $jsonFilePath = '../adminstrator/dist/json/user_data.json';
     $jsonFilePath1 = '../adminstrator/dist/json/usercart.json';
     $jsonFilePath12 = '../adminstrator/dist/json/usercart1.json';
+    $jsonFilePath13 = '../adminstrator/dist/json/profile.json';
     $file = fopen($jsonFilePath, 'w');
     $file1 = fopen($jsonFilePath1, 'w');
     $file2 = fopen($jsonFilePath12, 'w');
+    $file3 = fopen($jsonFilePath13, 'w');
     // Ghi nội dung rỗng vào tệp
     fwrite($file, '');
     fwrite($file1, '');
     fwrite($file2, '');
+    fwrite($file3, '');
     // Đóng tệp sau khi ghi
     fclose($file);
     fclose($file1);
     fclose($file2);
+    fclose($file3);
 
     // Chuyển hướng người dùng đến trang đăng nhập hoặc trang chính
     header('Location: webpage.php');
     exit();
 }
+
+
 ?>
 
+<?php
+    $jsonFilePath = '../adminstrator/dist/json/usercart1.json';
+
+    // Kiểm tra xem tệp JSON có tồn tại hay không
+    if (file_exists($jsonFilePath)) {
+        // Đọc dữ liệu từ tệp JSON
+        $jsonContent = file_get_contents($jsonFilePath);
+    
+        // Kiểm tra xem tệp JSON có dữ liệu hay không
+        if (!empty($jsonContent)) {
+            $userCartData = json_decode($jsonContent, true);
+            $cartSubtotal = 0; // Thêm biến để tính tổng giá trị
+    
+            // Hiển thị từng sản phẩm trong giỏ hàng
+            foreach ($userCartData as $item) {
+                $subtotal = $item['price'] * $item['quantity'];
+                // Cập nhật tổng giá trị
+                $cartSubtotal += $subtotal;
+            }
+        } else {
+            // Tệp JSON rỗng, set $cartSubtotal = 0
+            $cartSubtotal = 0;
+        }
+    } else {
+        // Tệp JSON không tồn tại, set $cartSubtotal = 0 hoặc thực hiện xử lý phù hợp
+        $cartSubtotal = 0;
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -80,7 +182,7 @@ if (isset($_POST['logout'])) {
                 <li>
                   <a href="cart.php"
                     ><i class="glyphicon glyphicon-shopping-cart"></i> Cart -
-                    <span class="cart-amunt">$100</span>
+                    <span class="cart-amunt">$0</span>
                   </a>
                 </li>
                 <li>
@@ -101,7 +203,6 @@ if (isset($_POST['logout'])) {
         </div>
       </div>
     </div>
-    <!-- End header area -->
 
     <div class="site-branding-area">
       <div class="container">
@@ -198,54 +299,84 @@ if (isset($_POST['logout'])) {
             <form enctype="multipart/form-data" action="#" class="checkout" method="post" name="checkout">
             <div id="order_review" style="position: relative; margin-top:10px">
             <table class="shop_table">
-                <thead>
-                    <tr>
-                        <th class="product-name">Product</th>
-                        <th class="product-name">Status</th>
-                        <th class="product-total">Total</th>
-                    </tr>                    
-                </thead>
-                <tbody>
-                  <?php
-                  // Đường dẫn đầy đủ đến tệp JSON usercart
-                  $jsonFilePath = '../adminstrator/dist/json/profile.json';
+    <thead>
+        <tr>
+            <th class="product-name">Invoice</th>
+            <th class="product-name">Product</th>
+            <th class="product-name">Status</th>
+            <th class="product-total">Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+        // Đường dẫn đầy đủ đến tệp JSON usercart
+        $jsonFilePath = '../adminstrator/dist/json/profile.json';
 
-                  // Kiểm tra xem tệp JSON có tồn tại hay không
-                  if (file_exists($jsonFilePath)) {
-                      // Đọc dữ liệu từ tệp JSON
-                      $userCartData = json_decode(file_get_contents($jsonFilePath), true);
-                      $cartSubtotal = 0; // Thêm biến để tính tổng giá trị
+        // Kiểm tra xem tệp JSON có tồn tại hay không
+        if (file_exists($jsonFilePath)) {
+            // Đọc dữ liệu từ tệp JSON
+            $userCartData = json_decode(file_get_contents($jsonFilePath), true);
+            $cartSubtotal = 0; // Thêm biến để tính tổng giá trị
+            $invoiceCounter = 1; // Biến đếm hoá đơn
 
-                      // Hiển thị từng sản phẩm trong giỏ hàng
-                      foreach ($userCartData as $item) {
-                          echo '<tr class="cart_item">';
-                          echo '<td class="product-name">';
-                          echo $item['title'] . ' <strong class="product-quantity">× ' . $item['quantity'] . '</strong> </td>';
-                          echo '<td class="product-name">';
-                          echo $item['status']; // Hiển thị trạng thái
-                          echo '</td>';
-                          echo '<td class="product-total">';
-                          $subtotal = $item['price'] * $item['quantity'];
-                          echo '<span class="amount">' . $subtotal . '$</span> </td>';
-                          echo '</tr>';
-                          // Cập nhật tổng giá trị
-                          $cartSubtotal += $subtotal;
-                      }
+            // Hiển thị từng sản phẩm trong giỏ hàng
+            foreach ($userCartData as $order) {
+                foreach ($order as $item) {
+                    echo '<tr class="cart_item">';
+                    echo '<td class="product-name">';
+                    echo 'Hoá đơn ' . $invoiceCounter;
+                    echo '</td>';
+                    echo '<td class="product-name">';
+                    echo 'Product ID: ' . $item['product_id'] . '<br>';
+                    echo 'Price: ' . $item['price'] . '$<br>';
+                    echo 'Quantity: ' . $item['quantity'] . '<br>';
+                    echo 'Total Money: ' . $item['total_money'] . '$<br>';
+                    echo '</td>';
+                    echo '<td class="product-name">';
+                    echo 'Status: ' . $item['status'];
+                    echo '</td>';
+                    echo '<td class="product-total">';
+                    echo '<span class="amount">' . $item['total_money'] . '$</span>';
+                    echo '</td>';
+                    echo '</tr>';
+                    // Cập nhật tổng giá trị
+                    $cartSubtotal += (int)$item['total_money'];
+                }
 
-                // Hiển thị Cart Subtotal trong hàng thứ ba
-                echo '<tr>';
-                echo '<th class="product-total" colspan="2">Order Total</th>';
-                echo '<td class="product-total">';
-                echo '<span class="amount">' . $cartSubtotal . '$</span> </td>';
-                echo '</tr>';
-                  }
-                  ?>
-              </tbody>
-          </table>
+                $invoiceCounter++;
+            }
+
+            // Hiển thị Cart Subtotal trong hàng thứ ba
+            echo '<tr>';
+            echo '<th class="product-total" colspan="3">Order Total</th>';
+            echo '<td class="product-total">';
+            echo '<span class="amount">' . $cartSubtotal . '$</span>';
+            echo '</td>';
+            echo '</tr>';
+        }
+        
+        ?>
+        
+    </tbody>
+</table>
+
       </div>
 
-   <?php include "./includes/footer_webpage.php"?>
-    <!-- End footer bottom area -->
+
+                            
+                            <script>
+                                var cartSubtotal = <?php echo $cartSubtotal; ?>;
+                            </script>
+                        </tbody>
+          </div>
+                    </table>
+                </div>  
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+    <?php require('includes/footer_webpage.php'); ?>
 
     <!-- Latest jQuery form server -->
     <script src="https://code.jquery.com/jquery.min.js"></script>

@@ -53,16 +53,4 @@
               </div>
             </div>
           </div>
-
-
-            <div class="single-sidebar">
-              <h2 class="sidebar-title">Recent Posts</h2>
-              <ul>
-                <li><a href="">Big Mommas</a></li>
-                <li><a href="">The Angry Birds Movie</a></li>
-                <li><a href="">The Mechanic</a></li>
-                <li><a href="">Alvin and The Chipmunks</a></li>
-                <li><a href="">The Eagle</a></li>
-              </ul>
-            </div>
           </div>

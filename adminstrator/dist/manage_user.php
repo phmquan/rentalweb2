@@ -23,7 +23,7 @@ $userList = execute_result($sql);
             <div class="card-header">
                 <i class="fas fa-table me-1"></i>
                 DataTable Example
-                <button type='button' class='btn btn-success btn-sm' onclick='openAddModal_User();'>Create User</button>
+                <!--<button type='button' class='btn btn-success btn-sm' onclick='openAddModal_User();'>Create User</button>-->
             </div>
             <div class="card-body">
                 <table id="datatablesSimple">
@@ -41,8 +41,9 @@ $userList = execute_result($sql);
                             <th>Role ID</th>
                             <th>Created At</th>
                             <th>Updated At</th>
+                            <!-- 
                             <th>Feature</th>
-                            <!-- Thêm các cột khác tùy thuộc vào cần hiển thị -->
+                            Thêm các cột khác tùy thuộc vào cần hiển thị -->
                         </tr>
                     </thead>
                     <tfoot>
@@ -59,8 +60,9 @@ $userList = execute_result($sql);
                             <th>Role ID</th>
                             <th>Created At</th>
                             <th>Updated At</th>
+                            <!--
                             <th>Feature</th>
-                            <!-- Thêm các cột khác tùy thuộc vào cần hiển thị -->
+                             Thêm các cột khác tùy thuộc vào cần hiển thị -->
                         </tr>
                     </tfoot>
                     <tbody>
@@ -80,23 +82,23 @@ $userList = execute_result($sql);
                             echo "<td>{$user['role_id']}</td>";
                             echo "<td>{$user['created_at']}</td>";
                             echo "<td>{$user['updated_at']}</td>";
-                            echo "<td>
-                                        <button type='button' class='btn btn-warning btn-sm' data-bs-toggle='modal' data-bs-target='#editUserModal' 
-                                        onclick='openEditModal_User(
-                                                {$user['id']}, 
-                                                \"{$user['fullname']}\",
-                                                \"{$user['dayofbirth']}\", 
-                                                \"{$user['email']}\",
-                                                \"{$user['PhoneNumber']}\",
-                                                \"{$user['address']}\", 
-                                                \"{$user['avartar']}\", 
-                                                \"{$user['account']}\", 
-                                                \"{$user['password']}\", 
-                                                {$user['role_id']})'>
-                                        Edit
-                                        </button>                    
-                                        <button type='button' class='btn btn-danger btn-sm' onclick='feature_delete({$user['id']},3)'>Delete</button>
-                                </td>";
+                            // echo "<td>
+                            //             <button type='button' class='btn btn-warning btn-sm' data-bs-toggle='modal' data-bs-target='#editUserModal' 
+                            //             onclick='openEditModal_User(
+                            //                     {$user['id']}, 
+                            //                     \"{$user['fullname']}\",
+                            //                     \"{$user['dayofbirth']}\", 
+                            //                     \"{$user['email']}\",
+                            //                     \"{$user['PhoneNumber']}\",
+                            //                     \"{$user['address']}\", 
+                            //                     \"{$user['avartar']}\", 
+                            //                     \"{$user['account']}\", 
+                            //                     \"{$user['password']}\", 
+                            //                     {$user['role_id']})'>
+                            //             Edit
+                            //             </button>                    
+                            //             <button type='button' class='btn btn-danger btn-sm' onclick='feature_delete({$user['id']},3)'>Delete</button>
+                            //     </td>";
                             // Thêm các cột khác tùy thuộc vào cần hiển thị
                             echo "</tr>";
                         }
