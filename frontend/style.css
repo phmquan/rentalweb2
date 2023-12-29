@@ -1481,3 +1481,45 @@ ul.tsc_paginationA06 li.unavailable {
   margin-bottom: 50px;
   margin-top: 25px;
 }
+.offer-container {
+  text-align: center;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 600px; /* Set the maximum width as per your preference */
+  margin: 0 auto; /* Center the offer-container */
+  font-family: 'Montserrat', sans-serif;
+}
+.offer {
+  margin-bottom: 20px;
+  background-color: #a8e6d9; /* Màu nền cho offer */
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  font-family: 'Lato', sans-serif;
+}
+.offer-name {
+  color: #5e23e8; /* Mã màu của màu vàng, bạn có thể thay đổi mã màu nếu cần thiết */
+  font-weight: bold; /* Đặt chữ in đậm */
+        font-size: 1.4em; /* Đặt kích thước chữ (1em là kích thước mặc định) */
+}
+
+.discount-percentage {
+  color: #ed3013; /* Mã màu của màu vàng, bạn có thể thay đổi mã màu nếu cần thiết */
+  font-weight: bold; /* Đặt chữ in đậm */
+        font-size: 1.4em; /* Đặt kích thước chữ (1em là kích thước mặc định) */
+}
+.code-container {
+  background-color: #ffd700;
+  padding: 10px;
+  border: 1px solid #ffd700;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  display: inline-block;
+}
+
+.code {
+  color: #333;
+  font-weight: bold;
+}

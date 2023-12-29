@@ -1,4 +1,5 @@
 <?php
+    
     $jsonFilePath = '../adminstrator/dist/json/usercart1.json';
 
     // Kiểm tra xem tệp JSON có tồn tại hay không
@@ -63,6 +64,13 @@
   </a></li>
                             <?php
                             session_start();
+                            // Retrieve the cart subtotal from the session
+if (isset($_SESSION['cartSubtotal'])) {
+    $cartSubtotal = $_SESSION['cartSubtotal'];
+} else {
+    // Handle the case when the session variable is not set
+    $cartSubtotal = 0;
+}
                             ob_start();
     // Kiểm tra xem có session role có giá trị 2 không
     if (isset($_SESSION['role']) && $_SESSION['role'] == 2) {
@@ -96,6 +104,7 @@
                         
                         <li class="active"><a href="webpage.php">Home</a></li>
                         <li><a href="ListOfProducts.php">List Of Products</a></li>
+                        <li><a href="Offers.php">Offers</a></li>
                     </ul>
                 </div>
             </div>
@@ -167,58 +176,55 @@
                                 </div>
 
                                 <h3 id="order_review_heading">Your order</h3>
-                                    <div id="order_review" style="position: relative;">
-                                        <table class="shop_table">
-                                            <thead>
-                                                <tr>
-                                                    <th class="product-name">Product</th>
-                                                    <th class="product-total">Total</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php
-                                                // Đường dẫn đầy đủ đến tệp JSON usercart
-                                                $jsonFilePath = '../adminstrator/dist/json/usercart1.json';
-                                                // Kiểm tra xem tệp JSON có tồn tại hay không
-                                                if (file_exists($jsonFilePath)) {
-                                                // Đọc dữ liệu từ tệp JSON
-                                                $userCartData = json_decode(file_get_contents($jsonFilePath), true);
-                                                $cartSubtotal = 0; // Thêm biến để tính tổng giá trị
-                                                // Hiển thị từng sản phẩm trong giỏ hàng
-                                                foreach ($userCartData as $item) {
-                                                    echo '<tr class="cart_item">';
-                                                    echo '<td class="product-name">';
-                                                    echo $item['title'] . ' <strong class="product-quantity">× ' . $item['quantity'] . '</strong> </td>';
-                                                    echo '<td class="product-total">';
-                                                    $subtotal = $item['price'] * $item['quantity'];
-                                                    echo '<span class="amount">' . $subtotal . '$</span> </td>';
-                                                    echo '</tr>';
+<div id="order_review" style="position: relative;">
+    <table class="shop_table">
+        <thead>
+            <tr>
+                <th class="product-name">Product</th>
+                <th class="product-total">Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            $jsonFilePath = '../adminstrator/dist/json/usercart1.json';
 
-                                                    // Cập nhật tổng giá trị
-                                                    $cartSubtotal += $subtotal; 
-                                                }
-                                            }
-                                                ?>
-                                                <script>
-                                                    var cartSubtotal = <?php echo $cartSubtotal; ?>;
-                                                </script>
-                                            </tbody>
-                                            <tfoot>
-                                                <tr class="cart-subtotal">
-                                                    <th>Cart Subtotal</th>
-                                                    <td><span class="amount"><?php echo $cartSubtotal; ?>$</span></td>
-                                                </tr>
-                                                <tr class="shipping">
-                                                    <th>Shipping and Handling</th>
-                                                    <td>Free Shipping</td>
-                                                </tr>
-                                                <tr class="order-total">
-                                                    <th>Order Total</th>
-                                                    <td><strong><span class="amount"><?php echo $cartSubtotal; ?>$</span></strong></td>
-                                                </tr>
-                                            </tfoot>
-                                        </table>
-                                    </div>
+            if (file_exists($jsonFilePath)) {
+                $userCartData = json_decode(file_get_contents($jsonFilePath), true);
+                $cartSubtotal = 0;
+
+                foreach ($userCartData as $item) {
+                    echo '<tr class="cart_item">';
+                    echo '<td class="product-name">';
+                    echo $item['title'] . ' <strong class="product-quantity">× ' . $item['quantity'] . '</strong> </td>';
+                    echo '<td class="product-total">';
+                    $subtotal = $item['price'] * $item['quantity'];
+                    echo '<span class="amount">' . $subtotal . '$</span> </td>';
+                    echo '</tr>';
+
+                    $cartSubtotal += $subtotal;
+                }
+            }
+            ?>
+            <script>
+                var cartSubtotal = <?php echo $cartSubtotal; ?>;
+            </script>
+        </tbody>
+        <tfoot>
+            <tr class="cart-subtotal">
+                <th>Cart Subtotal</th>
+                <td><span class="amount"><?php echo $cartSubtotal; ?>$</span></td>
+            </tr>
+            <tr class="shipping">
+                <th>Shipping and Handling</th>
+                <td>Free Shipping</td>
+            </tr>
+            <tr class="order-discount">
+                <th>Order Total</th>
+                <td><strong><span class="amount"><?php echo $cartSubtotal; ?>$</span></strong></td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
 
 
 

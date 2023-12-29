@@ -1,5 +1,3 @@
-
-
 <?php
     $jsonFilePath = '../adminstrator/dist/json/usercart1.json';
 
@@ -51,7 +49,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="css/responsive.css">
 
-  </head>
+    </head>
   <body>
     <div class="header-area">
         <div class="container">
@@ -83,7 +81,7 @@
         </div>
     </div> <!-- End header area -->
 
-   <div class="site-branding-area">
+<div class="site-branding-area">
     <div class="container">
         <div class="row">
             <div class="col-md-7">
@@ -112,76 +110,75 @@
             </div>
         </div>
     </div>
-
     </div>
+    <div class="product-big-title-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="product-bit-title text-center">
+                        <h2>Special Offers</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+    <?php
+// Kết nối đến cơ sở dữ liệu
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "web_dvdrental";
 
-<body>
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-<div class="search-container">
-<?php
-include "./model/user.php";
-$conn = connectdb();
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $search_query = $_POST["search_query"];
-
-    echo '<h1 style="color: #5a88ca; text-align:center">Sản phẩm bạn tìm kiếm</h1>';
-
-
-    $sql = "SELECT title, productimage, price FROM DVD WHERE title LIKE '%$search_query%'";
-    $result = $conn->query($sql);
-    $start = isset($_GET['start']) ? intval($_GET['start']) : 0;
-function insertCharacterToImagePath($imagePath, $prefix) {
-    // Thêm đường dẫn vào trước đường dẫn hình ảnh
-    $newImagePath = $prefix . $imagePath;
-
-    return $newImagePath;
+// Kiểm tra kết nối
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            echo '<div class="product-item">';
-            echo '<a href="DetailedProduct.php?title=' . urlencode($row["title"]) . '">';
-            $newImagePath = insertCharacterToImagePath($row["productimage"], '../adminstrator/dist/');
-            echo '<img class="product-image" src="' . $newImagePath . '" alt="' . $row["title"] . '">';
-            echo '</a>';
-            echo '<div class="product-title">' . $row["title"] . '</div>';
-            echo '<div class="product-title">$' . $row["price"] . '</div>';
-            echo '</div>';
-        }
+
+// Truy vấn dữ liệu từ bảng offers
+$sql = "SELECT name, code, discount_percentage FROM OFFER";
+$result = $conn->query($sql);
+
+// Kiểm tra và hiển thị dữ liệu
+if ($result->num_rows > 0) {
+    echo '<div class="offer-container">';
+    while ($row = $result->fetch_assoc()) {
+        echo '<div class="offer">';
+        echo '❄️Coupon: <span class="offer-name">' . $row["name"] . '</span><br>';
+        echo '<div class="code-container">Code: <span class="code">' . $row["code"] . '</span><br></div>';
+        echo '<div class="discount-container">Giảm: <span class="discount-percentage">' . $row["discount_percentage"] . "%</span></div>";
+        echo "⭐------------------------⭐<br>";
         echo '</div>';
-    } else {
-        echo '<h1 style="color: #5a88ca;">Không tìm thấy sản phẩm</h1>';
     }
+    echo '</div>';
+} else {
+    echo "0 results";
 }
 
+// Đóng kết nối
 $conn->close();
 ?>
 
-</div>
-  
+<footer>
+    <?php require('includes/footer_webpage.php'); ?>
+</footer>
+        <!-- Latest jQuery form server -->
+        <script src="https://code.jquery.com/jquery.min.js"></script>
 
+        <!-- Bootstrap JS form CDN -->
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+        <!-- jQuery sticky menu -->
+        <script src="js/owl.carousel.min.js"></script>
+        <script src="js/jquery.sticky.js"></script>
+
+        <!-- jQuery easing -->
+        <script src="js/jquery.easing.1.3.min.js"></script>
+
+        <!-- Main Script -->
+        <script src="js/main.js"></script>
+        <script src="js/script_page.js"></script>
 </body>
 
-    <?php include "./includes/footer_webpage.php"?>
-
-   
-    <!-- Latest jQuery form server -->
-    <script src="https://code.jquery.com/jquery.min.js"></script>
-    
-    <!-- Bootstrap JS form CDN -->
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    
-    <!-- jQuery sticky menu -->
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/jquery.sticky.js"></script>
-    
-    <!-- jQuery easing -->
-    <script src="js/jquery.easing.1.3.min.js"></script>
-    
-    <!-- Main Script -->
-    <script src="js/main.js"></script>
-    
-    <!-- Slider -->
-    <script type="text/javascript" src="js/bxslider.min.js"></script>
-	<script type="text/javascript" src="js/script.slider.js"></script>
-  </body>
 </html>

@@ -126,7 +126,7 @@
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="webpage.php">Home</a></li>
                         <li><a href="ListOfProducts.php">List Of Product</a></li>
-                    
+                        <li><a href="Offers.php">Offers</a></li>
                     </ul>
                 
 				</div>

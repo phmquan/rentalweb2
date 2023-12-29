@@ -1,73 +1,10 @@
 [
     [
         {
-            "product_id": "1",
-            "price": "15",
-            "quantity": "2",
-            "total_money": "23",
-            "status": "CH\u1edc X\u1eec L\u00dd"
-        },
-        {
-            "product_id": "2",
-            "price": "12",
-            "quantity": "1",
-            "total_money": "8",
-            "status": "CH\u1edc X\u1eec L\u00dd"
-        },
-        {
-            "product_id": "1",
-            "price": "15",
-            "quantity": "2",
-            "total_money": "23",
-            "status": "CH\u1edc X\u1eec L\u00dd"
-        },
-        {
             "product_id": "2",
             "price": "20",
-            "quantity": "5",
-            "total_money": "100",
-            "status": "\u0110ang giao h\u00e0ng"
-        },
-        {
-            "product_id": "4",
-            "price": "22",
             "quantity": "3",
-            "total_money": "66",
-            "status": "\u0110ang giao h\u00e0ng"
-        },
-        {
-            "product_id": "2",
-            "price": "20",
-            "quantity": "2",
-            "total_money": "40",
-            "status": "Ch\u1edd x\u1eed l\u00fd"
-        },
-        {
-            "product_id": "21",
-            "price": "25",
-            "quantity": "3",
-            "total_money": "75",
-            "status": "Ch\u1edd x\u1eed l\u00fd"
-        },
-        {
-            "product_id": "9",
-            "price": "22",
-            "quantity": "2",
-            "total_money": "44",
-            "status": "Ch\u1edd x\u1eed l\u00fd"
-        },
-        {
-            "product_id": "1",
-            "price": "25",
-            "quantity": "3",
-            "total_money": "75",
-            "status": "Ch\u1edd x\u1eed l\u00fd"
-        },
-        {
-            "product_id": "2",
-            "price": "20",
-            "quantity": "2",
-            "total_money": "40",
+            "total_money": "60",
             "status": "Ch\u1edd x\u1eed l\u00fd"
         }
     ]

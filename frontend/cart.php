@@ -96,6 +96,7 @@
                         
                         <li class="active"><a href="webpage.php">Home</a></li>
                         <li><a href="ListOfProducts.php">List Of Products</a></li>
+                        <li><a href="Offers.php">Offers</a></li>
                     </ul>
                 </div>
             </div>
@@ -192,9 +193,46 @@
                                 echo '<label for="coupon_code">Coupon : </label>';
                                 echo '<input type="text" placeholder="Enter code" value="" id="coupon_code" class="input-text" name="coupon_code" />';
                                 echo '<input  type="submit" value="Apply Coupon" name="apply_coupon" class="button" />';
+
+                                echo '</div>';
+                                 // Xử lý khi nhấn "Apply Coupon"
+                                 if (isset($_POST['apply_coupon'])) {
+                                    $couponCode = $_POST['coupon_code'];
+
+                                    $servername = "localhost";
+                                    $username = "root";
+                                    $password = "";
+                                    $dbname = "web_dvdrental";
+
+                                    $conn = new mysqli($servername, $username, $password, $dbname);
+
+                                    // Kiểm tra kết nối
+                                    if ($conn->connect_error) {
+                                    die("Connection failed: " . $conn->connect_error);
+                                    }
+                                    // Truy vấn để lấy thông tin về mã offer từ database
+                                    $query = "SELECT * FROM OFFER WHERE code = '$couponCode'";
+                                    $result = $conn->query($query);
+    
+                                    if ($result->num_rows > 0) {
+                                    // Mã offer hợp lệ, tính tổng giá trị mới
+                                    $row = $result->fetch_assoc();
+                                    $discountPercentage = $row['discount_percentage'];
+                                    $discountMultiplier = 1 - ($discountPercentage / 100);
+    
+                                    $cartSubtotal *= $discountMultiplier;
+    
+                                    echo '<p class="coupon-applied">Coupon applied successfully! Discount: ' . $discountPercentage . '%</p>';
+                                    } else {
+                                    // Mã offer không hợp lệ
+                                    echo '<p class="coupon-error">Invalid coupon code. Please try again.</p>';
+                                    }
+                                }
+
                                 /// Nút Checkout với thẻ <button> và form action
-                                echo '<button style="margin-left: 20px;" type="button" class="button" name="calc_shipping" value="1" onclick="checkout(cartSubtotal)">Checkout</button>';
-                               
+    
+                                echo '<button style="margin-left: 20px;" type="button" class="button" name="calc_shipping" value="1" onclick="checkout(cartSubtotal)">Checkout</button>'; 
+
 
                                 echo '<script>
                                 
