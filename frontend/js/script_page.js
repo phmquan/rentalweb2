@@ -59,7 +59,7 @@ function checkout(cartSubtotal) {
     window.location.href = "checkout.php";
 }
 
-function checkout_end(cartSubtotal) {
+function checkout_end(cartSubtotal, discount) {
     
     // Lấy thông tin từ modal và xử lý lưu thay đổi
     // Lấy giá trị từ các ô nhập liệu trong modal
@@ -70,6 +70,7 @@ function checkout_end(cartSubtotal) {
 
     var data = {
         cartSubtotal: cartSubtotal,
+        discount : discount,
         fullName: fullName,
         email: email,
         phoneNumber: phoneNumber,

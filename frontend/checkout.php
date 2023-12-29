@@ -202,25 +202,31 @@ if (isset($_SESSION['cartSubtotal'])) {
                     echo '</tr>';
 
                     $cartSubtotal += $subtotal;
+                    $discount = $item['discount'];
                 }
             }
             ?>
             <script>
-                var cartSubtotal = <?php echo $cartSubtotal; ?>;
+                var cartSubtotal = <?php echo $cartSubtotal*(1-($discount/100)); ?>;
+                var discount = <?php echo $discount; ?>
             </script>
         </tbody>
         <tfoot>
             <tr class="cart-subtotal">
                 <th>Cart Subtotal</th>
-                <td><span class="amount"><?php echo $cartSubtotal; ?>$</span></td>
+                <td><span class="amount"><?php echo $cartSubtotal*(1-($discount/100)); ?>$</span></td>
             </tr>
             <tr class="shipping">
                 <th>Shipping and Handling</th>
                 <td>Free Shipping</td>
             </tr>
+            <tr class="shipping">
+                <th>Discount</th>
+                <td><span class="amount"><?php echo $discount; ?>$</span></td>
+            </tr>
             <tr class="order-discount">
                 <th>Order Total</th>
-                <td><strong><span class="amount"><?php echo $cartSubtotal; ?>$</span></strong></td>
+                <td><strong><span class="amount"><?php echo $cartSubtotal*(1-($discount/100)); ?>$</span></strong></td>
             </tr>
         </tfoot>
     </table>
@@ -243,7 +249,7 @@ if (isset($_SESSION['cartSubtotal'])) {
 
                                         <div class="form-row place-order">
 
-                                            <input type="button" data-value="Place order" value="Place order" id="place_order" name="woocommerce_checkout_place_order" class="button alt" onclick="checkout_end(cartSubtotal)">
+                                            <input type="button" data-value="Place order" value="Place order" id="place_order" name="woocommerce_checkout_place_order" class="button alt" onclick="checkout_end(cartSubtotal, discount)">
 
 
                                         </div>

@@ -52,6 +52,7 @@ if ($action == 'ajaxcheckoutend') {
 
    // Lấy các giá trị từ dữ liệu
     $orderTotal = $data['cartSubtotal'];
+    $discount = $data['discount'];
     $fullName = $data['fullName'];
     $email = $data['email'];
     $phoneNumber = $data['phoneNumber'];
@@ -69,8 +70,8 @@ if ($action == 'ajaxcheckoutend') {
         $user_id = $result[0]['id'];
     } 
     // Thực hiện thêm dữ liệu vào bảng INVOICE
-    $sqlInvoice = "INSERT INTO INVOICE (user_id, fullname, email, phone_number, address, order_date, note, status, total_money)
-    VALUES ($user_id, '$fullName', '$email', '$phoneNumber', '$address', NOW(),'$note', '$status', '$orderTotal')";
+    $sqlInvoice = "INSERT INTO INVOICE (user_id, fullname, email, phone_number, address, order_date, note, status, discount, total_money)
+    VALUES ($user_id, '$fullName', '$email', '$phoneNumber', '$address', NOW(),'$note', '$status', '$discount', '$orderTotal')";
     // Gọi hàm execute và kiểm tra kết quả
     execute($sqlInvoice);
 

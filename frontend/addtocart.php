@@ -21,7 +21,7 @@ if (file_exists($jsonFilePath)) {
 
             // Đọc dữ liệu từ tệp JSON hiện tại (nếu có)
             $currentData = file_exists($jsonFilePathCart) ? json_decode(file_get_contents($jsonFilePathCart), true) : [];
-            $currentData1 = file_exists($jsonFilePathCar1t) ? json_decode(file_get_contents($jsonFilePathCart1), true) : [];
+            $currentData1 = file_exists($jsonFilePathCart1) ? json_decode(file_get_contents($jsonFilePathCart1), true) : [];
 
             // Thêm thông tin DVD vào mảng
             $currentData[] = [
@@ -29,7 +29,8 @@ if (file_exists($jsonFilePath)) {
                 'title' => $data['title'],
                 'price' => $data['price'],
                 'quantity' => $data['quantity'],
-                'productImage' => $data['productImage']
+                'productImage' => $data['productImage'],
+                'discount' => 0
             ];
 
             // Ghi dữ liệu vào tệp JSON

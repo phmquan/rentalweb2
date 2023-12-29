@@ -1,6 +1,6 @@
 <?php
     $jsonFilePath = '../adminstrator/dist/json/usercart1.json';
-
+    require_once('./model/config_webpage.php');
     // Kiểm tra xem tệp JSON có tồn tại hay không
     if (file_exists($jsonFilePath)) {
         // Đọc dữ liệu từ tệp JSON
@@ -121,15 +121,37 @@
                 </div>
             </div>
         </div>
-</div>
+</div><br>
     <?php
 // Kết nối đến cơ sở dữ liệu
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "web_dvdrental";
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+// $conn = new mysqli(HOST, USERNAME, PASSWORD, DATABASE);
+// // Kiểm tra kết nối
+// if ($conn->connect_error) {
+//     die("Connection failed: " . $conn->connect_error);
+// }
+
+// // Truy vấn dữ liệu từ bảng offers
+// $sql = "SELECT name, code, discount_percentage FROM OFFER";
+// $result = $conn->query($sql);
+
+// // Kiểm tra và hiển thị dữ liệu
+// if ($result->num_rows > 0) {
+//     echo '<div class="offer-container">';
+//     while ($row = $result->fetch_assoc()) {
+//         echo '<div class="offer">';
+//         echo '❄️Coupon: <span class="offer-name">' . $row["name"] . '</span><br>';
+//         echo '<div class="code-container">Code: <span class="code">' . $row["code"] . '</span><br></div>';
+//         echo '<div class="discount-container">Giảm: <span class="discount-percentage">' . $row["discount_percentage"] . "%</span></div>";
+//         echo "⭐------------------------⭐<br>";
+//         echo '</div>';
+//     }
+//     echo '</div>';
+// } else {
+//     echo "0 results";
+// }
+
+$conn = new mysqli(HOST, USERNAME, PASSWORD, DATABASE);
 
 // Kiểm tra kết nối
 if ($conn->connect_error) {
@@ -143,24 +165,46 @@ $result = $conn->query($sql);
 // Kiểm tra và hiển thị dữ liệu
 if ($result->num_rows > 0) {
     echo '<div class="offer-container">';
+    
+    // Số cột bạn muốn hiển thị
+    $columns = 1;
+    
+    echo '<div class="column">';
+    
+    $currentColumn = 0;
+
     while ($row = $result->fetch_assoc()) {
         echo '<div class="offer">';
-        echo '❄️Coupon: <span class="offer-name">' . $row["name"] . '</span><br>';
+        echo '❄️Coupon: <span class="offer-name">' . $row["name"] . '</span><br><br>';
         echo '<div class="code-container">Code: <span class="code">' . $row["code"] . '</span><br></div>';
         echo '<div class="discount-container">Giảm: <span class="discount-percentage">' . $row["discount_percentage"] . "%</span></div>";
         echo "⭐------------------------⭐<br>";
         echo '</div>';
+
+        // Tăng biến đếm cho cột hiện tại
+        $currentColumn++;
+
+        // Nếu đã đạt đến số lượng cột tối đa, đóng cột và mở cột mới
+        if ($currentColumn == $columns) {
+            echo '</div><div class="column">';
+            $currentColumn = 0; // Reset biến đếm
+        }
     }
+
+    echo '</div>'; // Đóng cột cuối cùng
+
     echo '</div>';
 } else {
     echo "0 results";
 }
+
 
 // Đóng kết nối
 $conn->close();
 ?>
 
 <footer>
+    <br>
     <?php require('includes/footer_webpage.php'); ?>
 </footer>
         <!-- Latest jQuery form server -->

@@ -46,7 +46,8 @@ CREATE TABLE `INVOICE` (
   `note` varchar(1000),
   `order_date` datetime,
   `status` varchar(200),
-  `total_money` int
+  `discount` integer,
+  `total_money` 
 );
 
 CREATE TABLE `Invoice_Detail` (
@@ -55,7 +56,7 @@ CREATE TABLE `Invoice_Detail` (
   `product_id` int,
   `price` int,
   `num` int,
-  `total_money` int
+  `total_money` float
 );
 
 CREATE TABLE `OFFER` (
@@ -342,20 +343,20 @@ INSERT INTO USER (fullname, dayofbirth, email, PhoneNumber, address, avartar, ac
 ('Quân', '2002-09-04', 'quan@example.com', '0989012345', '101 DEF St', 'database/avaimage/ava_9.png', 'quan', '123123', 1, NOW(), NOW());
 
 -- Dữ liệu mẫu cho INVOICE
-INSERT INTO INVOICE (user_id, fullname, email, phone_number, address, note, order_date, status, total_money) VALUES
-(3, 'Trần Thị B', 'tranthi.b@example.com', '0923456789', '456 Trần Hưng Đạo, Quận 5, TP.HCM', 'Special instructions', DATE_SUB(NOW(), INTERVAL 3 MONTH), "CHỜ XỬ LÝ", 76);
+INSERT INTO INVOICE (user_id, fullname, email, phone_number, address, note, order_date, status, discount, total_money) VALUES
+(3, 'Trần Thị B', 'tranthi.b@example.com', '0923456789', '456 Trần Hưng Đạo, Quận 5, TP.HCM', 'Special instructions', DATE_SUB(NOW(), INTERVAL 3 MONTH), "CHỜ XỬ LÝ",0, 76);
 
-INSERT INTO INVOICE (user_id, fullname, email, phone_number, address, note, order_date, status, total_money) VALUES
-(1, 'John Doe', 'john.doe@example.com', '1234567890', '123 Main St', 'Special instructions', DATE_SUB(NOW(), INTERVAL 2 MONTH), "CHỜ XỬ LÝ", 31);
+INSERT INTO INVOICE (user_id, fullname, email, phone_number, address, note, order_date, status,discount, total_money) VALUES
+(1, 'John Doe', 'john.doe@example.com', '1234567890', '123 Main St', 'Special instructions', DATE_SUB(NOW(), INTERVAL 2 MONTH), "CHỜ XỬ LÝ",0, 31);
 
-INSERT INTO INVOICE (user_id, fullname, email, phone_number, address, note, order_date, status, total_money) VALUES
-(1, 'John Doe', 'john.doe@example.com', '1234567890', '123 Main St', 'Special instructions', DATE_SUB(NOW(), INTERVAL 1 MONTH), "CHỜ XỬ LÝ", 23);
+INSERT INTO INVOICE (user_id, fullname, email, phone_number, address, note, order_date, status,discount, total_money) VALUES
+(1, 'John Doe', 'john.doe@example.com', '1234567890', '123 Main St', 'Special instructions', DATE_SUB(NOW(), INTERVAL 1 MONTH), "CHỜ XỬ LÝ",0, 23);
 
-INSERT INTO INVOICE (user_id, fullname, email, phone_number, address, note, order_date, status, total_money) VALUES
-(2, 'Nguyễn Văn A', 'nguyenvan.a@example.com', '0912345678', '123 Nguyễn Văn Trỗi, Quận 1, TP.HCM', 'Special instructions', NOW(), "CHỜ XỬ LÝ", 76);
+INSERT INTO INVOICE (user_id, fullname, email, phone_number, address, note, order_date, status,discount, total_money) VALUES
+(2, 'Nguyễn Văn A', 'nguyenvan.a@example.com', '0912345678', '123 Nguyễn Văn Trỗi, Quận 1, TP.HCM', 'Special instructions', NOW(), "CHỜ XỬ LÝ",0, 76);
 
-INSERT INTO INVOICE (user_id, fullname, email, phone_number, address, note, order_date, status, total_money) VALUES
-(3, 'Trần Thị B', 'tranthi.b@example.com', '0923456789', '456 Trần Hưng Đạo, Quận 5, TP.HCM', 'Special instructions', DATE_ADD(NOW(), INTERVAL 1 DAY), "CHỜ XỬ LÝ", 76);
+INSERT INTO INVOICE (user_id, fullname, email, phone_number, address, note, order_date, status,discount, total_money) VALUES
+(3, 'Trần Thị B', 'tranthi.b@example.com', '0923456789', '456 Trần Hưng Đạo, Quận 5, TP.HCM', 'Special instructions', DATE_ADD(NOW(), INTERVAL 1 DAY), "CHỜ XỬ LÝ",0, 76);
 
 
 

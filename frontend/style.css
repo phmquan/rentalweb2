@@ -1487,20 +1487,27 @@ ul.tsc_paginationA06 li.unavailable {
   border: 1px solid #ccc;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  max-width: 600px; /* Set the maximum width as per your preference */
+  max-width: 1200px; /* Set the maximum width as per your preference */
   margin: 0 auto; /* Center the offer-container */
   font-family: 'Montserrat', sans-serif;
+  overflow: hidden; 
+}
+.column {
+  padding: 15px;
+  width: 50%; /* Điều chỉnh độ rộng của mỗi cột */
+  float: left; /* Sắp xếp cột theo chiều ngang */
+  box-sizing: border-box; /* Đảm bảo rằng padding và border không tăng kích thước của phần tử */
 }
 .offer {
   margin-bottom: 20px;
-  background-color: #a8e6d9; /* Màu nền cho offer */
+  background-color:  #72a4ea; /* Màu nền cho offer */
   padding: 15px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   font-family: 'Lato', sans-serif;
 }
 .offer-name {
-  color: #5e23e8; /* Mã màu của màu vàng, bạn có thể thay đổi mã màu nếu cần thiết */
+  color: #ffffff; /* Mã màu của màu vàng, bạn có thể thay đổi mã màu nếu cần thiết */
   font-weight: bold; /* Đặt chữ in đậm */
         font-size: 1.4em; /* Đặt kích thước chữ (1em là kích thước mặc định) */
 }

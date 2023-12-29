@@ -1,11 +1,31 @@
 [
     [
         {
+            "order_id": "6",
+            "product_id": "1",
+            "price": "25",
+            "quantity": "1",
+            "total_money": "25",
+            "status": "Ch\u1edd x\u1eed l\u00fd",
+            "discount": "10"
+        },
+        {
+            "order_id": "6",
             "product_id": "2",
             "price": "20",
-            "quantity": "3",
-            "total_money": "60",
-            "status": "Ch\u1edd x\u1eed l\u00fd"
+            "quantity": "1",
+            "total_money": "20",
+            "status": "Ch\u1edd x\u1eed l\u00fd",
+            "discount": "10"
+        },
+        {
+            "order_id": "7",
+            "product_id": "3",
+            "price": "18",
+            "quantity": "10",
+            "total_money": "180",
+            "status": "Ch\u1edd x\u1eed l\u00fd",
+            "discount": "50"
         }
     ]
 ]

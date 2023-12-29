@@ -1,5 +1,5 @@
 <?php
-    $jsonFilePath = '../adminstrator/dist/json/usercart1.json';
+    $jsonFilePath = '../adminstrator/dist/json/usercart.json';
 
     // Kiểm tra xem tệp JSON có tồn tại hay không
     if (file_exists($jsonFilePath)) {
@@ -195,16 +195,12 @@
                                 echo '<input  type="submit" value="Apply Coupon" name="apply_coupon" class="button" />';
 
                                 echo '</div>';
+                                require_once('./model/config_webpage.php');
                                  // Xử lý khi nhấn "Apply Coupon"
                                  if (isset($_POST['apply_coupon'])) {
                                     $couponCode = $_POST['coupon_code'];
-
-                                    $servername = "localhost";
-                                    $username = "root";
-                                    $password = "";
-                                    $dbname = "web_dvdrental";
-
-                                    $conn = new mysqli($servername, $username, $password, $dbname);
+                                    
+                                    $conn = new mysqli(HOST, USERNAME, PASSWORD, DATABASE);
 
                                     // Kiểm tra kết nối
                                     if ($conn->connect_error) {
@@ -223,6 +219,20 @@
                                     $cartSubtotal *= $discountMultiplier;
     
                                     echo '<p class="coupon-applied">Coupon applied successfully! Discount: ' . $discountPercentage . '%</p>';
+
+                                    // store discount for checkout here
+                                    // Đọc dữ liệu từ tệp JSON hiện tại
+                                    $jsonFilePathCart = '../adminstrator/dist/json/usercart1.json';
+                                    $currentData = file_exists($jsonFilePathCart) ? json_decode(file_get_contents($jsonFilePathCart), true) : [];
+
+                                    // Cập nhật biến discount trong mảng JSON
+                                    foreach ($currentData as &$item) {
+                                        $item['discount'] = $discountPercentage;
+                                    }
+
+                                    // Ghi dữ liệu vào tệp JSON
+                                    file_put_contents($jsonFilePathCart, json_encode($currentData, JSON_PRETTY_PRINT));
+
                                     } else {
                                     // Mã offer không hợp lệ
                                     echo '<p class="coupon-error">Invalid coupon code. Please try again.</p>';

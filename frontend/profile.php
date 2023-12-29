@@ -40,11 +40,13 @@ function saveUserToJson($userData) {
    
     // Truy vấn để lấy dữ liệu từ bảng invoice tương ứng với user_id
     $sqlGetInvoices = "SELECT
+                            Invoice_Detail.order_id as order_id,
                             Invoice_Detail.product_id AS dvd_id,
                             Invoice_Detail.price,
                             Invoice_Detail.num AS quantity,
                             Invoice_Detail.total_money AS total_money,
-                            Invoice.status
+                            Invoice.status,
+                            Invoice.discount
                         FROM
                             Invoice_Detail
                         JOIN
@@ -59,11 +61,13 @@ function saveUserToJson($userData) {
     if (!empty($invoiceResults)){    // Duyệt qua kết quả của truy vấn
     foreach ($invoiceResults as $invoiceResult) {
         $userCartData[] = [
+            'order_id' => $invoiceResult['order_id'],
             'product_id' => $invoiceResult['dvd_id'],
             'price' => $invoiceResult['price'],
             'quantity' => $invoiceResult['quantity'],
             'total_money' => $invoiceResult['total_money'],
-            'status' => $invoiceResult['status']
+            'status' => $invoiceResult['status'],
+            'discount' => $invoiceResult['discount']
         ];
     }};
 saveUserToJson($userCartData);  
@@ -319,39 +323,46 @@ if (isset($_POST['logout'])) {
             $userCartData = json_decode(file_get_contents($jsonFilePath), true);
             $cartSubtotal = 0; // Thêm biến để tính tổng giá trị
             $invoiceCounter = 1; // Biến đếm hoá đơn
+            $currentOrderId = 1;
 
             // Hiển thị từng sản phẩm trong giỏ hàng
             foreach ($userCartData as $order) {
                 foreach ($order as $item) {
-                    echo '<tr class="cart_item">';
-                    echo '<td class="product-name">';
-                    echo 'Hoá đơn ' . $invoiceCounter;
-                    echo '</td>';
+                  if ($currentOrderId !== $item['order_id']) {
+                      // Nếu là order mới, hiển thị thông tin đầu tiên của order
+                      echo '<tr class="cart_item">';
+                      echo '<td class="product-name" rowspan="' . $invoiceCounter+1 . '">';
+                      echo 'Hoá đơn ' . $invoiceCounter;
+                      echo '</td>';
+                      $currentOrderId = $item['order_id'];
+                  } else { $invoiceCounter++;}
+            
                     echo '<td class="product-name">';
                     echo 'Product ID: ' . $item['product_id'] . '<br>';
                     echo 'Price: ' . $item['price'] . '$<br>';
                     echo 'Quantity: ' . $item['quantity'] . '<br>';
+                    echo 'Discount: ' . $item['discount'] . '%<br>';
                     echo 'Total Money: ' . $item['total_money'] . '$<br>';
                     echo '</td>';
                     echo '<td class="product-name">';
                     echo 'Status: ' . $item['status'];
                     echo '</td>';
                     echo '<td class="product-total">';
-                    echo '<span class="amount">' . $item['total_money'] . '$</span>';
+                    echo '<span class="amount">' . $item['total_money']*(1-($item['discount']/100)) . '$</span>';
                     echo '</td>';
                     echo '</tr>';
                     // Cập nhật tổng giá trị
                     $cartSubtotal += (int)$item['total_money'];
+                    $discount = $item['discount'];
                 }
-
                 $invoiceCounter++;
             }
-
             // Hiển thị Cart Subtotal trong hàng thứ ba
+           
             echo '<tr>';
-            echo '<th class="product-total" colspan="3">Order Total</th>';
+            echo '<th class="product-total" colspan="2">Order Total</th>';
             echo '<td class="product-total">';
-            echo '<span class="amount">' . $cartSubtotal . '$</span>';
+            echo '<span class="amount">' . $cartSubtotal*(1-($discount/100)) . '$</span>';
             echo '</td>';
             echo '</tr>';
         }
