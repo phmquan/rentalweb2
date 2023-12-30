@@ -301,7 +301,7 @@
               <h2 class="footer-wid-title">Categories</h2>
               <ul>
                 <li><a href="webpage.php">Home</a></li>
-                <li><a href="shop.php">All Product</a></li>
+                <li><a href="shop.php">Products</a></li>
                 <li><a href="shop.php">Search</a></li>
               </ul>
             </div>

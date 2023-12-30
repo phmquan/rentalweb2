@@ -1,1 +1,10 @@
-{}
+[
+    {
+        "dvd_id": 1,
+        "title": "John Wick: Chapter 4",
+        "price": 25,
+        "quantity": 2,
+        "productImage": "..\/adminstrator\/dist\/database\/productimage\/productimage_1.png",
+        "discount": "10"
+    }
+]

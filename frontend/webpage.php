@@ -94,7 +94,7 @@
                         </div>
                         <ul class="nav navbar-nav">
                             <li class="active"><a href="webpage.php">Home</a></li>
-                            <li><a href="ListOfProducts.php">List of Products</a></li>
+                            <li><a href="ListOfProducts.php">Products</a></li>
                             <li><a href="Offers.php">Offers</a></li>
                         </ul>
 
@@ -124,7 +124,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-    <div class="slider-area">
+    <div class="slider-area" id="sliderarea">
         <!-- Slider -->
         <div class="block-slider block-slider4">
             <ul class="" id="bxslider-home4">
@@ -142,6 +142,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <!-- ./Slider -->
     </div> <!-- End slider area -->
 
+    <script>
+        // Lấy phần tử slider-area
+        var sliderArea = document.getElementById('sliderarea');
+
+        // Thêm sự kiện click
+        sliderArea.addEventListener('click', function() {
+            // Chuyển hướng đến trang Offers.php khi bấm vào slider
+            window.location.href = 'Offers.php';
+        });
+    </script>
     <div class="mainmenu-area">
         <div class="container">
             <div class="row">

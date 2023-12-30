@@ -174,6 +174,34 @@ if (isset($_POST['logout'])) {
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+  <style>
+    /* Định nghĩa màu sắc cho các trạng thái */
+    .status-button.processing {
+        background-color: #B80000; /* Màu do cho Processing */
+    }
+
+    .status-button.shipped {
+        background-color: #FF9800; /* Màu vang cho Shipped */
+    }
+
+    .status-button.completed {
+        background-color: #5F8670; /* Màu xanh la cho Completed */
+    }
+
+    /* Màu mặc định cho trạng thái khác */
+    .status-button.default {
+        background-color: #aaa;
+    }
+
+    /* Thêm kiểu dáng cho button */
+    .status-button {
+        color: #fff;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+  </style>
   </head>
   <body>
     <div class="header-area">
@@ -223,7 +251,7 @@ if (isset($_POST['logout'])) {
               </div>
               <ul class="nav navbar-nav">
                 <li class="active"><a href="webpage.php">Home</a></li>
-                <li><a href="ListOfProducts.php">All Product</a></li>
+                <li><a href="ListOfProducts.php">Products</a></li>
                 <li><a href="Offers.php">Offers</a></li>
               </ul>
             </div>
@@ -322,37 +350,70 @@ if (isset($_POST['logout'])) {
             // Đọc dữ liệu từ tệp JSON
             $userCartData = json_decode(file_get_contents($jsonFilePath), true);
             $cartSubtotal = 0; // Thêm biến để tính tổng giá trị
-            $invoiceCounter = 1; // Biến đếm hoá đơn
-            $currentOrderId = 1;
+            $invoiceCounter = 0; // Biến đếm hoá đơn
+            $currentOrderId = 0;
 
+
+            $orderCount = []; // Mảng kết hợp để theo dõi số lượng hóa đơn cho mỗi order_id
+            $data = $userCartData;
+            // Lặp qua mảng JSON và đếm số lượng hóa đơn cho mỗi order_id
+            foreach ($data as $orderItems) {
+                foreach ($orderItems as $item) {
+                    $orderId = $item['order_id'];
+                    if (isset($orderCount[$orderId])) {
+                        $orderCount[$orderId]++;
+                    } else {
+                        $orderCount[$orderId] = 1;
+                    }
+                }
+            }
+            $cartSubtotal =0; 
             // Hiển thị từng sản phẩm trong giỏ hàng
             foreach ($userCartData as $order) {
                 foreach ($order as $item) {
                   if ($currentOrderId !== $item['order_id']) {
+                    $invoiceCounter++;
                       // Nếu là order mới, hiển thị thông tin đầu tiên của order
                       echo '<tr class="cart_item">';
-                      echo '<td class="product-name" rowspan="' . $invoiceCounter+1 . '">';
-                      echo 'Hoá đơn ' . $invoiceCounter;
+                      echo '<td class="product-name" rowspan="' . $orderCount[$item['order_id']] . '">';
+                      echo 'Invoice' . $invoiceCounter;
                       echo '</td>';
                       $currentOrderId = $item['order_id'];
-                  } else { $invoiceCounter++;}
+                    } 
             
                     echo '<td class="product-name">';
-                    echo 'Product ID: ' . $item['product_id'] . '<br>';
-                    echo 'Price: ' . $item['price'] . '$<br>';
-                    echo 'Quantity: ' . $item['quantity'] . '<br>';
-                    echo 'Discount: ' . $item['discount'] . '%<br>';
-                    echo 'Total Money: ' . $item['total_money'] . '$<br>';
+                    echo '<img style="width: 100px; height: 100px" src="../adminstrator/dist/database/productimage/productimage_'.$item['product_id'].'.png"><br>';
+                    echo 'x' . $item['quantity'] . '<br>';                   
                     echo '</td>';
+                    // echo '<td class="product-name">';
+                    // echo '' . $item['status'];
+                    // echo '</td>';
                     echo '<td class="product-name">';
-                    echo 'Status: ' . $item['status'];
+                    // Sử dụng class CSS dựa trên giá trị của trạng thái
+                    $statusClass = '';
+                    switch ($item['status']) {
+                        case 'Processing':
+                            $statusClass = 'processing';
+                            break;
+                        case 'Shipped':
+                            $statusClass = 'shipped';
+                            break;
+                        case 'Completed':
+                            $statusClass = 'completed';
+                            break;
+                        default:
+                            $statusClass = 'default';
+                            break;
+                    }
+                    echo '<button class="status-button ' . $statusClass . '">' . $item['status'] . '</button>';
                     echo '</td>';
+
                     echo '<td class="product-total">';
                     echo '<span class="amount">' . $item['total_money']*(1-($item['discount']/100)) . '$</span>';
                     echo '</td>';
                     echo '</tr>';
                     // Cập nhật tổng giá trị
-                    $cartSubtotal += (int)$item['total_money'];
+                    $cartSubtotal += (int)$item['total_money']*(1-($item['discount']/100));
                     $discount = $item['discount'];
                 }
                 $invoiceCounter++;
@@ -360,11 +421,14 @@ if (isset($_POST['logout'])) {
             // Hiển thị Cart Subtotal trong hàng thứ ba
            
             echo '<tr>';
-            echo '<th class="product-total" colspan="2">Order Total</th>';
+            echo '<th class="product-total" colspan="3">Order Total</th>';
             echo '<td class="product-total">';
-            echo '<span class="amount">' . $cartSubtotal*(1-($discount/100)) . '$</span>';
+            echo '<span class="amount">' . $cartSubtotal . '$</span>';
             echo '</td>';
             echo '</tr>';
+
+
+            
         }
         
         ?>

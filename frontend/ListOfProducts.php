@@ -97,7 +97,7 @@
 				</div>
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="webpage.php">Home</a></li>
-                        <li><a href="ListOfProducts.php">List of Products</a></li>
+                        <li><a href="ListOfProducts.php">Products</a></li>
                         <li><a href="Offers.php">Offers</a></li>
                     </ul>
                 

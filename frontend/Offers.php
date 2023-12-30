@@ -95,7 +95,7 @@
                     <ul class="nav navbar-nav" >
                         
                         <li class="active"><a href="webpage.php">Home</a></li>
-                        <li><a href="ListOfProducts.php">List Of Products</a></li>
+                        <li><a href="ListOfProducts.php">Products</a></li>
                         <li><a href="Offers.php">Offers</a></li>
                     </ul>
                 </div>
@@ -176,7 +176,7 @@ if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         echo '<div class="offer">';
         echo '❄️Coupon: <span class="offer-name">' . $row["name"] . '</span><br><br>';
-        echo '<div class="code-container">Code: <span class="code">' . $row["code"] . '</span><br></div>';
+        echo '<button class="code-container" data-clipboard-text="' . $row["code"] . '" onclick="saveAndDisplayMessage(this, \'' . $row["code"] . '\')">Code: <span class="code">' . $row["code"] . '</span><br></button>';
         echo '<div class="discount-container">Giảm: <span class="discount-percentage">' . $row["discount_percentage"] . "%</span></div>";
         echo "⭐------------------------⭐<br>";
         echo '</div>';
@@ -202,7 +202,35 @@ if ($result->num_rows > 0) {
 // Đóng kết nối
 $conn->close();
 ?>
+<script>
+    function saveAndDisplayMessage(button, code) {
+        // Lưu mã code vào bộ nhớ hoặc nơi bạn muốn
+        var savedCode = code;
+        // Lưu mã code vào localStorage
+        localStorage.setItem('savedCode', code);
+        // Thay đổi nội dung của button thành "saved" trong 1 giây
+        button.innerHTML = 'SAVED';
+        setTimeout(function () {
+            // Sau 1 giây, chuyển về nội dung ban đầu
+            button.innerHTML = 'Code: <span class="code">' + code + '</span><br>';
+        }, 500);
 
+        // Không cần thực hiện new ClipboardJS('.code-container') mỗi lần
+        // Nếu đã tồn tại clipboard, cập nhật lại nội dung mới
+        if (!button._clipboard) {
+            button._clipboard = new ClipboardJS('.code-container');
+        } else {
+            button._clipboard.text = code;
+        }
+
+        // Thêm sự kiện sau khi copy thành công
+        button._clipboard.on('success', function (e) {
+            console.log('Đã sao chép vào clipboard:', e.text);
+            // Có thể thực hiện các hành động khác sau khi sao chép thành công
+        });
+    
+    }
+</script>
 <footer>
     <br>
     <?php require('includes/footer_webpage.php'); ?>
@@ -223,6 +251,7 @@ $conn->close();
         <!-- Main Script -->
         <script src="js/main.js"></script>
         <script src="js/script_page.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.10/clipboard.min.js"></script>
 </body>
 
 </html>

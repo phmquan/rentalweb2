@@ -6,7 +6,7 @@
             "price": "25",
             "quantity": "1",
             "total_money": "25",
-            "status": "Ch\u1edd x\u1eed l\u00fd",
+            "status": "Completed",
             "discount": "10"
         },
         {
@@ -15,7 +15,7 @@
             "price": "20",
             "quantity": "1",
             "total_money": "20",
-            "status": "Ch\u1edd x\u1eed l\u00fd",
+            "status": "Completed",
             "discount": "10"
         },
         {
@@ -24,8 +24,26 @@
             "price": "18",
             "quantity": "10",
             "total_money": "180",
-            "status": "Ch\u1edd x\u1eed l\u00fd",
+            "status": "Shipped",
             "discount": "50"
+        },
+        {
+            "order_id": "8",
+            "product_id": "23",
+            "price": "18",
+            "quantity": "20",
+            "total_money": "360",
+            "status": "Processing",
+            "discount": "50"
+        },
+        {
+            "order_id": "11",
+            "product_id": "24",
+            "price": "22",
+            "quantity": "3",
+            "total_money": "66",
+            "status": "Shipped",
+            "discount": "0"
         }
     ]
 ]
