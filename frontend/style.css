@@ -1,3 +1,6 @@
+#addCategoryForm :invalid {
+  border: 1px solid red;
+}
 .floatleft {
   float: left;
 }

@@ -692,52 +692,66 @@ function openAddModal_Category() {
 }
 
 function saveNewCategory() {
-    // Code to retrieve input values from the add category modal and send them to the server
-    var categoryName = $('#addCategoryName').val();
-    var data ={
-        name: categoryName 
-    };
-    // You can perform validation here before sending the data to the server    
-    // Gửi các giá trị này đến server để lưu thay đổi
-    // (Bổ sung phần này dựa trên cách bạn xử lý lưu thay đổi trong ứng dụng của bạn)
-    Swal.fire({
-        title: 'Thêm DVDCategory mới ?',
-        text: 'Bạn chắc chắn thông tin rồi chứ!',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#d33',
-        cancelButtonColor: '#3085d6',
-        confirmButtonText: 'chắc chắn!'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            $.ajax({
-                type: 'POST',
-                url: 'includes/ajax.php',
-                data: { action: 'adddvdcategory', data},
-                contentType: 'application/x-www-form-urlencoded;',
-                dataType: 'json',
-                error: function (response) {
-                    Swal.fire('Lỗi!', 'Xảy ra lỗi khi thêm mới DVD.', 'error'); 
-                },
-                success: function (response) {
-                    Swal.fire({
-                        title: 'Đã thêm DVDCategory!',
-                        text: 'Thêm mới DVDCategory thành công.',
-                        icon: 'success'
-                    }).then(() => {
-                        // Refresh trang hiện tại
-                        location.reload();
-                        check = 1;
-                        // Xóa hàng trong bảng mà không làm mới trang
-                        //$('#datatablesSimple').DataTable().row($('#row_' + id)).remove().draw();
-                    });
-                }
-                
-            });
-        }
-    });
-    // Đóng modal sau khi lưu thay đổi
-    $('#addCategoryModal').modal('hide');
+    var form = document.getElementById('addCategoryForm1');
+            if (form.checkValidity()) {
+                // Code to retrieve input values from the add category modal and send them to the server
+                var categoryName = $('#addCategoryName').val();
+                var data ={
+                    name: categoryName 
+                };
+                // You can perform validation here before sending the data to the server    
+                // Gửi các giá trị này đến server để lưu thay đổi
+                // (Bổ sung phần này dựa trên cách bạn xử lý lưu thay đổi trong ứng dụng của bạn)
+                Swal.fire({
+                    title: 'Thêm DVDCategory mới ?',
+                    text: 'Bạn chắc chắn thông tin rồi chứ!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'chắc chắn!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            type: 'POST',
+                            url: 'includes/ajax.php',
+                            data: { action: 'adddvdcategory', data},
+                            contentType: 'application/x-www-form-urlencoded;',
+                            dataType: 'json',
+                            error: function (response) {
+                                Swal.fire('Lỗi!', 'Xảy ra lỗi khi thêm mới DVD.', 'error'); 
+                            },
+                            success: function (response) {
+                                Swal.fire({
+                                    title: 'Đã thêm DVDCategory!',
+                                    text: 'Thêm mới DVDCategory thành công.',
+                                    icon: 'success'
+                                }).then(() => {
+                                    // Refresh trang hiện tại
+                                    location.reload();
+                                    check = 1;
+                                    // Xóa hàng trong bảng mà không làm mới trang
+                                    //$('#datatablesSimple').DataTable().row($('#row_' + id)).remove().draw();
+                                });
+                            }
+                            
+                        });
+                    }
+                });
+                // Đóng modal sau khi lưu thay đổi
+                $('#addCategoryModal').modal('hide');
+                // You can also submit the form if needed: form.submit();
+            } else {
+                // Form is invalid, do not proceed
+                Swal.fire({
+                    title: 'Kiểm tra lại thông tin ?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                });
+            }
+    
 }
 
 function openAddModal_User() {

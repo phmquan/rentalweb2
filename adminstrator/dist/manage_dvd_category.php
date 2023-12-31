@@ -81,15 +81,41 @@ $dvdList = execute_result($sql);
                     </div>
                     <div class="modal-body">
                         <!-- Form chỉnh sửa -->
-                        <form id="editDVDCategoryForm">
+                        <form id="editDVDCategoryForm" required>
                             <div class="mb-3">
                                 <label for="editDVDCategoryId" class="form-label">ID</label>
                                 <input type="text" class="form-control" id="editDVDCategoryId" name="editDVDCategoryId" readonly>
                             </div>
                             <div class="mb-3">
                                 <label for="editDVDCategoryName" class="form-label">Tên DVDCategory</label>
-                                <input type="text" class="form-control" id="editDVDCategoryName" name="editDVDCategoryName" required>
+                                <select class="form-select" id="editDVDCategoryName" name="editDVDCategoryName" required>
+                                    <option value="" disabled selected>-- Chọn DVDCategory --</option>
+                                    <option value="Hành Động">Hành Động</option>
+                                    <option value="Cổ Trang">Cổ Trang</option>
+                                    <option value="Chiến Tranh">Chiến Tranh</option>
+                                    <option value="Viễn Tưởng">Viễn Tưởng</option>
+                                    <option value="Kinh Dị">Kinh Dị</option>
+                                    <option value="Tài Liệu">Tài Liệu</option>
+                                    <option value="Bí ẩn">Bí ẩn</option>
+                                    <option value="Tình Cảm">Tình Cảm</option>
+                                    <option value="Tâm Lý">Tâm Lý</option>
+                                    <option value="Thể Thao">Thể Thao</option>
+                                    <option value="Phiêu Lưu">Phiêu Lưu</option>
+                                    <option value="Âm Nhạc">Âm Nhạc</option>
+                                    <option value="Gia Đình">Gia Đình</option>
+                                    <option value="Hài Hước">Hài Hước</option>
+                                    <option value="Hình Sự">Hình Sự</option>
+                                    <option value="Võ Thuật">Võ Thuật</option>
+                                    <option value="Khoa Học">Khoa Học</option>
+                                    <option value="Thần Thoại">Thần Thoại</option>
+                                    <option value="Chính Kịch">Chính Kịch</option>
+                                    <option value="Kinh Điển">Kinh Điển</option>
+                                    <option value="Đam Mỹ">Đam Mỹ</option>
+                                    <option value="Bách Hợp">Bách Hợp</option>
+                                    <option value="Phim Hoạt Hình">Phim Hoạt Hình</option>
+                                </select>
                             </div>
+
                         </form>
                     </div>
                     <div class="modal-footer">
@@ -110,14 +136,50 @@ $dvdList = execute_result($sql);
                     </div>
                     <div class="modal-body">
                         <!-- Form for Add Category -->
-                        <form id="addCategoryForm">
+                        <form id="addCategoryForm1" novalidate>
                             <div class="mb-3">
-                                <label for="addCategoryName" class="form-label">Category Name</label>
-                                <input type="text" class="form-control" id="addCategoryName" placeholder="Enter Category Name">
+                            <label for="addCategoryName" class="form-label">Category Name</label>
+                                <input type="text" class="form-control" id="addCategoryName" placeholder="Enter Category Name" required>
+                                <div class="invalid-feedback">
+                                    Please enter a category name.
+                                </div>
                             </div>
                             <!-- Add any additional fields for the category if needed -->
 
                             <button type="button" class="btn btn-primary" onclick="saveNewCategory()">Save Category</button>
+                            <!-- <button type="submit" class="btn btn-primary">Save Category</button> -->
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Button to trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCategoryModal1">
+            Add New Category
+        </button>
+
+        <!-- Modal for Add Category -->
+        <div class="modal fade" id="addCategoryModal1" tabindex="-1" aria-labelledby="addCategoryModalLabel" aria-hidden="true">
+            <div class="modal-dialog" style="margin-top: 200px;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addCategoryModalLabel">Add New Category</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Form for Add Category -->
+                        <form id="NullForm" novalidate>
+                            <div class="mb-3">
+                                <label for="addCategoryName" class="form-label">Category Name</label>
+                                <input type="text" class="form-control" id="addCategoryName" placeholder="Enter Category Name pls" required>
+                                <div class="invalid-feedback">
+                                    Please enter a category name.
+                                </div>
+                            </div>
+                            <!-- Add any additional fields for the category if needed -->
+
+                            <button type="submit" class="btn btn-primary">Save Category</button>
                         </form>
                     </div>
                 </div>

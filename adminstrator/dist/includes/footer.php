@@ -24,7 +24,12 @@
         <script src="assets/demo/chart-bar-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
-        
+        <!-- Add Bootstrap JS and Popper.js scripts from CDN -->
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@2.11.6/dist/umd/popper.min.js"
+            integrity="sha384-wDpX7BA6B6aAsDq69g+5G8Pb5rT0I3hcJSn/Eb2OWejFdCl8Bc0VlCK40AtNHNDp" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
+            integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+WyJBEqSKdU5f9LZPz7zo1TKWxI1F1usTnE" crossorigin="anonymous"></script>
+
 
         
         
