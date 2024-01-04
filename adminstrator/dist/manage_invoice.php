@@ -38,6 +38,7 @@ $invoiceList = execute_result($sql);
                                 <th>Note</th>
                                 <th>Order Date</th>
                                 <th>Status</th>
+                                <th>Discount</th>
                                 <th>Total Money</th>
                                 <th>Feature</th>
                                 <!-- Thêm các cột khác tùy thuộc vào cần hiển thị -->
@@ -54,6 +55,7 @@ $invoiceList = execute_result($sql);
                                 <th>Note</th>
                                 <th>Order Date</th>
                                 <th>Status</th>
+                                <th>Discount</th>
                                 <th>Total Money</th>
                                 <th>Feature</th>
                                 <!-- Thêm các cột khác tùy thuộc vào cần hiển thị -->
@@ -73,6 +75,7 @@ $invoiceList = execute_result($sql);
                                 echo "<td>{$invoice['note']}</td>";
                                 echo "<td>{$invoice['order_date']}</td>";
                                 echo "<td>{$invoice['status']}</td>";
+                                echo "<td>{$invoice['discount']}%</td>";
                                 echo "<td>{$invoice['total_money']}</td>";
                                 echo "<td>
                                         <button type='button' class='btn btn-warning btn-sm' data-bs-toggle='modal' data-bs-target='#editInvoiceModal' 
@@ -86,6 +89,7 @@ $invoiceList = execute_result($sql);
                                                 \"{$invoice['note']}\",
                                                 \"{$invoice['order_date']}\", 
                                                 \"{$invoice['status']}\",
+                                                {$invoice['discount']},
                                                 {$invoice['total_money']});'>
                                         Edit
                                         </button>
@@ -155,7 +159,11 @@ $invoiceList = execute_result($sql);
                                 </select>
                             </div>
                             <div class="mb-3">
-                                <label for="editInvoiceTotalMoney" class="form-label">Total Money</label>
+                                <label for="editInvoiceDiscount" class="form-label">Discount (%)</label>
+                                <input type="percent" class="form-control" id="editInvoiceDiscount" name="editInvoiceDiscount" readonly>
+                            </div>
+                            <div class="mb-3">
+                                <label for="editInvoiceTotalMoney" class="form-label">Total Money ($)</label>
                                 <input type="number" class="form-control" id="editInvoiceTotalMoney" name="editInvoiceTotalMoney" readonly>
                             </div>
                             <!-- Thêm các trường khác nếu cần -->

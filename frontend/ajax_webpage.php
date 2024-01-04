@@ -59,7 +59,7 @@ if ($action == 'ajaxcheckoutend') {
     $address = $data['address'];
     $note = 'Special instructions'; 
     $status = 'Processing';
-    $discount = 0;
+    $discount = $data['discount'];
 
 
     // Kiểm tra xem email đã tồn tại trong bảng user hay chưa

@@ -222,7 +222,7 @@ if (isset($_SESSION['cartSubtotal'])) {
             </tr>
             <tr class="shipping">
                 <th>Discount</th>
-                <td><span class="amount"><?php echo $discount; ?>$</span></td>
+                <td><span class="amount"><?php echo $discount; ?>%</span></td>
             </tr>
             <tr class="order-discount">
                 <th>Order Total</th>

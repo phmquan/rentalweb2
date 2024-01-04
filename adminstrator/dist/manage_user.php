@@ -23,7 +23,7 @@ $userList = execute_result($sql);
             <div class="card-header">
                 <i class="fas fa-table me-1"></i>
                 DataTable Example
-                <!--<button type='button' class='btn btn-success btn-sm' onclick='openAddModal_User();'>Create User</button>-->
+                <button type='button' class='btn btn-success btn-sm' onclick='openAddModal_User();'>Create User</button>
             </div>
             <div class="card-body">
                 <table id="datatablesSimple">
@@ -41,9 +41,9 @@ $userList = execute_result($sql);
                             <th>Role ID</th>
                             <th>Created At</th>
                             <th>Updated At</th>
-                            <!-- 
+                            
                             <th>Feature</th>
-                            Thêm các cột khác tùy thuộc vào cần hiển thị -->
+                            <!-- Thêm các cột khác tùy thuộc vào cần hiển thị -->
                         </tr>
                     </thead>
                     <tfoot>
@@ -82,23 +82,23 @@ $userList = execute_result($sql);
                             echo "<td>{$user['role_id']}</td>";
                             echo "<td>{$user['created_at']}</td>";
                             echo "<td>{$user['updated_at']}</td>";
-                            // echo "<td>
-                            //             <button type='button' class='btn btn-warning btn-sm' data-bs-toggle='modal' data-bs-target='#editUserModal' 
-                            //             onclick='openEditModal_User(
-                            //                     {$user['id']}, 
-                            //                     \"{$user['fullname']}\",
-                            //                     \"{$user['dayofbirth']}\", 
-                            //                     \"{$user['email']}\",
-                            //                     \"{$user['PhoneNumber']}\",
-                            //                     \"{$user['address']}\", 
-                            //                     \"{$user['avartar']}\", 
-                            //                     \"{$user['account']}\", 
-                            //                     \"{$user['password']}\", 
-                            //                     {$user['role_id']})'>
-                            //             Edit
-                            //             </button>                    
-                            //             <button type='button' class='btn btn-danger btn-sm' onclick='feature_delete({$user['id']},3)'>Delete</button>
-                            //     </td>";
+                            echo "<td>
+                                        <button type='button' class='btn btn-warning btn-sm' data-bs-toggle='modal' data-bs-target='#editUserModal' 
+                                        onclick='openEditModal_User(
+                                                {$user['id']}, 
+                                                \"{$user['fullname']}\",
+                                                \"{$user['dayofbirth']}\", 
+                                                \"{$user['email']}\",
+                                                \"{$user['PhoneNumber']}\",
+                                                \"{$user['address']}\", 
+                                                \"{$user['avartar']}\", 
+                                                \"{$user['account']}\", 
+                                                \"{$user['password']}\", 
+                                                {$user['role_id']})'>
+                                        Edit
+                                        </button>                    
+                                        <button type='button' class='btn btn-danger btn-sm' onclick='feature_delete({$user['id']},3)'>Delete</button>
+                                </td>";
                             // Thêm các cột khác tùy thuộc vào cần hiển thị
                             echo "</tr>";
                         }
@@ -188,39 +188,39 @@ $userList = execute_result($sql);
                     <form id="addUserForm">
                         <div class="mb-3">
                             <label for="addFullName" class="form-label">Full Name</label>
-                            <input type="text" class="form-control" id="addFullName" placeholder="Enter Full Name">
+                            <input type="text" class="form-control" id="addFullName" placeholder="Enter Full Name" required>
                         </div>
                         <div class="mb-3">
                             <label for="addDateOfBirth" class="form-label">Date of Birth</label>
-                            <input type="date" class="form-control" id="addDateOfBirth">
+                            <input type="date" class="form-control" id="addDateOfBirth" required>
                         </div>
                         <div class="mb-3">
                             <label for="addEmail" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="addEmail" placeholder="Enter Email">
+                            <input type="email" class="form-control" id="addEmail" placeholder="Enter Email" required>
                         </div>
                         <div class="mb-3">
                             <label for="addPhoneNumber" class="form-label">Phone Number</label>
-                            <input type="tel" class="form-control" id="addPhoneNumber" placeholder="Enter Phone Number">
+                            <input type="tel" class="form-control" id="addPhoneNumber" placeholder="Enter Phone Number" required>
                         </div>
                         <div class="mb-3">
                             <label for="addAddress" class="form-label">Address</label>
-                            <textarea class="form-control" id="addAddress" rows="3" placeholder="Enter Address"></textarea>
+                            <textarea class="form-control" id="addAddress" rows="3" placeholder="Enter Address" required></textarea>
                         </div>
                         <div class="mb-3">
                             <label for="addAvatar" class="form-label">Avatar URL</label>
-                            <input type="text" class="form-control" id="addAvatar" placeholder="Enter Avatar URL">
+                            <input type="text" class="form-control" id="addAvatar" placeholder="Enter Avatar URL" required>
                         </div>
                         <div class="mb-3">
                             <label for="addAccount" class="form-label">Account</label>
-                            <input type="text" class="form-control" id="addAccount" placeholder="Enter Account">
+                            <input type="text" class="form-control" id="addAccount" placeholder="Enter Account" required>
                         </div>
                         <div class="mb-3">
                             <label for="addPassword" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="addPassword" placeholder="Enter Password">
+                            <input type="password" class="form-control" id="addPassword" placeholder="Enter Password" required>
                         </div>
                         <div class="mb-3">
                             <label for="addRoleId" class="form-label">Role ID</label>
-                            <input type="number" class="form-control" id="addRoleId" placeholder="Enter Role ID">
+                            <input type="number" class="form-control" id="addRoleId" placeholder="Enter Role ID" required>
                         </div>
 
                         <button type="button" class="btn btn-primary" onclick="saveNewUser()">Save User</button>

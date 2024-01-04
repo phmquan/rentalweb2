@@ -261,7 +261,7 @@ function openEditModal_User(id, fullname, dayofbirth, email, phoneNumber, addres
     $('#editUserModal').modal('show');
 }
 
-function openEditModal_Invoice(id, user_id, fullname, email, phone_number, address, note, order_date, status, total_money) {
+function openEditModal_Invoice(id, user_id, fullname, email, phone_number, address, note, order_date, status, discount, total_money) {
     // Hiển thị modal và điền thông tin cần chỉnh sửa
     $('#editInvoiceIdValue').val(id);
     $('#editInvoiceUserId').val(user_id);
@@ -272,6 +272,7 @@ function openEditModal_Invoice(id, user_id, fullname, email, phone_number, addre
     $('#editInvoiceNote').val(note);
     $('#editInvoiceOrderDate').val(order_date);
     $('#editInvoiceStatus').val(status);
+    $('#editInvoiceDiscount').val(discount);
     $('#editInvoiceTotalMoney').val(total_money);
 
     // Hiển thị modal
@@ -620,67 +621,81 @@ function openAddModal_DVD() {
 }
 
 function saveNewDVD() {
-    // Code to retrieve input values from the add DVD modal and send them to the server
-    var categoryId = $('#addDVDCategoryId').val();
-    var title = $('#addDVDTitle').val();
-    var price = $('#addDVDPrice').val();
-    var quantity = $('#addDVDQuantity').val();
-    var description = $('#addDVDDescription').val();
-    var productImage = $('#addDVDProductImage').val();
-    var discountId = $('#addDVDDiscountId').val();
+var form = document.getElementById('addDVDForm');
+    if (form.checkValidity()){
+        // Code to retrieve input values from the add DVD modal and send them to the server
+        var categoryId = $('#addDVDCategoryId').val();
+        var title = $('#addDVDTitle').val();
+        var price = $('#addDVDPrice').val();
+        var quantity = $('#addDVDQuantity').val();
+        var description = $('#addDVDDescription').val();
+        var productImage = $('#addDVDProductImage').val();
+        var discountId = $('#addDVDDiscountId').val();
 
-    // Tạo đối tượng chứa dữ liệu cần gửi lên server
-    var data = {
-        category_id: categoryId,      // Adjusted from category_id to categoryId
-        title: title,
-        price: price,
-        quantity: quantity,
-        description: description,
-        productimage: productImage,    // Adjusted from productimage to productImage
-        discount_id: discountId
-    };
+        // Tạo đối tượng chứa dữ liệu cần gửi lên server
+        var data = {
+            category_id: categoryId,      // Adjusted from category_id to categoryId
+            title: title,
+            price: price,
+            quantity: quantity,
+            description: description,
+            productimage: productImage,    // Adjusted from productimage to productImage
+            discount_id: discountId
+        };
 
-    // You can perform validation here before sending the data to the server    
-    // Gửi các giá trị này đến server để lưu thay đổi
-    // (Bổ sung phần này dựa trên cách bạn xử lý lưu thay đổi trong ứng dụng của bạn)
-    Swal.fire({
-        title: 'Thêm DVD mới ?',
-        text: 'Bạn chắc chắn thông tin rồi chứ!',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#d33',
-        cancelButtonColor: '#3085d6',
-        confirmButtonText: 'chắc chắn!'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            $.ajax({
-                type: 'POST',
-                url: 'includes/ajax.php',
-                data: { action: 'adddvd', data},
-                contentType: 'application/x-www-form-urlencoded;',
-                dataType: 'json',
-                error: function (response) {
-                    Swal.fire('Lỗi!', 'Xảy ra lỗi khi thêm mới DVD.', 'error'); 
-                },
-                success: function (response) {
-                    Swal.fire({
-                        title: 'Đã thêm DVD!',
-                        text: 'Thêm mới DVD thành công.',
-                        icon: 'success'
-                    }).then(() => {
-                        // Refresh trang hiện tại
-                        location.reload();
-                        check = 1;
-                        // Xóa hàng trong bảng mà không làm mới trang
-                        //$('#datatablesSimple').DataTable().row($('#row_' + id)).remove().draw();
-                    });
-                }
-                
-            });
-        }
-    });
-    // Đóng modal sau khi lưu thay đổi
-    $('#addDVDModal').modal('hide');
+        // You can perform validation here before sending the data to the server    
+        // Gửi các giá trị này đến server để lưu thay đổi
+        // (Bổ sung phần này dựa trên cách bạn xử lý lưu thay đổi trong ứng dụng của bạn)
+        Swal.fire({
+            title: 'Thêm DVD mới ?',
+            text: 'Bạn chắc chắn thông tin rồi chứ!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'chắc chắn!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: 'POST',
+                    url: 'includes/ajax.php',
+                    data: { action: 'adddvd', data},
+                    contentType: 'application/x-www-form-urlencoded;',
+                    dataType: 'json',
+                    error: function (response) {
+                        Swal.fire('Lỗi!', 'Xảy ra lỗi khi thêm mới DVD.', 'error'); 
+                    },
+                    success: function (response) {
+                        Swal.fire({
+                            title: 'Đã thêm DVD!',
+                            text: 'Thêm mới DVD thành công.',
+                            icon: 'success'
+                        }).then(() => {
+                            // Refresh trang hiện tại
+                            location.reload();
+                            check = 1;
+                            // Xóa hàng trong bảng mà không làm mới trang
+                            //$('#datatablesSimple').DataTable().row($('#row_' + id)).remove().draw();
+                        });
+                    }
+                    
+                });
+            }
+        });
+        // Đóng modal sau khi lưu thay đổi
+        $('#addDVDModal').modal('hide');
+    }
+    else{
+        // Form is invalid, do not proceed
+        Swal.fire({
+            title: 'Kiểm tra lại thông tin ?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+        });
+    }
+    
 }
 
 function openAddModal_Category() {
@@ -692,7 +707,7 @@ function openAddModal_Category() {
 }
 
 function saveNewCategory() {
-    var form = document.getElementById('addCategoryForm1');
+    var form = document.getElementById('NullForm');
             if (form.checkValidity()) {
                 // Code to retrieve input values from the add category modal and send them to the server
                 var categoryName = $('#addCategoryName').val();
@@ -760,69 +775,83 @@ function openAddModal_User() {
 }
 
 function saveNewUser() {
-    // Code to retrieve input values from the add user modal and send them to the server
-    var fullName = $('#addFullName').val();
-    var dateOfBirth = $('#addDateOfBirth').val();
-    var email = $('#addEmail').val();
-    var phoneNumber = $('#addPhoneNumber').val();
-    var address = $('#addAddress').val();
-    var avatar = $('#addAvatar').val();
-    var account = $('#addAccount').val();
-    var password = $('#addPassword').val();
-    var role_id = $('#addRoleId').val();
+    var form = document.getElementById('addUserForm');
+    if (form.checkValidity()){
+        // Code to retrieve input values from the add user modal and send them to the server
+        var fullName = $('#addFullName').val();
+        var dateOfBirth = $('#addDateOfBirth').val();
+        var email = $('#addEmail').val();
+        var phoneNumber = $('#addPhoneNumber').val();
+        var address = $('#addAddress').val();
+        var avatar = $('#addAvatar').val();
+        var account = $('#addAccount').val();
+        var password = $('#addPassword').val();
+        var role_id = $('#addRoleId').val();
 
-    data = {
-        fullName: fullName,
-        dateOfBirth: dateOfBirth,
-        email: email,
-        phoneNumber: phoneNumber,
-        address: address,
-        avatar: avatar,
-        account: account,
-        password: password,
-        role_id: role_id
-    }
-    // Ajax call to send data to the server
-    // Gửi các giá trị này đến server để lưu thay đổi
-    // (Bổ sung phần này dựa trên cách bạn xử lý lưu thay đổi trong ứng dụng của bạn)
-    Swal.fire({
-        title: 'Thêm người dùng mới ?',
-        text: 'Bạn chắc chắn thông tin rồi chứ!',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#d33',
-        cancelButtonColor: '#3085d6',
-        confirmButtonText: 'chắc chắn!'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            $.ajax({
-                type: 'POST',
-                url: 'includes/ajax.php',
-                data: { action: 'adduser', data},
-                contentType: 'application/x-www-form-urlencoded;',
-                dataType: 'json',
-                error: function (response) {
-                    Swal.fire('Lỗi!', 'Xảy ra lỗi khi thêm mới User.', 'error'); 
-                },
-                success: function (response) {
-                    Swal.fire({
-                        title: 'Đã thêm người dùng mới!',
-                        text: 'Thêm mới User thành công.',
-                        icon: 'success'
-                    }).then(() => {
-                        // Refresh trang hiện tại
-                        location.reload();
-                        check = 1;
-                        // Xóa hàng trong bảng mà không làm mới trang
-                        //$('#datatablesSimple').DataTable().row($('#row_' + id)).remove().draw();
-                    });
-                }
-                
-            });
+        data = {
+            fullName: fullName,
+            dateOfBirth: dateOfBirth,
+            email: email,
+            phoneNumber: phoneNumber,
+            address: address,
+            avatar: avatar,
+            account: account,
+            password: password,
+            role_id: role_id
         }
-    });
-    // Đóng modal sau khi lưu thay đổi
-    $('#addUserModal').modal('hide');   
+        // Ajax call to send data to the server
+        // Gửi các giá trị này đến server để lưu thay đổi
+        // (Bổ sung phần này dựa trên cách bạn xử lý lưu thay đổi trong ứng dụng của bạn)
+        Swal.fire({
+            title: 'Thêm người dùng mới ?',
+            text: 'Bạn chắc chắn thông tin rồi chứ!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'chắc chắn!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: 'POST',
+                    url: 'includes/ajax.php',
+                    data: { action: 'adduser', data},
+                    contentType: 'application/x-www-form-urlencoded;',
+                    dataType: 'json',
+                    error: function (response) {
+                        Swal.fire('Lỗi!', 'Xảy ra lỗi khi thêm mới User.', 'error'); 
+                    },
+                    success: function (response) {
+                        Swal.fire({
+                            title: 'Đã thêm người dùng mới!',
+                            text: 'Thêm mới User thành công.',
+                            icon: 'success'
+                        }).then(() => {
+                            // Refresh trang hiện tại
+                            location.reload();
+                            check = 1;
+                            // Xóa hàng trong bảng mà không làm mới trang
+                            //$('#datatablesSimple').DataTable().row($('#row_' + id)).remove().draw();
+                        });
+                    }
+                    
+                });
+            }
+        });
+        // Đóng modal sau khi lưu thay đổi
+        $('#addUserModal').modal('hide');  
+    } else {
+        // Form is invalid, do not proceed
+        Swal.fire({
+            title: 'Kiểm tra lại thông tin ?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+        });
+    }
+    
+     
 }
 
 function openCreateInvoiceModal() {
@@ -944,62 +973,75 @@ function openCreateOfferModal() {
 }
 
 function saveNewOffer() {
-    // Code to retrieve input values from the create offer modal and send them to the server
-    var name = $('#createOfferName').val();
-    var offerImage = $('#createOfferImage').val();
-    var startDate = $('#createOfferStartDate').val();
-    var endDate = $('#createOfferEndDate').val();
-    var status = $('#addOfferStatus').val();
-    var discountPercentage = $('#createOfferDiscountPercentage').val();
+    var form = document.getElementById('createOfferForm');
+    if (form.checkValidity()){
+         // Code to retrieve input values from the create offer modal and send them to the server
+        var name = $('#createOfferName').val();
+        var offerImage = $('#createOfferImage').val();
+        var startDate = $('#createOfferStartDate').val();
+        var endDate = $('#createOfferEndDate').val();
+        var status = $('#addOfferStatus').val();
+        var discountPercentage = $('#createOfferDiscountPercentage').val();
 
-    var data = {
-        name: name,
-        offerImage: offerImage,
-        startDate: startDate,
-        endDate: endDate,
-        status: status,
-        discountPercentage: discountPercentage
-    };
-    
-    /// Ajax call to send data to the server
-    // Gửi các giá trị này đến server để lưu thay đổi
-    // (Bổ sung phần này dựa trên cách bạn xử lý lưu thay đổi trong ứng dụng của bạn)
-    Swal.fire({
-        title: 'Thêm DVD Offer mới ?',
-        text: 'Bạn chắc chắn thông tin rồi chứ!',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#d33',
-        cancelButtonColor: '#3085d6',
-        confirmButtonText: 'chắc chắn!'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            $.ajax({
-                type: 'POST',
-                url: 'includes/ajax.php',
-                data: { action: 'addoffer', data},
-                contentType: 'application/x-www-form-urlencoded;',
-                dataType: 'json',
-                error: function (response) {
-                    Swal.fire('Lỗi!', 'Xảy ra lỗi khi thêm mới Offer.', 'error'); 
-                },
-                success: function (response) {
-                    Swal.fire({
-                        title: 'Đã thêm Offer!',
-                        text: 'Thêm mới Offer thành công.',
-                        icon: 'success'
-                    }).then(() => {
-                        // Refresh trang hiện tại
-                        location.reload();
-                        check = 1;
-                        // Xóa hàng trong bảng mà không làm mới trang
-                        //$('#datatablesSimple').DataTable().row($('#row_' + id)).remove().draw();
-                    });
-                }
-                
-            });
-        }
-    });
+        var data = {
+            name: name,
+            offerImage: offerImage,
+            startDate: startDate,
+            endDate: endDate,
+            status: status,
+            discountPercentage: discountPercentage
+        };
+        
+        /// Ajax call to send data to the server
+        // Gửi các giá trị này đến server để lưu thay đổi
+        // (Bổ sung phần này dựa trên cách bạn xử lý lưu thay đổi trong ứng dụng của bạn)
+        Swal.fire({
+            title: 'Thêm DVD Offer mới ?',
+            text: 'Bạn chắc chắn thông tin rồi chứ!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'chắc chắn!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: 'POST',
+                    url: 'includes/ajax.php',
+                    data: { action: 'addoffer', data},
+                    contentType: 'application/x-www-form-urlencoded;',
+                    dataType: 'json',
+                    error: function (response) {
+                        Swal.fire('Lỗi!', 'Xảy ra lỗi khi thêm mới Offer.', 'error'); 
+                    },
+                    success: function (response) {
+                        Swal.fire({
+                            title: 'Đã thêm Offer!',
+                            text: 'Thêm mới Offer thành công.',
+                            icon: 'success'
+                        }).then(() => {
+                            // Refresh trang hiện tại
+                            location.reload();
+                            check = 1;
+                            // Xóa hàng trong bảng mà không làm mới trang
+                            //$('#datatablesSimple').DataTable().row($('#row_' + id)).remove().draw();
+                        });
+                    }
+                    
+                });
+            }
+        });
 
-    $('#createOfferModal').modal('hide');
+        $('#createOfferModal').modal('hide');
+    } else {
+        // Form is invalid, do not proceed
+        Swal.fire({
+            title: 'Kiểm tra lại thông tin ?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+        });
+    }
+   
 }

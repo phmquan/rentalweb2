@@ -136,7 +136,7 @@ $dvdList = execute_result($sql);
                     </div>
                     <div class="modal-body">
                         <!-- Form for Add Category -->
-                        <form id="addCategoryForm1" novalidate>
+                        <form id="NullForm" novalidate>
                             <div class="mb-3">
                             <label for="addCategoryName" class="form-label">Category Name</label>
                                 <input type="text" class="form-control" id="addCategoryName" placeholder="Enter Category Name" required>

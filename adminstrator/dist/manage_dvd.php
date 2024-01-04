@@ -164,34 +164,34 @@ $dvdList = execute_result($sql);
                     </div>
                     <div class="modal-body">
                         <!-- Form for Add DVD -->
-                        <form id="addDVDForm">
+                        <form id="addDVDForm" novalidate>
                             <div class="mb-3">
                                 <label for="addDVDCategoryId" class="form-label">Category ID</label>
-                                <input type="text" class="form-control" id="addDVDCategoryId" placeholder="Enter Category ID">
+                                <input type="text" class="form-control" id="addDVDCategoryId" placeholder="Enter Category ID" required>
                             </div>
                             <div class="mb-3">
                                 <label for="addDVDTitle" class="form-label">Title</label>
-                                <input type="text" class="form-control" id="addDVDTitle" placeholder="Enter Title">
+                                <input type="text" class="form-control" id="addDVDTitle" placeholder="Enter Title" required>
                             </div>
                             <div class="mb-3">
                                 <label for="addDVDPrice" class="form-label">Price</label>
-                                <input type="number" class="form-control" id="addDVDPrice" placeholder="Enter Price">
+                                <input type="number" class="form-control" id="addDVDPrice" placeholder="Enter Price" required>
                             </div>
                             <div class="mb-3">
                                 <label for="addDVDQuantity" class="form-label">Quantity</label>
-                                <input type="number" class="form-control" id="addDVDQuantity" placeholder="Enter Quantity">
+                                <input type="number" class="form-control" id="addDVDQuantity" placeholder="Enter Quantity" required>
                             </div>
                             <div class="mb-3">
                                 <label for="addDVDDescription" class="form-label">Description</label>
-                                <textarea class="form-control" id="addDVDDescription" rows="3" placeholder="Enter Description"></textarea>
+                                <textarea class="form-control" id="addDVDDescription" rows="3" placeholder="Enter Description" required></textarea>
                             </div>
                             <div class="mb-3">
                                 <label for="addDVDProductImage" class="form-label">Product Image</label>
-                                <input type="text" class="form-control" id="addDVDProductImage" placeholder="Enter Product Image URL">
+                                <input type="text" class="form-control" id="addDVDProductImage" placeholder="Enter Product Image URL" required>
                             </div>
                             <div class="mb-3">
                                 <label for="addDVDDiscountId" class="form-label">Discount ID</label>
-                                <input type="number" class="form-control" id="addDVDDiscountId" placeholder="Enter Discount ID">
+                                <input type="number" class="form-control" id="addDVDDiscountId" placeholder="Enter Discount ID" required>
                             </div>
                             <button type="button" class="btn btn-primary" onclick="saveNewDVD()">Save DVD</button>
                         </form>

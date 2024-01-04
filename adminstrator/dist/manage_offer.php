@@ -151,30 +151,30 @@ $offerList = execute_result($sql);
                     <form id="createOfferForm">
                         <div class="mb-3">
                             <label for="createOfferName" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="createOfferName" placeholder="Enter Offer Name">
+                            <input type="text" class="form-control" id="createOfferName" placeholder="Enter Offer Name" required>
                         </div>
                         <div class="mb-3">
                             <label for="createOfferImage" class="form-label">Offer Image</label>
-                            <input type="text" class="form-control" id="createOfferImage" placeholder="Enter Offer Image URL">
+                            <input type="text" class="form-control" id="createOfferImage" placeholder="Enter Offer Image URL" required>
                         </div>
                         <div class="mb-3">
                             <label for="createOfferStartDate" class="form-label">Start Date</label>
-                            <input type="datetime-local" class="form-control" id="createOfferStartDate">
+                            <input type="datetime-local" class="form-control" id="createOfferStartDate" required>
                         </div>
                         <div class="mb-3">
                             <label for="createOfferEndDate" class="form-label">End Date</label>
-                            <input type="datetime-local" class="form-control" id="createOfferEndDate">
+                            <input type="datetime-local" class="form-control" id="createOfferEndDate" required>
                         </div>
                         <div class="mb-3">
                             <label for="addOfferStatus" class="form-label">Status</label>
-                            <select class="form-select" id="addOfferStatus" name="addOfferStatus" placeholder="Enter Offer Status">
+                            <select class="form-select" id="addOfferStatus" name="addOfferStatus" placeholder="Enter Offer Status" required>
                                 <option style="color: greenyellow;" value="Active">Active</option>
                                 <option style="color: red;" value="Outdate">Outdate</option>
                             </select>
                         </div>
                         <div class="mb-3">
                             <label for="createOfferDiscountPercentage" class="form-label">Discount Percentage</label>
-                            <input type="number" class="form-control" id="createOfferDiscountPercentage" placeholder="Enter Discount Percentage">
+                            <input type="number" class="form-control" id="createOfferDiscountPercentage" placeholder="Enter Discount Percentage"  required>
                         </div>
 
                         <button type="button" class="btn btn-primary" onclick="saveNewOffer()">Create Offer</button>
