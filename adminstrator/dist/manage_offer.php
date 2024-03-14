@@ -35,8 +35,9 @@ $offerList = execute_result($sql);
                             <th>Start Date</th>
                             <th>End Date</th>
                             <th>Status</th>
-                            <th>Status</th>
                             <th>% Discount</th>
+                            <th>Code</th>
+                            <th>Feature</th>
                             <!-- Thêm các cột khác tùy thuộc vào cần hiển thị -->
                         </tr>
                     </thead>
@@ -48,6 +49,7 @@ $offerList = execute_result($sql);
                             <th>End Date</th>
                             <th>Status</th>
                             <th>% Discount</th>
+                            <th>Code</th>
                             <th>Feature</th>
                             <!-- Thêm các cột khác tùy thuộc vào cần hiển thị -->
                         </tr>
@@ -63,6 +65,7 @@ $offerList = execute_result($sql);
                             echo "<td>{$offer['end_date']}</td>";
                             echo "<td>{$offer['status']}</td>";
                             echo "<td>{$offer['discount_percentage']}</td>";
+                            echo "<td>{$offer['code']}</td>";
                             echo "<td>
                                     <button type='button' class='btn btn-warning btn-sm' data-bs-toggle='modal' data-bs-target='#editOfferModal' 
                                             onclick='openEditModal_Offer(
@@ -72,6 +75,7 @@ $offerList = execute_result($sql);
                                                 \"{$offer['start_date']}\", 
                                                 \"{$offer['end_date']}\", 
                                                 \"{$offer['status']}\", 
+                                                \"{$offer['code']}\",
                                                 {$offer['discount_percentage']});'>
                                     Edit
                                     </button>
@@ -129,6 +133,10 @@ $offerList = execute_result($sql);
                             <label for="editOfferDiscount" class="form-label">Discount Percentage (%)</label>
                             <input type="number" class="form-control" id="editOfferDiscount" name="editOfferDiscount">
                         </div>
+                        <div class="mb-3">
+                            <label for="editOfferCode" class="form-label">code</label>
+                            <input type="text" class="form-control" id="editOfferCode" name="editOfferCode">
+                        </div>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -175,6 +183,10 @@ $offerList = execute_result($sql);
                         <div class="mb-3">
                             <label for="createOfferDiscountPercentage" class="form-label">Discount Percentage</label>
                             <input type="number" class="form-control" id="createOfferDiscountPercentage" placeholder="Enter Discount Percentage"  required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="createOfferCode" class="form-label">code</label>
+                            <input type="text" class="form-control" id="createOfferCode" name="createOfferCode">
                         </div>
 
                         <button type="button" class="btn btn-primary" onclick="saveNewOffer()">Create Offer</button>

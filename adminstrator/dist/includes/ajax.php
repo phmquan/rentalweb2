@@ -271,12 +271,13 @@ if ($action == 'addoffer') {
    $start_date = $data['startDate'];
    $end_date = $data['endDate'];
    $status = $data['status'];
+   $discountcode = $data['discountcode'];
    $discount_percentage = intval($data['discountPercentage']);
 
 
    // Thực hiện câu truy vấn update
-   $sql = "INSERT INTO OFFER (name, offerimage, start_date, end_date, status, discount_percentage) 
-   VALUES ('$name', '$offerimage', '$start_date', '$end_date', '$status', $discount_percentage)";
+   $sql = "INSERT INTO OFFER (name, offerimage, start_date, end_date, status, code, discount_percentage) 
+   VALUES ('$name', '$offerimage', '$start_date', '$end_date', '$status', '$discountcode', $discount_percentage)";
 
 
 

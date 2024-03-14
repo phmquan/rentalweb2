@@ -279,7 +279,7 @@ function openEditModal_Invoice(id, user_id, fullname, email, phone_number, addre
     $('#editInvoiceModal').modal('show');
 }
 
-function openEditModal_Offer(id, name, offerimage, start_date, end_date, status, discount_percentage) {
+function openEditModal_Offer(id, name, offerimage, start_date, end_date, status, code, discount_percentage) {
     // Hiển thị modal và điền thông tin cần chỉnh sửa
     $('#editOfferIdValue').val(id);
     $('#editOfferName').val(name);
@@ -288,6 +288,7 @@ function openEditModal_Offer(id, name, offerimage, start_date, end_date, status,
     $('#editOfferEndDate').val(end_date);
     $('#editOfferStatus').val(status);
     $('#editOfferDiscount').val(discount_percentage);
+    $('#editOfferCode').val(code);
 
     $('#editOfferModal').modal('show');
 }
@@ -981,6 +982,7 @@ function saveNewOffer() {
         var startDate = $('#createOfferStartDate').val();
         var endDate = $('#createOfferEndDate').val();
         var status = $('#addOfferStatus').val();
+        var code = $('#createOfferCode').val();
         var discountPercentage = $('#createOfferDiscountPercentage').val();
 
         var data = {
@@ -989,6 +991,7 @@ function saveNewOffer() {
             startDate: startDate,
             endDate: endDate,
             status: status,
+            discountcode: code,
             discountPercentage: discountPercentage
         };
         
